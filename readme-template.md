@@ -2,10 +2,6 @@
 
 The long lost Emacs string manipulation library.
 
-## Warning
-
-This is so much a work in progress that you should definitely not be using it yet.
-
 ## Functions
 
 [[ function-list ]]
