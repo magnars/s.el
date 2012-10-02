@@ -56,6 +56,12 @@
   "Remove trailing newline from S."
   (s-chop-suffix "\n" s))
 
+(defun s-truncate (len s)
+  "If S is longer than LEN, cut it down and add ... at the end."
+  (if (> (length s) len)
+      (format "%s..." (substring s 0 (- len 3)))
+    s))
+
 (defun s-ends-with-p (suffix s)
   "Does S end in SUFFIX?"
   (let ((pos (- (length suffix))))

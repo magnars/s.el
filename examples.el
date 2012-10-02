@@ -22,6 +22,11 @@
   (s-collapse-whitespace "only   one space   please") => "only one space please"
   (s-collapse-whitespace "collapse \n all \t sorts of \r whitespace") => "collapse all sorts of whitespace")
 
+(defexamples s-truncate
+  (s-truncate 6 "This is too long") => "Thi..."
+  (s-truncate 16 "This is also too long") => "This is also ..."
+  (s-truncate 16 "But this is not!") => "But this is not!")
+
 (defexamples s-chop-suffix
   (s-chop-suffix "-test.js" "penguin-test.js") => "penguin"
   (s-chop-suffix "\n" "no newlines\n") => "no newlines"
