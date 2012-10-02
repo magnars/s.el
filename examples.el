@@ -24,9 +24,8 @@
 
 (defexamples s-chop-suffix
   (s-chop-suffix "-test.js" "penguin-test.js") => "penguin"
-  (s-chop-suffix "!" "exclamation marks!") => "exclamation marks"
-  (s-chop-suffix "!" "exclamation marks!!") => "exclamation marks!"
-  (s-chop-suffix "\n" "no newlines\n") => "no newlines")
+  (s-chop-suffix "\n" "no newlines\n") => "no newlines"
+  (s-chop-suffix "\n" "some newlines\n\n") => "some newlines\n")
 
 (defexamples s-ends-with-p
   (s-ends-with-p ".md" "readme.md") => t

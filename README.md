@@ -23,7 +23,7 @@ The long lost Emacs string manipulation library.
 
 ### s-trim `(s)`
 
-Remove whitespace at beginning and end of `s`.
+Remove whitespace at the beginning and end of `s`.
 
 ```cl
 (s-trim "trim ") ;; => "trim"
@@ -33,7 +33,7 @@ Remove whitespace at beginning and end of `s`.
 
 ### s-trim-left `(s)`
 
-Remove whitespace at beginning and end of `s`.
+Remove whitespace at the beginning of `s`.
 
 ```cl
 (s-trim-left "trim ") ;; => "trim "
@@ -42,7 +42,7 @@ Remove whitespace at beginning and end of `s`.
 
 ### s-trim-right `(s)`
 
-Remove whitespace at beginning and end of `s`.
+Remove whitespace at the end of `s`.
 
 ```cl
 (s-trim-right "trim ") ;; => "trim"
@@ -64,8 +64,8 @@ Remove `suffix` if it is at end of `s`.
 
 ```cl
 (s-chop-suffix "-test.js" "penguin-test.js") ;; => "penguin"
-(s-chop-suffix "!" "exclamation marks!") ;; => "exclamation marks"
-(s-chop-suffix "!" "exclamation marks!!") ;; => "exclamation marks!"
+(s-chop-suffix "\n" "no newlines\n") ;; => "no newlines"
+(s-chop-suffix "\n" "some newlines\n\n") ;; => "some newlines\n"
 ```
 
 ### s-ends-with-p `(suffix s)`
