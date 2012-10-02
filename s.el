@@ -38,5 +38,11 @@
         (substring s 0 pos)
       s)))
 
+(defun s-ends-with-p (suffix s)
+  "Does S end in SUFFIX?"
+  (let ((pos (- (length suffix))))
+    (and (>= (length s) (length suffix))
+         (string= suffix (substring s pos)))))
+
 (provide 's)
 ;;; s.el ends here

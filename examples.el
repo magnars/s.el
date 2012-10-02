@@ -14,3 +14,7 @@
   (s-chop-suffix "-test.js" "penguin-test.js") => "penguin"
   (s-chop-suffix "\n" "no newlines\n") => "no newlines"
   (s-chop-suffix "\n" "no newlines") => "no newlines")
+
+(defexamples s-ends-with-p
+  (s-ends-with-p ".md" "readme.md") => t
+  (s-ends-with-p ".md" "readme.txt") => nil)

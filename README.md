@@ -10,6 +10,7 @@ This is so much a work in progress that you should definitely not be using it ye
 
 * [s-trim](#s-trim-s) `(s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
+* [s-ends-with-p](#s-ends-with-p-suffix-s) `(suffix s)`
 
 ## Documentation and examples
 
@@ -34,6 +35,15 @@ Remove `suffix` if it is at end of `s`.
 ") ;; => "no newlines"
 (s-chop-suffix "
 " "no newlines") ;; => "no newlines"
+```
+
+### s-ends-with-p `(suffix s)`
+
+Does `s` end in `suffix`?
+
+```cl
+(s-ends-with-p ".md" "readme.md") ;; => t
+(s-ends-with-p ".md" "readme.txt") ;; => nil
 ```
 
 
