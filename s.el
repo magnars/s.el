@@ -57,5 +57,41 @@
      (replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s))
    "[^A-Za-z0-9]+"))
 
+(defun s--mapcar-head (fn-head fn-rest list)
+  "Like MAPCAR, but applies a different function to the first element."
+  (if list
+      (cons (funcall fn-head (car list)) (mapcar fn-rest (cdr list)))))
+
+(defun s-lower-camel-case (s)
+  "Convert S to lowerCamelCase."
+  (mapconcat 'identity (s--mapcar-head
+                        '(lambda (word) (downcase word))
+                        '(lambda (word) (capitalize (downcase word)))
+                        (s-split-words s)) ""))
+
+(defun s-upper-camel-case (s)
+  "Convert S to UpperCamelCase."
+  (mapconcat 'identity (mapcar
+                        '(lambda (word) (capitalize (downcase word)))
+                        (s-split-words s)) ""))
+
+(defun s-snake-case (s)
+  "Convert S to snake_case."
+  (mapconcat 'identity (mapcar
+                        '(lambda (word) (downcase word))
+                        (s-split-words s)) "_"))
+
+(defun s-dashed-words (s)
+  "Convert S to dashed-words."
+  (mapconcat 'identity (mapcar
+                        '(lambda (word) (downcase word))
+                        (s-split-words s)) "-"))
+
+(defun s-capitalized-words (s)
+  "Convert S to Capitalized Words."
+  (mapconcat 'identity (mapcar
+                        '(lambda (word) (capitalize (downcase word)))
+                        (s-split-words s)) " "))
+
 (provide 's)
 ;;; s.el ends here

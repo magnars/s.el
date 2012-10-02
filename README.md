@@ -13,6 +13,11 @@ This is so much a work in progress that you should definitely not be using it ye
 * [s-ends-with-p](#s-ends-with-p-suffix-s) `(suffix s)`
 * [s-starts-with-p](#s-starts-with-p-suffix-s) `(suffix s)`
 * [s-split-words](#s-split-words-s) `(s)`
+* [s-lower-camel-case](#s-lower-camel-case-s) `(s)`
+* [s-upper-camel-case](#s-upper-camel-case-s) `(s)`
+* [s-snake-case](#s-snake-case-s) `(s)`
+* [s-dashed-words](#s-dashed-words-s) `(s)`
+* [s-capitalized-words](#s-capitalized-words-s) `(s)`
 
 ## Documentation and examples
 
@@ -67,6 +72,56 @@ Split `s` into list of words
 (s-split-words "under_score") ;; => '("under" "score")
 (s-split-words "some-dashed-words") ;; => '("some" "dashed" "words")
 (s-split-words "evenCamelCase") ;; => '("even" "Camel" "Case")
+```
+
+### s-lower-camel-case `(s)`
+
+Convert `s` to lowerCamelCase.
+
+```cl
+(s-lower-camel-case "some words") ;; => "someWords"
+(s-lower-camel-case "dashed-words") ;; => "dashedWords"
+(s-lower-camel-case "under_scored_words") ;; => "underScoredWords"
+```
+
+### s-upper-camel-case `(s)`
+
+Convert `s` to UpperCamelCase.
+
+```cl
+(s-upper-camel-case "some words") ;; => "SomeWords"
+(s-upper-camel-case "dashed-words") ;; => "DashedWords"
+(s-upper-camel-case "under_scored_words") ;; => "UnderScoredWords"
+```
+
+### s-snake-case `(s)`
+
+Convert `s` to snake_case.
+
+```cl
+(s-snake-case "some words") ;; => "some_words"
+(s-snake-case "dashed-words") ;; => "dashed_words"
+(s-snake-case "camelCasedWords") ;; => "camel_cased_words"
+```
+
+### s-dashed-words `(s)`
+
+Convert `s` to dashed-words.
+
+```cl
+(s-dashed-words "some words") ;; => "some-words"
+(s-dashed-words "under_scored_words") ;; => "under-scored-words"
+(s-dashed-words "camelCasedWords") ;; => "camel-cased-words"
+```
+
+### s-capitalized-words `(s)`
+
+Convert `s` to Capitalized Words.
+
+```cl
+(s-capitalized-words "some words") ;; => "Some Words"
+(s-capitalized-words "under_scored_words") ;; => "Under Scored Words"
+(s-capitalized-words "camelCasedWords") ;; => "Camel Cased Words"
 ```
 
 
