@@ -10,7 +10,7 @@ The long lost Emacs string manipulation library.
 * [s-collapse-whitespace](#s-collapse-whitespace-s) `(s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 * [s-ends-with-p](#s-ends-with-p-suffix-s) `(suffix s)`
-* [s-starts-with-p](#s-starts-with-p-suffix-s) `(suffix s)`
+* [s-starts-with-p](#s-starts-with-p-prefix-s) `(prefix s)`
 * [s-split-words](#s-split-words-s) `(s)`
 * [s-lower-camel-case](#s-lower-camel-case-s) `(s)`
 * [s-upper-camel-case](#s-upper-camel-case-s) `(s)`
@@ -77,9 +77,9 @@ Does `s` end in `suffix`?
 (s-ends-with-p ".md" "md") ;; => nil
 ```
 
-### s-starts-with-p `(suffix s)`
+### s-starts-with-p `(prefix s)`
 
-Does `s` start with `suffix`?
+Does `s` start with `prefix`?
 
 ```cl
 (s-starts-with-p "lib/" "lib/file.js") ;; => t

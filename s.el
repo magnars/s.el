@@ -58,11 +58,11 @@
     (and (>= (length s) (length suffix))
          (string= suffix (substring s pos)))))
 
-(defun s-starts-with-p (suffix s)
-  "Does S start with SUFFIX?"
-  (let ((l (length suffix)))
+(defun s-starts-with-p (prefix s)
+  "Does S start with PREFIX?"
+  (let ((l (length prefix)))
     (and (>= (length s) l)
-         (string= suffix (substring s 0 l)))))
+         (string= prefix (substring s 0 l)))))
 
 (defun s-split-words (s)
   "Split S into list of words"
