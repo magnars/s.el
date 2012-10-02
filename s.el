@@ -48,6 +48,10 @@
   "Join all the strings in STRINGS with SEPARATOR in between."
   (mapconcat 'identity strings separator))
 
+(defun s-concat (&rest strings)
+  "Join all the string arguments into one string."
+  (mapconcat 'identity strings ""))
+
 (defun s-chop-suffix (suffix s)
   "Remove SUFFIX if it is at end of S."
   (let ((pos (- (length suffix))))

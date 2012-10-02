@@ -26,6 +26,9 @@
   (s-join "+" '("abc" "def" "ghi")) => "abc+def+ghi"
   (s-join "\n" '("abc" "def" "ghi")) => "abc\ndef\nghi")
 
+(defexamples s-concat
+  (s-concat "abc" "def" "ghi") => "abcdefghi")
+
 (defexamples s-truncate
   (s-truncate 6 "This is too long") => "Thi..."
   (s-truncate 16 "This is also too long") => "This is also ..."
