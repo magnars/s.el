@@ -38,6 +38,10 @@
   (s-starts-with-p "test/" "lib/file.js") => nil
   (s-starts-with-p "lib/" "lib") => nil)
 
+(defexamples s-contains-p
+  (s-contains-p "file" "lib/file.js") => t
+  (s-contains-p "^a" "its not ^a regexp, is it?") => t)
+
 (defexamples s-split-words
   (s-split-words "under_score") => '("under" "score")
   (s-split-words "some-dashed-words") => '("some" "dashed" "words")

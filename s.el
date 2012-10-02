@@ -64,6 +64,13 @@
     (and (>= (length s) l)
          (string= prefix (substring s 0 l)))))
 
+(defun s--bool (val)
+  (not (null val)))
+
+(defun s-contains-p (needle s)
+  "Does S contain NEEDLE?"
+  (s--bool (string-match-p (regexp-quote needle) s)))
+
 (defun s-split-words (s)
   "Split S into list of words"
   (split-string

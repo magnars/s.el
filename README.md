@@ -11,6 +11,7 @@ The long lost Emacs string manipulation library.
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 * [s-ends-with-p](#s-ends-with-p-suffix-s) `(suffix s)`
 * [s-starts-with-p](#s-starts-with-p-prefix-s) `(prefix s)`
+* [s-contains-p](#s-contains-p-needle-s) `(needle s)`
 * [s-split-words](#s-split-words-s) `(s)`
 * [s-lower-camel-case](#s-lower-camel-case-s) `(s)`
 * [s-upper-camel-case](#s-upper-camel-case-s) `(s)`
@@ -85,6 +86,15 @@ Does `s` start with `prefix`?
 (s-starts-with-p "lib/" "lib/file.js") ;; => t
 (s-starts-with-p "test/" "lib/file.js") ;; => nil
 (s-starts-with-p "lib/" "lib") ;; => nil
+```
+
+### s-contains-p `(needle s)`
+
+Does `s` contain `needle`?
+
+```cl
+(s-contains-p "file" "lib/file.js") ;; => t
+(s-contains-p "^a" "its not ^a regexp, is it?") ;; => t
 ```
 
 ### s-split-words `(s)`
