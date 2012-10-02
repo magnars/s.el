@@ -24,11 +24,21 @@
 
 ;;; Code:
 
+(defun s-trim-left (s)
+  "Remove whitespace at beginning and end of S."
+  (if (string-match "\\`[ \t\n\r]+" s)
+      (replace-match "" t t s)
+    s))
+
+(defun s-trim-right (s)
+  "Remove whitespace at beginning and end of S."
+  (if (string-match "[ \t\n\r]+\\'" s)
+      (replace-match "" t t s)
+    s))
+
 (defun s-trim (s)
   "Remove whitespace at beginning and end of S."
-  (if (string-match "\\`[ \t\n\r]+" s) (setq s (replace-match "" t t s)))
-  (if (string-match "[ \t\n\r]+\\'" s) (setq s (replace-match "" t t s)))
-  s)
+  (s-trim-left (s-trim-right s)))
 
 (defun s-collapse-whitespace (s)
   "Convert all adjacent whitespace characters to a single space."

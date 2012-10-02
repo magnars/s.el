@@ -10,6 +10,14 @@
   (s-trim " this") => "this"
   (s-trim " only  trims beg and end  ") => "only  trims beg and end")
 
+(defexamples s-trim-left
+  (s-trim-left "trim ") => "trim "
+  (s-trim-left " this") => "this")
+
+(defexamples s-trim-right
+  (s-trim-right "trim ") => "trim"
+  (s-trim-right " this") => " this")
+
 (defexamples s-collapse-whitespace
   (s-collapse-whitespace "only   one space   please") => "only one space please"
   (s-collapse-whitespace "collapse \n all \t sorts of \r whitespace") => "collapse all sorts of whitespace")
