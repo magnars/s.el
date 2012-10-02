@@ -37,11 +37,8 @@ Remove `suffix` if it is at end of `s`.
 
 ```cl
 (s-chop-suffix "-test.js" "penguin-test.js") ;; => "penguin"
-(s-chop-suffix "
-" "no newlines
-") ;; => "no newlines"
-(s-chop-suffix "
-" "no newlines") ;; => "no newlines"
+(s-chop-suffix "!" "exclamation marks!") ;; => "exclamation marks"
+(s-chop-suffix "!" "exclamation marks!!") ;; => "exclamation marks!"
 ```
 
 ### s-ends-with-p `(suffix s)`
