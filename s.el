@@ -44,6 +44,10 @@
   "Convert all adjacent whitespace characters to a single space."
   (replace-regexp-in-string "[ \t\n\r]+" " " s))
 
+(defun s-join (separator strings)
+  "Join all the strings in STRINGS with SEPARATOR in between."
+  (mapconcat 'identity strings separator))
+
 (defun s-chop-suffix (suffix s)
   "Remove SUFFIX if it is at end of S."
   (let ((pos (- (length suffix))))
