@@ -10,6 +10,10 @@
   (s-trim " this") => "this"
   (s-trim " only  trims beg and end  ") => "only  trims beg and end")
 
+(defexamples s-collapse-whitespace
+  (s-collapse-whitespace "only   one space   please") => "only one space please"
+  (s-collapse-whitespace "collapse \n all \t sorts of \r whitespace") => "collapse all sorts of whitespace")
+
 (defexamples s-chop-suffix
   (s-chop-suffix "-test.js" "penguin-test.js") => "penguin"
   (s-chop-suffix "!" "exclamation marks!") => "exclamation marks"

@@ -30,6 +30,10 @@
   (if (string-match "[ \t\n\r]+\\'" s) (setq s (replace-match "" t t s)))
   s)
 
+(defun s-collapse-whitespace (s)
+  "Convert all adjacent whitespace characters to a single space."
+  (replace-regexp-in-string "[ \t\n\r]+" " " s))
+
 (defun s-chop-suffix (suffix s)
   "Remove SUFFIX if it is at end of S."
   (let ((pos (- (length suffix))))

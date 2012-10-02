@@ -3,7 +3,15 @@
 (defun example-to-string (example)
   (let ((actual (car example))
         (expected (cadr (cdr example))))
-    (replace-regexp-in-string "\\\\\\?" "?" (format "%S ;; => %S" actual expected))))
+    (replace-regexp-in-string
+     "\r" "\\r"
+     (replace-regexp-in-string
+      "\t" "\\t"
+      (replace-regexp-in-string
+       "\n" "\\n"
+       (replace-regexp-in-string
+        "\\\\\\?" "?"
+        (format "%S ;; => %S" actual expected)) t t) t t) t t)))
 
 (defun examples-to-strings (examples)
   (let (result)

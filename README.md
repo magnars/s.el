@@ -5,6 +5,7 @@ The long lost Emacs string manipulation library.
 ## Functions
 
 * [s-trim](#s-trim-s) `(s)`
+* [s-collapse-whitespace](#s-collapse-whitespace-s) `(s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 * [s-ends-with-p](#s-ends-with-p-suffix-s) `(suffix s)`
 * [s-starts-with-p](#s-starts-with-p-suffix-s) `(suffix s)`
@@ -25,6 +26,15 @@ Remove whitespace at beginning and end of `s`.
 (s-trim "trim ") ;; => "trim"
 (s-trim " this") ;; => "this"
 (s-trim " only  trims beg and end  ") ;; => "only  trims beg and end"
+```
+
+### s-collapse-whitespace `(s)`
+
+Convert all adjacent whitespace characters to a single space.
+
+```cl
+(s-collapse-whitespace "only   one space   please") ;; => "only one space please"
+(s-collapse-whitespace "collapse \n all \t sorts of \r whitespace") ;; => "collapse all sorts of whitespace"
 ```
 
 ### s-chop-suffix `(suffix s)`
