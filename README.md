@@ -11,6 +11,7 @@ This is so much a work in progress that you should definitely not be using it ye
 * [s-trim](#s-trim-s) `(s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 * [s-ends-with-p](#s-ends-with-p-suffix-s) `(suffix s)`
+* [s-starts-with-p](#s-starts-with-p-suffix-s) `(suffix s)`
 
 ## Documentation and examples
 
@@ -44,6 +45,17 @@ Does `s` end in `suffix`?
 ```cl
 (s-ends-with-p ".md" "readme.md") ;; => t
 (s-ends-with-p ".md" "readme.txt") ;; => nil
+(s-ends-with-p ".md" "md") ;; => nil
+```
+
+### s-starts-with-p `(suffix s)`
+
+Does `s` start with `suffix`?
+
+```cl
+(s-starts-with-p "lib/" "lib/file.js") ;; => t
+(s-starts-with-p "test/" "lib/file.js") ;; => nil
+(s-starts-with-p "lib/" "lib") ;; => nil
 ```
 
 

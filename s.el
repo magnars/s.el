@@ -44,5 +44,11 @@
     (and (>= (length s) (length suffix))
          (string= suffix (substring s pos)))))
 
+(defun s-starts-with-p (suffix s)
+  "Does S start with SUFFIX?"
+  (let ((l (length suffix)))
+    (and (>= (length s) l)
+         (string= suffix (substring s 0 l)))))
+
 (provide 's)
 ;;; s.el ends here

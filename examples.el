@@ -17,4 +17,10 @@
 
 (defexamples s-ends-with-p
   (s-ends-with-p ".md" "readme.md") => t
-  (s-ends-with-p ".md" "readme.txt") => nil)
+  (s-ends-with-p ".md" "readme.txt") => nil
+  (s-ends-with-p ".md" "md") => nil)
+
+(defexamples s-starts-with-p
+  (s-starts-with-p "lib/" "lib/file.js") => t
+  (s-starts-with-p "test/" "lib/file.js") => nil
+  (s-starts-with-p "lib/" "lib") => nil)
