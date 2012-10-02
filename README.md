@@ -12,6 +12,7 @@ This is so much a work in progress that you should definitely not be using it ye
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 * [s-ends-with-p](#s-ends-with-p-suffix-s) `(suffix s)`
 * [s-starts-with-p](#s-starts-with-p-suffix-s) `(suffix s)`
+* [s-split-words](#s-split-words-s) `(s)`
 
 ## Documentation and examples
 
@@ -56,6 +57,16 @@ Does `s` start with `suffix`?
 (s-starts-with-p "lib/" "lib/file.js") ;; => t
 (s-starts-with-p "test/" "lib/file.js") ;; => nil
 (s-starts-with-p "lib/" "lib") ;; => nil
+```
+
+### s-split-words `(s)`
+
+Split `s` into list of words
+
+```cl
+(s-split-words "under_score") ;; => '("under" "score")
+(s-split-words "some-dashed-words") ;; => '("some" "dashed" "words")
+(s-split-words "evenCamelCase") ;; => '("even" "Camel" "Case")
 ```
 
 

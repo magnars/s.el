@@ -50,5 +50,12 @@
     (and (>= (length s) l)
          (string= suffix (substring s 0 l)))))
 
+(defun s-split-words (s)
+  "Split S into list of words"
+  (split-string
+   (let ((case-fold-search nil))
+     (replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s))
+   "[^A-Za-z0-9]+"))
+
 (provide 's)
 ;;; s.el ends here

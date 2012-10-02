@@ -24,3 +24,9 @@
   (s-starts-with-p "lib/" "lib/file.js") => t
   (s-starts-with-p "test/" "lib/file.js") => nil
   (s-starts-with-p "lib/" "lib") => nil)
+
+(defexamples s-split-words
+  (s-split-words "under_score") => '("under" "score")
+  (s-split-words "some-dashed-words") => '("some" "dashed" "words")
+  (s-split-words "evenCamelCase") => '("even" "Camel" "Case")
+)
