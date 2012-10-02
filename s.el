@@ -52,6 +52,10 @@
         (substring s 0 pos)
       s)))
 
+(defun s-chomp (s)
+  "Remove trailing newline from S."
+  (s-chop-suffix "\n" s))
+
 (defun s-ends-with-p (suffix s)
   "Does S end in SUFFIX?"
   (let ((pos (- (length suffix))))

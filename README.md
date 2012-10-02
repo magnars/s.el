@@ -9,6 +9,7 @@ The long lost Emacs string manipulation library.
 * [s-trim-right](#s-trim-right-s) `(s)`
 * [s-collapse-whitespace](#s-collapse-whitespace-s) `(s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
+* [s-chomp](#s-chomp-s) `(s)`
 * [s-ends-with-p](#s-ends-with-p-suffix-s) `(suffix s)`
 * [s-starts-with-p](#s-starts-with-p-prefix-s) `(prefix s)`
 * [s-contains-p](#s-contains-p-needle-s) `(needle s)`
@@ -66,6 +67,15 @@ Remove `suffix` if it is at end of `s`.
 (s-chop-suffix "-test.js" "penguin-test.js") ;; => "penguin"
 (s-chop-suffix "\n" "no newlines\n") ;; => "no newlines"
 (s-chop-suffix "\n" "some newlines\n\n") ;; => "some newlines\n"
+```
+
+### s-chomp `(s)`
+
+Remove trailing newline from `s`.
+
+```cl
+(s-chomp "no newlines\n") ;; => "no newlines"
+(s-chomp "some newlines\n\n") ;; => "some newlines\n"
 ```
 
 ### s-ends-with-p `(suffix s)`

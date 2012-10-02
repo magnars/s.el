@@ -27,6 +27,10 @@
   (s-chop-suffix "\n" "no newlines\n") => "no newlines"
   (s-chop-suffix "\n" "some newlines\n\n") => "some newlines\n")
 
+(defexamples s-chomp
+  (s-chomp "no newlines\n") => "no newlines"
+  (s-chomp "some newlines\n\n") => "some newlines\n")
+
 (defexamples s-ends-with-p
   (s-ends-with-p ".md" "readme.md") => t
   (s-ends-with-p ".md" "readme.txt") => nil
