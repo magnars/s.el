@@ -8,5 +8,9 @@
 (defexamples s-trim
   (s-trim "trim ") => "trim"
   (s-trim " this") => "this"
-  (s-trim " only  trims beg and end  ") => "only  trims beg and end"
-)
+  (s-trim " only  trims beg and end  ") => "only  trims beg and end")
+
+(defexamples s-chop-suffix
+  (s-chop-suffix "-test.js" "penguin-test.js") => "penguin"
+  (s-chop-suffix "\n" "no newlines\n") => "no newlines"
+  (s-chop-suffix "\n" "no newlines") => "no newlines")

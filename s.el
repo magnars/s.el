@@ -25,10 +25,18 @@
 ;;; Code:
 
 (defun s-trim (s)
-  "Remove whitespace at beginning and end of string."
+  "Remove whitespace at beginning and end of S."
   (if (string-match "\\`[ \t\n\r]+" s) (setq s (replace-match "" t t s)))
   (if (string-match "[ \t\n\r]+\\'" s) (setq s (replace-match "" t t s)))
   s)
+
+(defun s-chop-suffix (suffix s)
+  "Remove SUFFIX if it is at end of S."
+  (let ((pos (- (length suffix))))
+    (if (and (>= (length s) (length suffix))
+             (string= suffix (substring s pos)))
+        (substring s 0 pos)
+      s)))
 
 (provide 's)
 ;;; s.el ends here

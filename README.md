@@ -9,17 +9,31 @@ This is so much a work in progress that you should definitely not be using it ye
 ## Functions
 
 * [s-trim](#s-trim-s) `(s)`
+* [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 
 ## Documentation and examples
 
 ### s-trim `(s)`
 
-Remove whitespace at beginning and end of string.
+Remove whitespace at beginning and end of `s`.
 
 ```cl
 (s-trim "trim ") ;; => "trim"
 (s-trim " this") ;; => "this"
 (s-trim " only  trims beg and end  ") ;; => "only  trims beg and end"
+```
+
+### s-chop-suffix `(suffix s)`
+
+Remove `suffix` if it is at end of `s`.
+
+```cl
+(s-chop-suffix "-test.js" "penguin-test.js") ;; => "penguin"
+(s-chop-suffix "
+" "no newlines
+") ;; => "no newlines"
+(s-chop-suffix "
+" "no newlines") ;; => "no newlines"
 ```
 
 
