@@ -70,6 +70,19 @@
       (format "%s..." (substring s 0 (- len 3)))
     s))
 
+(defun s-left (len s)
+  "Returns up to the LEN first chars of S."
+  (if (> (length s) len)
+      (substring s 0 len)
+    s))
+
+(defun s-right (len s)
+  "Returns up to the LEN last chars of S."
+  (let ((l (length s)))
+    (if (> l len)
+        (substring s (- l len) l)
+      s)))
+
 (defun s-ends-with-p (suffix s)
   "Does S end in SUFFIX?"
   (let ((pos (- (length suffix))))

@@ -11,6 +11,8 @@ The long lost Emacs string manipulation library.
 * [s-join](#s-join-separator-strings) `(separator strings)`
 * [s-concat](#s-concat-rest-strings) `(&rest strings)`
 * [s-truncate](#s-truncate-len-s) `(len s)`
+* [s-left](#s-left-len-s) `(len s)`
+* [s-right](#s-right-len-s) `(len s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 * [s-chomp](#s-chomp-s) `(s)`
 * [s-ends-with-p](#s-ends-with-p-suffix-s) `(suffix s)`
@@ -87,6 +89,24 @@ If `s` is longer than `len`, cut it down and add ... at the end.
 (s-truncate 6 "This is too long") ;; => "Thi..."
 (s-truncate 16 "This is also too long") ;; => "This is also ..."
 (s-truncate 16 "But this is not!") ;; => "But this is not!"
+```
+
+### s-left `(len s)`
+
+Returns up to the `len` first chars of `s`.
+
+```cl
+(s-left 3 "lib/file.js") ;; => "lib"
+(s-left 3 "li") ;; => "li"
+```
+
+### s-right `(len s)`
+
+Returns up to the `len` last chars of `s`.
+
+```cl
+(s-right 3 "lib/file.js") ;; => ".js"
+(s-right 3 "li") ;; => "li"
 ```
 
 ### s-chop-suffix `(suffix s)`

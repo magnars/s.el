@@ -34,6 +34,14 @@
   (s-truncate 16 "This is also too long") => "This is also ..."
   (s-truncate 16 "But this is not!") => "But this is not!")
 
+(defexamples s-left
+  (s-left 3 "lib/file.js") => "lib"
+  (s-left 3 "li") => "li")
+
+(defexamples s-right
+  (s-right 3 "lib/file.js") => ".js"
+  (s-right 3 "li") => "li")
+
 (defexamples s-chop-suffix
   (s-chop-suffix "-test.js" "penguin-test.js") => "penguin"
   (s-chop-suffix "\n" "no newlines\n") => "no newlines"
