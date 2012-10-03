@@ -23,6 +23,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-word-wrap](#s-word-wrap-len-s) `(len s)`
 * [s-left](#s-left-len-s) `(len s)`
 * [s-right](#s-right-len-s) `(len s)`
+* [s-suffix-p](#s-suffix-p-s) `(suffix s &optional ignore-case)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 * [s-chomp](#s-chomp-s) `(s)`
 * [s-ends-with-p](#s-ends-with-p-suffix-s) `(suffix s)`
