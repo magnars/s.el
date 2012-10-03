@@ -2,6 +2,14 @@
 
 The long lost Emacs string manipulation library.
 
+## Installation
+
+It's available on [marlamade](http://marmalade-repo.org/):
+
+    M-x package-install s
+
+Or you can just dump `s.el` in your load path somewhere.
+
 ## Functions
 
 [[ function-list ]]
@@ -9,6 +17,15 @@ The long lost Emacs string manipulation library.
 ## Documentation and examples
 
 [[ function-docs ]]
+
+## Contribute
+
+Yes, please do. There's a suite of tests, so remember to add tests for your
+specific feature, or I might break it later.
+
+You'll find the repo at:
+
+    https://github.com/magnars/s.el
 
 ## Development
 

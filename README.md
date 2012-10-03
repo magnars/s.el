@@ -2,6 +2,14 @@
 
 The long lost Emacs string manipulation library.
 
+## Installation
+
+It's available on [marlamade](http://marmalade-repo.org/):
+
+    M-x package-install s
+
+Or you can just dump `s.el` in your load path somewhere.
+
 ## Functions
 
 * [s-trim](#s-trim-s) `(s)`
@@ -258,6 +266,15 @@ Convert `s` to Capitalized Words.
 (s-capitalized-words "camelCasedWords") ;; => "Camel Cased Words"
 ```
 
+
+## Contribute
+
+Yes, please do. There's a suite of tests, so remember to add tests for your
+specific feature, or I might break it later.
+
+You'll find the repo at:
+
+    https://github.com/magnars/s.el
 
 ## Development
 
