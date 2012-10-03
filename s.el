@@ -53,10 +53,6 @@
   "Join all the strings in STRINGS with SEPARATOR in between."
   (mapconcat 'identity strings separator))
 
-(defun s-concat (&rest strings)
-  "Join all the string arguments into one string."
-  (mapconcat 'identity strings ""))
-
 (defun s-repeat (num s)
   "Make a string of S repeated NUM times."
   (let (ss)
