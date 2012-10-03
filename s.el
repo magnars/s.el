@@ -59,7 +59,7 @@
     (while (> num 0)
       (setq ss (cons s ss))
       (setq num (1- num)))
-    (mapconcat 'identity ss "")))
+    (apply 'concat ss)))
 
 (defun s-chop-suffix (suffix s)
   "Remove SUFFIX if it is at end of S."
