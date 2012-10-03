@@ -155,12 +155,12 @@ Does `s` contain `needle`?
 ```cl
 (s-contains-p "file" "lib/file.js") ;; => t
 (s-contains-p "nope" "lib/file.js") ;; => nil
-(s-contains-p "^a" "its not ^a regexp") ;; => t
+(s-contains-p "^a" "it's not ^a regexp") ;; => t
 ```
 
 ### s-split-words `(s)`
 
-Split `s` into list of words
+Split `s` into list of words.
 
 ```cl
 (s-split-words "under_score") ;; => '("under" "score")

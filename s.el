@@ -103,7 +103,7 @@
   (s--bool (string-match-p (regexp-quote needle) s)))
 
 (defun s-split-words (s)
-  "Split S into list of words"
+  "Split S into list of words."
   (split-string
    (let ((case-fold-search nil))
      (replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s))

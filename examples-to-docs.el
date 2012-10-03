@@ -55,26 +55,21 @@
       (replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s)))
    "[^A-Za-z0-9]+"))
 
-(defmacro !!filter (form list)
-  "Anaphoric form of `!filter'."
+(defmacro --remove (form list)
   `(let ((!--list ,list)
          (!--result '()))
      (while !--list
        (let ((it (car !--list)))
-         (when ,form
+         (when (not ,form)
            (setq !--result (cons it !--result))))
        (setq !--list (cdr !--list)))
      (nreverse !--result)))
-
-(defmacro !!remove (form list)
-  "Anaphoric form of `!remove'."
-  `(!!filter (not ,form) ,list))
 
 (defun dashed-words (s)
   "Convert string S to snake-case string."
   (mapconcat 'identity (mapcar
                         '(lambda (word) (downcase word))
-                        (!!remove (equal it "") (split-name s))) "-"))
+                        (--remove (equal it "") (split-name s))) "-"))
 
 (defun github-id (command-name signature)
   (dashed-words (format "%s %s" command-name signature)))
@@ -85,6 +80,9 @@
     (format "* [%s](#%s) `%s`" command-name (github-id command-name signature) signature)))
 
 (defun simplify-quotes ()
+  (goto-char (point-min))
+  (while (search-forward "(quote nil)" nil t)
+    (replace-match "'()"))
   (goto-char (point-min))
   (while (search-forward "(quote " nil t)
     (forward-char -7)

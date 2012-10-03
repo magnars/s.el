@@ -64,7 +64,7 @@
 (defexamples s-contains-p
   (s-contains-p "file" "lib/file.js") => t
   (s-contains-p "nope" "lib/file.js") => nil
-  (s-contains-p "^a" "its not ^a regexp") => t)
+  (s-contains-p "^a" "it's not ^a regexp") => t)
 
 (defexamples s-split-words
   (s-split-words "under_score") => '("under" "score")
