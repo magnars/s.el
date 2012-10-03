@@ -20,6 +20,7 @@ The long lost Emacs string manipulation library.
 * [s-ends-with-p](#s-ends-with-p-suffix-s) `(suffix s)`
 * [s-starts-with-p](#s-starts-with-p-prefix-s) `(prefix s)`
 * [s-contains-p](#s-contains-p-needle-s) `(needle s)`
+* [s-replace](#s-replace-old-new-s) `(old new s)`
 * [s-split-words](#s-split-words-s) `(s)`
 * [s-lower-camel-case](#s-lower-camel-case-s) `(s)`
 * [s-upper-camel-case](#s-upper-camel-case-s) `(s)`
@@ -176,6 +177,15 @@ Does `s` contain `needle`?
 (s-contains-p "file" "lib/file.js") ;; => t
 (s-contains-p "nope" "lib/file.js") ;; => nil
 (s-contains-p "^a" "it's not ^a regexp") ;; => t
+```
+
+### s-replace `(old new s)`
+
+Replaces `old` with `new` in `s`.
+
+```cl
+(s-replace "file" "nope" "lib/file.js") ;; => "lib/nope.js"
+(s-replace "^a" "\\1" "it's not ^a regexp") ;; => "it's not \\1 regexp"
 ```
 
 ### s-split-words `(s)`

@@ -112,6 +112,10 @@
   "Does S contain NEEDLE?"
   (s--bool (string-match-p (regexp-quote needle) s)))
 
+(defun s-replace (old new s)
+  "Replaces OLD with NEW in S."
+  (replace-regexp-in-string (regexp-quote old) new s t t))
+
 (defun s-split-words (s)
   "Split S into list of words."
   (split-string
