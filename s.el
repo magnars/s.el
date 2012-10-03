@@ -61,13 +61,21 @@
       (setq num (1- num)))
     (apply 'concat ss)))
 
+(defun s-suffix-p (str1 str2 &optional ignore-case)
+  "Return non-nil if STR1 is a suffix of STR2.
+If IGNORE-CASE is non-nil, the comparison is done without paying
+attention to case differences.  This is the missing counterpart
+to the built-in function `string-prefix-p'."
+  (let ((start-pos (- (length str2) (length str1))))
+    (and (>= start-pos 0)
+         (eq t (compare-strings str1 nil nil
+                                str2 start-pos nil ignore-case)))))
+
 (defun s-chop-suffix (suffix s)
   "Remove SUFFIX if it is at end of S."
-  (let ((pos (- (length suffix))))
-    (if (and (>= (length s) (length suffix))
-             (string= suffix (substring s pos)))
-        (substring s 0 pos)
-      s)))
+  (if (s-suffix-p suffix s)
+      (substring s 0 (- (length suffix)))
+    s))
 
 (defun s-chomp (s)
   "Remove trailing newline from S."

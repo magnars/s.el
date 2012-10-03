@@ -51,9 +51,18 @@
   (s-right 3 "lib/file.js") => ".js"
   (s-right 3 "li") => "li")
 
+(defexamples s-suffix-p
+  (s-suffix-p "-test.js" "penguin-test.js") => t
+  (s-suffix-p "-test.js" "penguin-test.js" t) => t
+  (s-suffix-p "" "some string") => t
+  (s-suffix-p "sensitive" "CASE SENSITIVE" nil) => nil
+  (s-suffix-p "sensitive" "CASE SENSITIVE" t) => t
+  (s-suffix-p "verylong" "short") => nil)
+
 (defexamples s-chop-suffix
   (s-chop-suffix "-test.js" "penguin-test.js") => "penguin"
   (s-chop-suffix "\n" "no newlines\n") => "no newlines"
+  (s-chop-suffix "verylong" "short") => "short"
   (s-chop-suffix "\n" "some newlines\n\n") => "some newlines\n")
 
 (defexamples s-chomp
