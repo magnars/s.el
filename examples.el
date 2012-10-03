@@ -34,6 +34,11 @@
   (s-truncate 16 "This is also too long") => "This is also ..."
   (s-truncate 16 "But this is not!") => "But this is not!")
 
+(defexamples s-word-wrap
+  (s-word-wrap 10 "This is too long") => "This is\ntoo long"
+  (s-word-wrap 10 "This is way way too long") => "This is\nway way\ntoo long"
+  (s-word-wrap 10 "It-wraps-words-but-does-not-break-them") => "It-wraps-words-but-does-not-break-them")
+
 (defexamples s-left
   (s-left 3 "lib/file.js") => "lib"
   (s-left 3 "li") => "li")

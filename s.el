@@ -70,6 +70,14 @@
       (format "%s..." (substring s 0 (- len 3)))
     s))
 
+(defun s-word-wrap (len s)
+  "If S is longer than LEN, wrap the words with newlines."
+  (with-temp-buffer
+    (insert s)
+    (let ((fill-column len))
+      (fill-region (point-min) (point-max)))
+    (buffer-substring-no-properties (point-min) (point-max))))
+
 (defun s-left (len s)
   "Returns up to the LEN first chars of S."
   (if (> (length s) len)

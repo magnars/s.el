@@ -11,6 +11,7 @@ The long lost Emacs string manipulation library.
 * [s-join](#s-join-separator-strings) `(separator strings)`
 * [s-concat](#s-concat-rest-strings) `(&rest strings)`
 * [s-truncate](#s-truncate-len-s) `(len s)`
+* [s-word-wrap](#s-word-wrap-len-s) `(len s)`
 * [s-left](#s-left-len-s) `(len s)`
 * [s-right](#s-right-len-s) `(len s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
@@ -89,6 +90,16 @@ If `s` is longer than `len`, cut it down and add ... at the end.
 (s-truncate 6 "This is too long") ;; => "Thi..."
 (s-truncate 16 "This is also too long") ;; => "This is also ..."
 (s-truncate 16 "But this is not!") ;; => "But this is not!"
+```
+
+### s-word-wrap `(len s)`
+
+If `s` is longer than `len`, wrap the words with newlines.
+
+```cl
+(s-word-wrap 10 "This is too long") ;; => "This is\ntoo long"
+(s-word-wrap 10 "This is way way too long") ;; => "This is\nway way\ntoo long"
+(s-word-wrap 10 "It-wraps-words-but-does-not-break-them") ;; => "It-wraps-words-but-does-not-break-them"
 ```
 
 ### s-left `(len s)`
