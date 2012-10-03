@@ -8,6 +8,7 @@ The long lost Emacs string manipulation library.
 * [s-trim-left](#s-trim-left-s) `(s)`
 * [s-trim-right](#s-trim-right-s) `(s)`
 * [s-collapse-whitespace](#s-collapse-whitespace-s) `(s)`
+* [s-lines](#s-lines-s) `(s)`
 * [s-join](#s-join-separator-strings) `(separator strings)`
 * [s-concat](#s-concat-rest-strings) `(&rest strings)`
 * [s-truncate](#s-truncate-len-s) `(len s)`
@@ -63,6 +64,14 @@ Convert all adjacent whitespace characters to a single space.
 ```cl
 (s-collapse-whitespace "only   one space   please") ;; => "only one space please"
 (s-collapse-whitespace "collapse \n all \t sorts of \r whitespace") ;; => "collapse all sorts of whitespace"
+```
+
+### s-lines `(s)`
+
+Splits `s` into a list of strings on newline characters.
+
+```cl
+(s-lines "abc\ndef\nghi") ;; => '("abc" "def" "ghi")
 ```
 
 ### s-join `(separator strings)`

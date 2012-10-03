@@ -44,6 +44,10 @@
   "Convert all adjacent whitespace characters to a single space."
   (replace-regexp-in-string "[ \t\n\r]+" " " s))
 
+(defun s-lines (s)
+  "Splits S into a list of strings on newline characters."
+  (split-string s "\n"))
+
 (defun s-join (separator strings)
   "Join all the strings in STRINGS with SEPARATOR in between."
   (mapconcat 'identity strings separator))

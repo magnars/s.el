@@ -22,6 +22,9 @@
   (s-collapse-whitespace "only   one space   please") => "only one space please"
   (s-collapse-whitespace "collapse \n all \t sorts of \r whitespace") => "collapse all sorts of whitespace")
 
+(defexamples s-lines
+  (s-lines "abc\ndef\nghi") => '("abc" "def" "ghi"))
+
 (defexamples s-join
   (s-join "+" '("abc" "def" "ghi")) => "abc+def+ghi"
   (s-join "\n" '("abc" "def" "ghi")) => "abc\ndef\nghi")
