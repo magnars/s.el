@@ -107,7 +107,7 @@
   (split-string
    (let ((case-fold-search nil))
      (replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s))
-   "[^A-Za-z0-9]+"))
+   "[^A-Za-z0-9]+" t))
 
 (defun s--mapcar-head (fn-head fn-rest list)
   "Like MAPCAR, but applies a different function to the first element."

@@ -69,7 +69,8 @@
 (defexamples s-split-words
   (s-split-words "under_score") => '("under" "score")
   (s-split-words "some-dashed-words") => '("some" "dashed" "words")
-  (s-split-words "evenCamelCase") => '("even" "Camel" "Case"))
+  (s-split-words "evenCamelCase") => '("even" "Camel" "Case")
+  (s-split-words "!map (fn list)") => '("map" "fn" "list"))
 
 (defexamples s-lower-camel-case
   (s-lower-camel-case "some words") => "someWords"

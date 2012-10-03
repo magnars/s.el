@@ -53,23 +53,13 @@
    (let ((case-fold-search nil))
      (downcase
       (replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s)))
-   "[^A-Za-z0-9]+"))
-
-(defmacro --remove (form list)
-  `(let ((!--list ,list)
-         (!--result '()))
-     (while !--list
-       (let ((it (car !--list)))
-         (when (not ,form)
-           (setq !--result (cons it !--result))))
-       (setq !--list (cdr !--list)))
-     (nreverse !--result)))
+   "[^A-Za-z0-9]+" t))
 
 (defun dashed-words (s)
   "Convert string S to snake-case string."
   (mapconcat 'identity (mapcar
                         '(lambda (word) (downcase word))
-                        (--remove (equal it "") (split-name s))) "-"))
+                        (split-name s)) "-"))
 
 (defun github-id (command-name signature)
   (dashed-words (format "%s %s" command-name signature)))
