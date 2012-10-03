@@ -91,9 +91,7 @@
 
 (defun s-starts-with-p (prefix s)
   "Does S start with PREFIX?"
-  (let ((l (length prefix)))
-    (and (>= (length s) l)
-         (string= prefix (substring s 0 l)))))
+  (string-prefix-p prefix s nil))
 
 (defun s--bool (val)
   (not (null val)))
