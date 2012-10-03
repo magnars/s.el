@@ -56,6 +56,14 @@
   "Join all the string arguments into one string."
   (mapconcat 'identity strings ""))
 
+(defun s-repeat (num s)
+  "Make a string of S repeated NUM times."
+  (let (ss)
+    (while (> num 0)
+      (setq ss (cons s ss))
+      (setq num (1- num)))
+    (mapconcat 'identity ss "")))
+
 (defun s-chop-suffix (suffix s)
   "Remove SUFFIX if it is at end of S."
   (let ((pos (- (length suffix))))

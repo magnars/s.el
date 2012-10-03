@@ -32,6 +32,10 @@
 (defexamples s-concat
   (s-concat "abc" "def" "ghi") => "abcdefghi")
 
+(defexamples s-repeat
+  (s-repeat 10 " ") => "          "
+  (s-concat (s-repeat 8 "Na") " Batman!") => "NaNaNaNaNaNaNaNa Batman!")
+
 (defexamples s-truncate
   (s-truncate 6 "This is too long") => "Thi..."
   (s-truncate 16 "This is also too long") => "This is also ..."

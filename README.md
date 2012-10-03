@@ -11,6 +11,7 @@ The long lost Emacs string manipulation library.
 * [s-lines](#s-lines-s) `(s)`
 * [s-join](#s-join-separator-strings) `(separator strings)`
 * [s-concat](#s-concat-rest-strings) `(&rest strings)`
+* [s-repeat](#s-repeat-num-s) `(num s)`
 * [s-truncate](#s-truncate-len-s) `(len s)`
 * [s-word-wrap](#s-word-wrap-len-s) `(len s)`
 * [s-left](#s-left-len-s) `(len s)`
@@ -90,6 +91,15 @@ Join all the string arguments into one string.
 
 ```cl
 (s-concat "abc" "def" "ghi") ;; => "abcdefghi"
+```
+
+### s-repeat `(num s)`
+
+Make a string of `s` repeated `num` times.
+
+```cl
+(s-repeat 10 " ") ;; => "          "
+(s-concat (s-repeat 8 "Na") " Batman!") ;; => "NaNaNaNaNaNaNaNa Batman!"
 ```
 
 ### s-truncate `(len s)`
