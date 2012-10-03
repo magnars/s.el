@@ -3,6 +3,7 @@
 ;; Copyright (C) 2012 Magnar Sveen
 
 ;; Author: Magnar Sveen <magnars@gmail.com>
+;; Version: 1.0.0
 ;; Keywords: strings
 
 ;; This program is free software; you can redistribute it and/or modify
