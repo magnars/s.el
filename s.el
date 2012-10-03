@@ -100,22 +100,36 @@
         (substring s (- l len) l)
       s)))
 
-(defun s-ends-with-p (suffix s)
-  "Does S end in SUFFIX?"
-  (let ((pos (- (length suffix))))
-    (and (>= (length s) (length suffix))
-         (string= suffix (substring s pos)))))
+(defun s-ends-with-p (suffix s &optional ignore-case)
+  "Does S end with SUFFIX?
 
-(defun s-starts-with-p (prefix s)
-  "Does S start with PREFIX?"
-  (string-prefix-p prefix s nil))
+If IGNORE-CASE is non-nil, the comparison is done without paying
+attention to case differences."
+  (let ((start-pos (- (length s) (length suffix))))
+    (and (>= start-pos 0)
+         (eq t (compare-strings suffix nil nil
+                                s start-pos nil ignore-case)))))
+
+(defun s-starts-with-p (prefix s &optional ignore-case)
+  "Does S start with PREFIX?
+
+If IGNORE-CASE is non-nil, the comparison is done without paying
+attention to case differences."
+  (string-prefix-p prefix s ignore-case))
+
+(defalias 's-suffix-p 's-ends-with-p)
+(defalias 's-prefix-p 's-starts-with-p)
 
 (defun s--bool (val)
   (not (null val)))
 
-(defun s-contains-p (needle s)
-  "Does S contain NEEDLE?"
-  (s--bool (string-match-p (regexp-quote needle) s)))
+(defun s-contains-p (needle s &optional ignore-case)
+  "Does S contain NEEDLE?
+
+If IGNORE-CASE is non-nil, the comparison is done without paying
+attention to case differences."
+  (let ((case-fold-search ignore-case))
+    (s--bool (string-match-p (regexp-quote needle) s))))
 
 (defun s-replace (old new s)
   "Replaces OLD with NEW in S."

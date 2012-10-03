@@ -62,18 +62,24 @@
 
 (defexamples s-ends-with-p
   (s-ends-with-p ".md" "readme.md") => t
-  (s-ends-with-p ".md" "readme.txt") => nil
-  (s-ends-with-p ".md" "md") => nil)
+  (s-ends-with-p ".MD" "readme.md") => nil
+  (s-ends-with-p ".MD" "readme.md" t) => t
+  (s-ends-with-p ".md" "md") => nil
+  (s-suffix-p ".md" "readme.md") => t)
 
 (defexamples s-starts-with-p
   (s-starts-with-p "lib/" "lib/file.js") => t
-  (s-starts-with-p "test/" "lib/file.js") => nil
-  (s-starts-with-p "lib/" "lib") => nil)
+  (s-starts-with-p "LIB/" "lib/file.js") => nil
+  (s-starts-with-p "LIB/" "lib/file.js" t) => t
+  (s-starts-with-p "lib/" "lib") => nil
+  (s-prefix-p "lib/" "lib/file.js") => t)
 
 (defexamples s-contains-p
   (s-contains-p "file" "lib/file.js") => t
   (s-contains-p "nope" "lib/file.js") => nil
-  (s-contains-p "^a" "it's not ^a regexp") => t)
+  (s-contains-p "^a" "it's not ^a regexp") => t
+  (s-contains-p "FILE" "lib/file.js") => nil
+  (s-contains-p "FILE" "lib/file.js" t) => t)
 
 (defexamples s-replace
   (s-replace "file" "nope" "lib/file.js") => "lib/nope.js"

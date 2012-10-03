@@ -25,9 +25,9 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-right](#s-right-len-s) `(len s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 * [s-chomp](#s-chomp-s) `(s)`
-* [s-ends-with-p](#s-ends-with-p-suffix-s) `(suffix s)`
-* [s-starts-with-p](#s-starts-with-p-prefix-s) `(prefix s)`
-* [s-contains-p](#s-contains-p-needle-s) `(needle s)`
+* [s-ends-with-p](#s-ends-with-p-suffix-s-optional-ignore-case) `(suffix s &optional ignore-case)`
+* [s-starts-with-p](#s-starts-with-p-prefix-s-optional-ignore-case) `(prefix s &optional ignore-case)`
+* [s-contains-p](#s-contains-p-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
 * [s-replace](#s-replace-old-new-s) `(old new s)`
 * [s-split-words](#s-split-words-s) `(s)`
 * [s-lower-camel-case](#s-lower-camel-case-s) `(s)`
@@ -158,29 +158,38 @@ Remove trailing newline from `s`.
 (s-chomp "some newlines\n\n") ;; => "some newlines\n"
 ```
 
-### s-ends-with-p `(suffix s)`
+### s-ends-with-p `(suffix s &optional ignore-case)`
 
-Does `s` end in `suffix`?
+Does `s` end with `suffix`?
+
+If `ignore-case` is non-nil, the comparison is done without paying
+attention to case differences.
 
 ```cl
 (s-ends-with-p ".md" "readme.md") ;; => t
-(s-ends-with-p ".md" "readme.txt") ;; => nil
-(s-ends-with-p ".md" "md") ;; => nil
+(s-ends-with-p ".MD" "readme.md") ;; => nil
+(s-ends-with-p ".MD" "readme.md" t) ;; => t
 ```
 
-### s-starts-with-p `(prefix s)`
+### s-starts-with-p `(prefix s &optional ignore-case)`
 
 Does `s` start with `prefix`?
 
+If `ignore-case` is non-nil, the comparison is done without paying
+attention to case differences.
+
 ```cl
 (s-starts-with-p "lib/" "lib/file.js") ;; => t
-(s-starts-with-p "test/" "lib/file.js") ;; => nil
-(s-starts-with-p "lib/" "lib") ;; => nil
+(s-starts-with-p "LIB/" "lib/file.js") ;; => nil
+(s-starts-with-p "LIB/" "lib/file.js" t) ;; => t
 ```
 
-### s-contains-p `(needle s)`
+### s-contains-p `(needle s &optional ignore-case)`
 
 Does `s` contain `needle`?
+
+If `ignore-case` is non-nil, the comparison is done without paying
+attention to case differences.
 
 ```cl
 (s-contains-p "file" "lib/file.js") ;; => t
