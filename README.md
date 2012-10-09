@@ -28,6 +28,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-ends-with-p](#s-ends-with-p-suffix-s-optional-ignore-case) `(suffix s &optional ignore-case)`
 * [s-starts-with-p](#s-starts-with-p-prefix-s-optional-ignore-case) `(prefix s &optional ignore-case)`
 * [s-contains-p](#s-contains-p-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
+* [s-matches-p](#s-matches-p-regexp-s) `(regexp s)`
 * [s-replace](#s-replace-old-new-s) `(old new s)`
 * [s-split-words](#s-split-words-s) `(s)`
 * [s-lower-camel-case](#s-lower-camel-case-s) `(s)`
@@ -195,6 +196,17 @@ attention to case differences.
 (s-contains-p "file" "lib/file.js") ;; => t
 (s-contains-p "nope" "lib/file.js") ;; => nil
 (s-contains-p "^a" "it's not ^a regexp") ;; => t
+```
+
+### s-matches-p `(regexp s)`
+
+Does `regexp` match `s`?
+
+This is a simple wrapper around the built-in `string-match-p`.
+
+```cl
+(s-matches-p "^[0-9]+$" "123") ;; => t
+(s-matches-p "^[0-9]+$" "a123") ;; => nil
 ```
 
 ### s-replace `(old new s)`

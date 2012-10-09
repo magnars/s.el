@@ -81,6 +81,10 @@
   (s-contains-p "FILE" "lib/file.js") => nil
   (s-contains-p "FILE" "lib/file.js" t) => t)
 
+(defexamples s-matches-p
+  (s-matches-p "^[0-9]+$" "123") => t
+  (s-matches-p "^[0-9]+$" "a123") => nil)
+
 (defexamples s-replace
   (s-replace "file" "nope" "lib/file.js") => "lib/nope.js"
   (s-replace "^a" "\\1" "it's not ^a regexp") => "it's not \\1 regexp")
