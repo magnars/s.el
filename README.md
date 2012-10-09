@@ -345,7 +345,7 @@ Imagine looking through the function list and seeing `s-ends-with?`, but
 `string-prefix-p`. Now you're starting out slightly confused, then have to go
 somewhere else to dig for the command you were looking for.
 
-The wrapping functions serves as both documentation for existing functions and
+The wrapping functions serve as both documentation for existing functions and
 makes for a consistent API.
 
 ## Contribute
