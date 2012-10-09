@@ -26,10 +26,10 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-right](#s-right-len-s) `(len s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 * [s-chomp](#s-chomp-s) `(s)`
-* [s-ends-with-p](#s-ends-with-p-suffix-s-optional-ignore-case) `(suffix s &optional ignore-case)`
-* [s-starts-with-p](#s-starts-with-p-prefix-s-optional-ignore-case) `(prefix s &optional ignore-case)`
-* [s-contains-p](#s-contains-p-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
-* [s-matches-p](#s-matches-p-regexp-s) `(regexp s)`
+* [s-ends-with?](#s-ends-with-suffix-s-optional-ignore-case) `(suffix s &optional ignore-case)`
+* [s-starts-with?](#s-starts-with-prefix-s-optional-ignore-case) `(prefix s &optional ignore-case)`
+* [s-contains?](#s-contains-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
+* [s-matches?](#s-matches-regexp-s) `(regexp s)`
 * [s-replace](#s-replace-old-new-s) `(old new s)`
 * [s-split-words](#s-split-words-s) `(s)`
 * [s-lower-camel-case](#s-lower-camel-case-s) `(s)`
@@ -168,38 +168,38 @@ Remove trailing newline from `s`.
 (s-chomp "some newlines\n\n") ;; => "some newlines\n"
 ```
 
-### s-ends-with-p `(suffix s &optional ignore-case)`
+### s-ends-with? `(suffix s &optional ignore-case)`
 
 Does `s` end with `suffix`?
 
 If `ignore-case` is non-nil, the comparison is done without paying
 attention to case differences.
 
-Alias: `s-suffix-p`
+Alias: `s-suffix?`
 
 ```cl
-(s-ends-with-p ".md" "readme.md") ;; => t
-(s-ends-with-p ".MD" "readme.md") ;; => nil
-(s-ends-with-p ".MD" "readme.md" t) ;; => t
+(s-ends-with? ".md" "readme.md") ;; => t
+(s-ends-with? ".MD" "readme.md") ;; => nil
+(s-ends-with? ".MD" "readme.md" t) ;; => t
 ```
 
-### s-starts-with-p `(prefix s &optional ignore-case)`
+### s-starts-with? `(prefix s &optional ignore-case)`
 
 Does `s` start with `prefix`?
 
 If `ignore-case` is non-nil, the comparison is done without paying
 attention to case differences.
 
-Alias: `s-prefix-p`. This is a simple wrapper around the built-in
+Alias: `s-prefix?`. This is a simple wrapper around the built-in
 `string-prefix-p`.
 
 ```cl
-(s-starts-with-p "lib/" "lib/file.js") ;; => t
-(s-starts-with-p "LIB/" "lib/file.js") ;; => nil
-(s-starts-with-p "LIB/" "lib/file.js" t) ;; => t
+(s-starts-with? "lib/" "lib/file.js") ;; => t
+(s-starts-with? "LIB/" "lib/file.js") ;; => nil
+(s-starts-with? "LIB/" "lib/file.js" t) ;; => t
 ```
 
-### s-contains-p `(needle s &optional ignore-case)`
+### s-contains? `(needle s &optional ignore-case)`
 
 Does `s` contain `needle`?
 
@@ -207,20 +207,20 @@ If `ignore-case` is non-nil, the comparison is done without paying
 attention to case differences.
 
 ```cl
-(s-contains-p "file" "lib/file.js") ;; => t
-(s-contains-p "nope" "lib/file.js") ;; => nil
-(s-contains-p "^a" "it's not ^a regexp") ;; => t
+(s-contains? "file" "lib/file.js") ;; => t
+(s-contains? "nope" "lib/file.js") ;; => nil
+(s-contains? "^a" "it's not ^a regexp") ;; => t
 ```
 
-### s-matches-p `(regexp s)`
+### s-matches? `(regexp s)`
 
 Does `regexp` match `s`?
 
 This is a simple wrapper around the built-in `string-match-p`.
 
 ```cl
-(s-matches-p "^[0-9]+$" "123") ;; => t
-(s-matches-p "^[0-9]+$" "a123") ;; => nil
+(s-matches? "^[0-9]+$" "123") ;; => t
+(s-matches? "^[0-9]+$" "a123") ;; => nil
 ```
 
 ### s-replace `(old new s)`

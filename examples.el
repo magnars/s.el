@@ -63,30 +63,30 @@
   (s-chomp "no newlines\n") => "no newlines"
   (s-chomp "some newlines\n\n") => "some newlines\n")
 
-(defexamples s-ends-with-p
-  (s-ends-with-p ".md" "readme.md") => t
-  (s-ends-with-p ".MD" "readme.md") => nil
-  (s-ends-with-p ".MD" "readme.md" t) => t
-  (s-ends-with-p ".md" "md") => nil
-  (s-suffix-p ".md" "readme.md") => t)
+(defexamples s-ends-with?
+  (s-ends-with? ".md" "readme.md") => t
+  (s-ends-with? ".MD" "readme.md") => nil
+  (s-ends-with? ".MD" "readme.md" t) => t
+  (s-ends-with? ".md" "md") => nil
+  (s-suffix? ".md" "readme.md") => t)
 
-(defexamples s-starts-with-p
-  (s-starts-with-p "lib/" "lib/file.js") => t
-  (s-starts-with-p "LIB/" "lib/file.js") => nil
-  (s-starts-with-p "LIB/" "lib/file.js" t) => t
-  (s-starts-with-p "lib/" "lib") => nil
-  (s-prefix-p "lib/" "lib/file.js") => t)
+(defexamples s-starts-with?
+  (s-starts-with? "lib/" "lib/file.js") => t
+  (s-starts-with? "LIB/" "lib/file.js") => nil
+  (s-starts-with? "LIB/" "lib/file.js" t) => t
+  (s-starts-with? "lib/" "lib") => nil
+  (s-prefix? "lib/" "lib/file.js") => t)
 
-(defexamples s-contains-p
-  (s-contains-p "file" "lib/file.js") => t
-  (s-contains-p "nope" "lib/file.js") => nil
-  (s-contains-p "^a" "it's not ^a regexp") => t
-  (s-contains-p "FILE" "lib/file.js") => nil
-  (s-contains-p "FILE" "lib/file.js" t) => t)
+(defexamples s-contains?
+  (s-contains? "file" "lib/file.js") => t
+  (s-contains? "nope" "lib/file.js") => nil
+  (s-contains? "^a" "it's not ^a regexp") => t
+  (s-contains? "FILE" "lib/file.js") => nil
+  (s-contains? "FILE" "lib/file.js" t) => t)
 
-(defexamples s-matches-p
-  (s-matches-p "^[0-9]+$" "123") => t
-  (s-matches-p "^[0-9]+$" "a123") => nil)
+(defexamples s-matches?
+  (s-matches? "^[0-9]+$" "123") => t
+  (s-matches? "^[0-9]+$" "a123") => nil)
 
 (defexamples s-replace
   (s-replace "file" "nope" "lib/file.js") => "lib/nope.js"

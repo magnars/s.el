@@ -3,7 +3,7 @@
 ;; Copyright (C) 2012 Magnar Sveen
 
 ;; Author: Magnar Sveen <magnars@gmail.com>
-;; Version: 1.0.0
+;; Version: 1.1.0
 ;; Keywords: strings
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -104,35 +104,35 @@
         (substring s (- l len) l)
       s)))
 
-(defun s-ends-with-p (suffix s &optional ignore-case)
+(defun s-ends-with? (suffix s &optional ignore-case)
   "Does S end with SUFFIX?
 
 If IGNORE-CASE is non-nil, the comparison is done without paying
 attention to case differences.
 
-Alias: `s-suffix-p'"
+Alias: `s-suffix?'"
   (let ((start-pos (- (length s) (length suffix))))
     (and (>= start-pos 0)
          (eq t (compare-strings suffix nil nil
                                 s start-pos nil ignore-case)))))
 
-(defun s-starts-with-p (prefix s &optional ignore-case)
+(defun s-starts-with? (prefix s &optional ignore-case)
   "Does S start with PREFIX?
 
 If IGNORE-CASE is non-nil, the comparison is done without paying
 attention to case differences.
 
-Alias: `s-prefix-p'. This is a simple wrapper around the built-in
+Alias: `s-prefix?'. This is a simple wrapper around the built-in
 `string-prefix-p'."
   (string-prefix-p prefix s ignore-case))
 
-(defalias 's-suffix-p 's-ends-with-p)
-(defalias 's-prefix-p 's-starts-with-p)
+(defalias 's-suffix? 's-ends-with?)
+(defalias 's-prefix? 's-starts-with?)
 
 (defun s--truthy? (val)
   (not (null val)))
 
-(defun s-contains-p (needle s &optional ignore-case)
+(defun s-contains? (needle s &optional ignore-case)
   "Does S contain NEEDLE?
 
 If IGNORE-CASE is non-nil, the comparison is done without paying
@@ -140,11 +140,13 @@ attention to case differences."
   (let ((case-fold-search ignore-case))
     (s--truthy? (string-match-p (regexp-quote needle) s))))
 
-(defun s-matches-p (regexp s)
+(defun s-matches? (regexp s)
   "Does REGEXP match S?
 
 This is a simple wrapper around the built-in `string-match-p'."
   (s--truthy? (string-match-p regexp s)))
+
+
 
 (defun s-replace (old new s)
   "Replaces OLD with NEW in S."
