@@ -116,6 +116,8 @@ Alias: `s-suffix?'"
          (eq t (compare-strings suffix nil nil
                                 s start-pos nil ignore-case)))))
 
+(defalias 's-ends-with-p 's-ends-with?)
+
 (defun s-starts-with? (prefix s &optional ignore-case)
   "Does S start with PREFIX?
 
@@ -126,8 +128,12 @@ Alias: `s-prefix?'. This is a simple wrapper around the built-in
 `string-prefix-p'."
   (string-prefix-p prefix s ignore-case))
 
+(defalias 's-starts-with-p 's-starts-with?)
+
 (defalias 's-suffix? 's-ends-with?)
 (defalias 's-prefix? 's-starts-with?)
+(defalias 's-suffix-p 's-ends-with?)
+(defalias 's-prefix-p 's-starts-with?)
 
 (defun s--truthy? (val)
   (not (null val)))
@@ -140,17 +146,23 @@ attention to case differences."
   (let ((case-fold-search ignore-case))
     (s--truthy? (string-match-p (regexp-quote needle) s))))
 
+(defalias 's-contains-p 's-contains?)
+
 (defun s-matches? (regexp s)
   "Does REGEXP match S?
 
 This is a simple wrapper around the built-in `string-match-p'."
   (s--truthy? (string-match-p regexp s)))
 
+(defalias 's-matches-p 's-matches?)
+
 (defun s-equals? (s1 s2)
   "Is S1 equal to S2?
 
 This is a simple wrapper around the built-in `string-equal'."
   (string-equal s1 s2))
+
+(defalias 's-equals-p 's-equals?)
 
 (defun s-replace (old new s)
   "Replaces OLD with NEW in S."
