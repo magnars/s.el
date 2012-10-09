@@ -129,7 +129,7 @@ Alias: `s-prefix-p'. This is a simple wrapper around the built-in
 (defalias 's-suffix-p 's-ends-with-p)
 (defalias 's-prefix-p 's-starts-with-p)
 
-(defun s--bool (val)
+(defun s--truthy? (val)
   (not (null val)))
 
 (defun s-contains-p (needle s &optional ignore-case)
@@ -138,13 +138,13 @@ Alias: `s-prefix-p'. This is a simple wrapper around the built-in
 If IGNORE-CASE is non-nil, the comparison is done without paying
 attention to case differences."
   (let ((case-fold-search ignore-case))
-    (s--bool (string-match-p (regexp-quote needle) s))))
+    (s--truthy? (string-match-p (regexp-quote needle) s))))
 
 (defun s-matches-p (regexp s)
   "Does REGEXP match S?
 
 This is a simple wrapper around the built-in `string-match-p'."
-  (s--bool (string-match-p regexp s)))
+  (s--truthy? (string-match-p regexp s)))
 
 (defun s-replace (old new s)
   "Replaces OLD with NEW in S."
