@@ -18,6 +18,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-collapse-whitespace](#s-collapse-whitespace-s) `(s)`
 * [s-lines](#s-lines-s) `(s)`
 * [s-join](#s-join-separator-strings) `(separator strings)`
+* [s-concat](#s-concat-rest-strings) `(&rest strings)`
 * [s-repeat](#s-repeat-num-s) `(num s)`
 * [s-truncate](#s-truncate-len-s) `(len s)`
 * [s-word-wrap](#s-word-wrap-len-s) `(len s)`
@@ -93,13 +94,21 @@ Join all the strings in `strings` with `separator` in between.
 (s-join "\n" '("abc" "def" "ghi")) ;; => "abc\ndef\nghi"
 ```
 
+### s-concat `(&rest strings)`
+
+Join all the string arguments into one string.
+
+```cl
+(s-concat "abc" "def" "ghi") ;; => "abcdefghi"
+```
+
 ### s-repeat `(num s)`
 
 Make a string of `s` repeated `num` times.
 
 ```cl
 (s-repeat 10 " ") ;; => "          "
-(concat (s-repeat 8 "Na") " Batman!") ;; => "NaNaNaNaNaNaNaNa Batman!"
+(s-concat (s-repeat 8 "Na") " Batman!") ;; => "NaNaNaNaNaNaNaNa Batman!"
 ```
 
 ### s-truncate `(len s)`
