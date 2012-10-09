@@ -96,6 +96,15 @@
   (s-replace "file" "nope" "lib/file.js") => "lib/nope.js"
   (s-replace "^a" "\\1" "it's not ^a regexp") => "it's not \\1 regexp")
 
+(defexamples s-downcase
+  (s-downcase "ABC") => "abc")
+
+(defexamples s-upcase
+  (s-upcase "abc") => "ABC")
+
+(defexamples s-capitalize
+  (s-capitalize "abc def") => "Abc Def")
+
 (defexamples s-split-words
   (s-split-words "under_score") => '("under" "score")
   (s-split-words "some-dashed-words") => '("some" "dashed" "words")

@@ -156,6 +156,24 @@ This is a simple wrapper around the built-in `string-equal'."
   "Replaces OLD with NEW in S."
   (replace-regexp-in-string (regexp-quote old) new s t t))
 
+(defun s-downcase (s)
+  "Convert S to lower case.
+
+This is a simple wrapper around the built-in `downcase'."
+  (downcase s))
+
+(defun s-upcase (s)
+  "Convert S to upper case.
+
+This is a simple wrapper around the built-in `upcase'."
+  (upcase s))
+
+(defun s-capitalize (s)
+  "Convert each word's first character to upper case and the rest to lower case in S.
+
+This is a simple wrapper around the built-in `capitalize'."
+  (capitalize s))
+
 (defun s-split-words (s)
   "Split S into list of words."
   (split-string

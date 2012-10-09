@@ -32,6 +32,9 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-contains?](#s-contains-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
 * [s-matches?](#s-matches-regexp-s) `(regexp s)`
 * [s-replace](#s-replace-old-new-s) `(old new s)`
+* [s-downcase](#s-downcase-s) `(s)`
+* [s-upcase](#s-upcase-s) `(s)`
+* [s-capitalize](#s-capitalize-s) `(s)`
 * [s-split-words](#s-split-words-s) `(s)`
 * [s-lower-camel-case](#s-lower-camel-case-s) `(s)`
 * [s-upper-camel-case](#s-upper-camel-case-s) `(s)`
@@ -242,6 +245,36 @@ Replaces `old` with `new` in `s`.
 ```cl
 (s-replace "file" "nope" "lib/file.js") ;; => "lib/nope.js"
 (s-replace "^a" "\\1" "it's not ^a regexp") ;; => "it's not \\1 regexp"
+```
+
+### s-downcase `(s)`
+
+Convert `s` to lower case.
+
+This is a simple wrapper around the built-in `downcase`.
+
+```cl
+(s-downcase "ABC") ;; => "abc"
+```
+
+### s-upcase `(s)`
+
+Convert `s` to upper case.
+
+This is a simple wrapper around the built-in `upcase`.
+
+```cl
+(s-upcase "abc") ;; => "ABC"
+```
+
+### s-capitalize `(s)`
+
+Convert each word's first character to upper case and the rest to lower case in `s`.
+
+This is a simple wrapper around the built-in `capitalize`.
+
+```cl
+(s-capitalize "abc def") ;; => "Abc Def"
 ```
 
 ### s-split-words `(s)`
