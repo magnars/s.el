@@ -26,6 +26,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-right](#s-right-len-s) `(len s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 * [s-chomp](#s-chomp-s) `(s)`
+* [s-equals?](#s-equals-s1-s2) `(s1 s2)`
 * [s-ends-with?](#s-ends-with-suffix-s-optional-ignore-case) `(suffix s &optional ignore-case)`
 * [s-starts-with?](#s-starts-with-prefix-s-optional-ignore-case) `(prefix s &optional ignore-case)`
 * [s-contains?](#s-contains-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
@@ -166,6 +167,17 @@ Remove trailing newline from `s`.
 ```cl
 (s-chomp "no newlines\n") ;; => "no newlines"
 (s-chomp "some newlines\n\n") ;; => "some newlines\n"
+```
+
+### s-equals? `(s1 s2)`
+
+Is `s1` equal to `s2`?
+
+This is a simple wrapper around the built-in `string-equal`.
+
+```cl
+(s-equals? "abc" "ABC") ;; => nil
+(s-equals? "abc" "abc") ;; => t
 ```
 
 ### s-ends-with? `(suffix s &optional ignore-case)`

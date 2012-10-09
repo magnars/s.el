@@ -63,6 +63,10 @@
   (s-chomp "no newlines\n") => "no newlines"
   (s-chomp "some newlines\n\n") => "some newlines\n")
 
+(defexamples s-equals?
+  (s-equals? "abc" "ABC") => nil
+  (s-equals? "abc" "abc") => t)
+
 (defexamples s-ends-with?
   (s-ends-with? ".md" "readme.md") => t
   (s-ends-with? ".MD" "readme.md") => nil

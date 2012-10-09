@@ -146,7 +146,11 @@ attention to case differences."
 This is a simple wrapper around the built-in `string-match-p'."
   (s--truthy? (string-match-p regexp s)))
 
+(defun s-equals? (s1 s2)
+  "Is S1 equal to S2?
 
+This is a simple wrapper around the built-in `string-equal'."
+  (string-equal s1 s2))
 
 (defun s-replace (old new s)
   "Replaces OLD with NEW in S."
