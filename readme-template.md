@@ -18,6 +18,16 @@ Or you can just dump `s.el` in your load path somewhere.
 
 [[ function-docs ]]
 
+## What's with the built-in wrappers?
+
+Imagine looking through the function list and seeing `s-ends-with?`, but
+`s-starts-with?` is nowhere to be found. Why? Well, because Emacs already has
+`string-prefix-p`. Now you're starting out slightly confused, then have to go
+somewhere else to dig for the command you were looking for.
+
+The wrapping functions serves as both documentation for existing functions and
+makes for a consistent API.
+
 ## Contribute
 
 Yes, please do. There's a suite of tests, so remember to add tests for your
