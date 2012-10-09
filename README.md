@@ -175,6 +175,8 @@ Does `s` end with `suffix`?
 If `ignore-case` is non-nil, the comparison is done without paying
 attention to case differences.
 
+Alias: `s-suffix-p`
+
 ```cl
 (s-ends-with-p ".md" "readme.md") ;; => t
 (s-ends-with-p ".MD" "readme.md") ;; => nil
@@ -187,6 +189,9 @@ Does `s` start with `prefix`?
 
 If `ignore-case` is non-nil, the comparison is done without paying
 attention to case differences.
+
+Alias: `s-prefix-p`. This is a simple wrapper around the built-in
+`string-prefix-p`.
 
 ```cl
 (s-starts-with-p "lib/" "lib/file.js") ;; => t

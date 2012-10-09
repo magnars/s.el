@@ -108,7 +108,9 @@
   "Does S end with SUFFIX?
 
 If IGNORE-CASE is non-nil, the comparison is done without paying
-attention to case differences."
+attention to case differences.
+
+Alias: `s-suffix-p'"
   (let ((start-pos (- (length s) (length suffix))))
     (and (>= start-pos 0)
          (eq t (compare-strings suffix nil nil
@@ -118,7 +120,10 @@ attention to case differences."
   "Does S start with PREFIX?
 
 If IGNORE-CASE is non-nil, the comparison is done without paying
-attention to case differences."
+attention to case differences.
+
+Alias: `s-prefix-p'. This is a simple wrapper around the built-in
+`string-prefix-p'."
   (string-prefix-p prefix s ignore-case))
 
 (defalias 's-suffix-p 's-ends-with-p)
