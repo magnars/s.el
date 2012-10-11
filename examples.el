@@ -140,7 +140,13 @@
   (defexamples s-index-of
     (s-index-of "abc" "abcdef") => 0
     (s-index-of "CDE" "abcdef" t) => 2
-    (s-index-of "n.t" "not a regexp") => nil))
+    (s-index-of "n.t" "not a regexp") => nil)
+
+  (defexamples s-match
+    (s-match "^def" "abcdefg") => nil
+    (s-match "^abc" "abcdefg") => '("abc")
+    (s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.html") => '("/some/weird/file.html" "file" "html")
+    (s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.org") => '("/some/weird/file.org" "file" "org")))
 
 (def-example-group "Pertaining to words"
   (defexamples s-split-words
