@@ -31,6 +31,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-starts-with?](#s-starts-with-prefix-s-optional-ignore-case) `(prefix s &optional ignore-case)`
 * [s-contains?](#s-contains-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
 * [s-matches?](#s-matches-regexp-s) `(regexp s)`
+* [s-match](#s-match-regexp-s) `(regexp s)`
 * [s-replace](#s-replace-old-new-s) `(old new s)`
 * [s-downcase](#s-downcase-s) `(s)`
 * [s-upcase](#s-upcase-s) `(s)`
@@ -236,6 +237,18 @@ This is a simple wrapper around the built-in `string-match-p`.
 ```cl
 (s-matches? "^[0-9]+$" "123") ;; => t
 (s-matches? "^[0-9]+$" "a123") ;; => nil
+```
+
+### s-match `(regexp s)`
+
+When the given expression matches the string, this function returns a list
+of the whole matching string and a string for each matched subexpressions.
+If it did not match the returned value is an empty list (nil).
+
+```cl
+(s-match "^def" "abcdefg") ;; => nil
+(s-match "^abc" "abcdefg") ;; => '("abc")
+(s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.html") ;; => '("/some/weird/file.html" "file" "html")
 ```
 
 ### s-replace `(old new s)`

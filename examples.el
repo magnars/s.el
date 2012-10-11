@@ -92,6 +92,12 @@
   (s-matches? "^[0-9]+$" "123") => t
   (s-matches? "^[0-9]+$" "a123") => nil)
 
+(defexamples s-match
+  (s-match "^def" "abcdefg") => nil
+  (s-match "^abc" "abcdefg") => '("abc")
+  (s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.html") => '("/some/weird/file.html" "file" "html")
+  (s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.org") => '("/some/weird/file.org" "file" "org"))
+
 (defexamples s-replace
   (s-replace "file" "nope" "lib/file.js") => "lib/nope.js"
   (s-replace "^a" "\\1" "it's not ^a regexp") => "it's not \\1 regexp")

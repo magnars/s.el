@@ -156,6 +156,21 @@ This is a simple wrapper around the built-in `string-match-p'."
 
 (defalias 's-matches-p 's-matches?)
 
+(defun s-match (regexp s)
+  "When the given expression matches the string, this function returns a list
+of the whole matching string and a string for each matched subexpressions.
+If it did not match the returned value is an empty list (nil)."
+  (if (string-match regexp s)
+      (let ((match-data-list (match-data))
+            result)
+        (while match-data-list
+          (let ((beg (car match-data-list))
+                (end (cadr match-data-list)))
+            (setq result (cons (substring s beg end) result))
+            (setq match-data-list
+                  (cddr match-data-list))))
+        (nreverse result))))
+
 (defun s-equals? (s1 s2)
   "Is S1 equal to S2?
 
