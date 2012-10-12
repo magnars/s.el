@@ -78,6 +78,11 @@
     (s-matches? "^[0-9]+$" "123") => t
     (s-matches? "^[0-9]+$" "a123") => nil)
 
+  (defexamples s-blank?
+    (s-blank? "") => t
+    (s-blank? nil) => t
+    (s-blank? " ") => nil)
+
   (defexamples s-ends-with?
     (s-ends-with? ".md" "readme.md") => t
     (s-ends-with? ".MD" "readme.md") => nil

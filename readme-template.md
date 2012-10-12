@@ -40,7 +40,6 @@ You'll find the repo at:
 **Looking for work?** Here are some features we would like:
 
  - `(s-center 80 s)` pads s with spaces to center the string.
- - `(s-blank? s)` is s nil or ""?
  - `(s-index-of needle s)` returns position of needle in s, or nil
  - `(s-distance s1 s2)` calculates Levenshtein distance between s1 and s2
 

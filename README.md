@@ -40,6 +40,7 @@ Or you can just dump `s.el` in your load path somewhere.
 
 * [s-equals?](#s-equals-s1-s2) `(s1 s2)`
 * [s-matches?](#s-matches-regexp-s) `(regexp s)`
+* [s-blank?](#s-blank-s) `(s)`
 * [s-ends-with?](#s-ends-with-suffix-s-optional-ignore-case) `(suffix s &optional ignore-case)`
 * [s-starts-with?](#s-starts-with-prefix-s-optional-ignore-case) `(prefix s &optional ignore-case)`
 * [s-contains?](#s-contains-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
@@ -220,6 +221,16 @@ This is a simple wrapper around the built-in `string-match-p`.
 ```cl
 (s-matches? "^[0-9]+$" "123") ;; => t
 (s-matches? "^[0-9]+$" "a123") ;; => nil
+```
+
+### s-blank? `(s)`
+
+Is `s` nil or the empty string?
+
+```cl
+(s-blank? "") ;; => t
+(s-blank? nil) ;; => t
+(s-blank? " ") ;; => nil
 ```
 
 ### s-ends-with? `(suffix s &optional ignore-case)`
@@ -429,7 +440,6 @@ You'll find the repo at:
 **Looking for work?** Here are some features we would like:
 
  - `(s-center 80 s)` pads s with spaces to center the string.
- - `(s-blank? s)` is s nil or ""?
  - `(s-index-of needle s)` returns position of needle in s, or nil
  - `(s-distance s1 s2)` calculates Levenshtein distance between s1 and s2
 

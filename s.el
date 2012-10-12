@@ -171,6 +171,10 @@ This is a simple wrapper around the built-in `string-match-p'."
 
 (defalias 's-matches-p 's-matches?)
 
+(defun s-blank? (s)
+  "Is S nil or the empty string?"
+  (or (null s) (string= "" s)))
+
 (defun s-lowercase? (s)
   "Are all the letters in S in lower case?"
   (let ((case-fold-search nil))
