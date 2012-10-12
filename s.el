@@ -73,6 +73,13 @@
         (substring s 0 pos)
       s)))
 
+(defun s-chop-suffixes (suffixes s)
+  "Remove SUFFIXES one by one in order, if they are at the end of S."
+  (while suffixes
+    (setq s (s-chop-suffix (car suffixes) s))
+    (setq suffixes (cdr suffixes)))
+  s)
+
 (defun s-chomp (s)
   "Remove trailing newline from S."
   (s-chop-suffix "\n" s))

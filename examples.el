@@ -59,6 +59,11 @@
   (s-chop-suffix "\n" "no newlines\n") => "no newlines"
   (s-chop-suffix "\n" "some newlines\n\n") => "some newlines\n")
 
+(defexamples s-chop-suffixes
+  (s-chop-suffixes '("_test.js" "-test.js" "Test.js") "penguin-test.js") => "penguin"
+  (s-chop-suffixes '("\r" "\n") "penguin\r\n") => "penguin\r"
+  (s-chop-suffixes '("\n" "\r") "penguin\r\n") => "penguin")
+
 (defexamples s-chomp
   (s-chomp "no newlines\n") => "no newlines"
   (s-chomp "some newlines\n\n") => "some newlines\n")

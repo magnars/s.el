@@ -25,6 +25,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-left](#s-left-len-s) `(len s)`
 * [s-right](#s-right-len-s) `(len s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
+* [s-chop-suffixes](#s-chop-suffixes-suffixes-s) `(suffixes s)`
 * [s-chomp](#s-chomp-s) `(s)`
 * [s-equals?](#s-equals-s1-s2) `(s1 s2)`
 * [s-ends-with?](#s-ends-with-suffix-s-optional-ignore-case) `(suffix s &optional ignore-case)`
@@ -164,6 +165,16 @@ Remove `suffix` if it is at end of `s`.
 (s-chop-suffix "-test.js" "penguin-test.js") ;; => "penguin"
 (s-chop-suffix "\n" "no newlines\n") ;; => "no newlines"
 (s-chop-suffix "\n" "some newlines\n\n") ;; => "some newlines\n"
+```
+
+### s-chop-suffixes `(suffixes s)`
+
+Remove `suffixes` one by one in order, if they are at the end of `s`.
+
+```cl
+(s-chop-suffixes '("_test.js" "-test.js" "Test.js") "penguin-test.js") ;; => "penguin"
+(s-chop-suffixes '("\r" "\n") "penguin\r\n") ;; => "penguin\r"
+(s-chop-suffixes '("\n" "\r") "penguin\r\n") ;; => "penguin"
 ```
 
 ### s-chomp `(s)`
