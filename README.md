@@ -30,6 +30,8 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-ends-with?](#s-ends-with-suffix-s-optional-ignore-case) `(suffix s &optional ignore-case)`
 * [s-starts-with?](#s-starts-with-prefix-s-optional-ignore-case) `(prefix s &optional ignore-case)`
 * [s-contains?](#s-contains-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
+* [s-lowercase?](#s-lowercase-s) `(s)`
+* [s-uppercase?](#s-uppercase-s) `(s)`
 * [s-matches?](#s-matches-regexp-s) `(regexp s)`
 * [s-replace](#s-replace-old-new-s) `(old new s)`
 * [s-downcase](#s-downcase-s) `(s)`
@@ -225,6 +227,26 @@ attention to case differences.
 (s-contains? "file" "lib/file.js") ;; => t
 (s-contains? "nope" "lib/file.js") ;; => nil
 (s-contains? "^a" "it's not ^a regexp") ;; => t
+```
+
+### s-lowercase? `(s)`
+
+Are all the letters in `s` in lower case?
+
+```cl
+(s-lowercase? "file") ;; => t
+(s-lowercase? "File") ;; => nil
+(s-lowercase? "123?") ;; => t
+```
+
+### s-uppercase? `(s)`
+
+Are all the letters in `s` in upper case?
+
+```cl
+(s-uppercase? "HULK SMASH") ;; => t
+(s-uppercase? "Bruce no smash") ;; => nil
+(s-uppercase? "123?") ;; => t
 ```
 
 ### s-matches? `(regexp s)`

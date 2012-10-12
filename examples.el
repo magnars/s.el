@@ -88,6 +88,16 @@
   (s-contains? "FILE" "lib/file.js") => nil
   (s-contains? "FILE" "lib/file.js" t) => t)
 
+(defexamples s-lowercase?
+  (s-lowercase? "file") => t
+  (s-lowercase? "File") => nil
+  (s-lowercase? "123?") => t)
+
+(defexamples s-uppercase?
+  (s-uppercase? "HULK SMASH") => t
+  (s-uppercase? "Bruce no smash") => nil
+  (s-uppercase? "123?") => t)
+
 (defexamples s-matches?
   (s-matches? "^[0-9]+$" "123") => t
   (s-matches? "^[0-9]+$" "a123") => nil)

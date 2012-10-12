@@ -164,6 +164,16 @@ This is a simple wrapper around the built-in `string-equal'."
 
 (defalias 's-equals-p 's-equals?)
 
+(defun s-lowercase? (s)
+  "Are all the letters in S in lower case?"
+  (let ((case-fold-search nil))
+    (not (string-match-p "[A-ZÆØÅ]" s))))
+
+(defun s-uppercase? (s)
+  "Are all the letters in S in upper case?"
+  (let ((case-fold-search nil))
+    (not (string-match-p "[a-zæøå]" s))))
+
 (defun s-replace (old new s)
   "Replaces OLD with NEW in S."
   (replace-regexp-in-string (regexp-quote old) new s t t))
