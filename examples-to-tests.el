@@ -16,4 +16,6 @@
   `(ert-deftest ,cmd ()
      ,@(examples-to-should examples)))
 
+(defun def-example-group (&rest _)) ; ignore
+
 (provide 'examples-to-tests)

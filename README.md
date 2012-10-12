@@ -12,21 +12,32 @@ Or you can just dump `s.el` in your load path somewhere.
 
 ## Functions
 
-* [s-trim](#s-trim-s) `(s)`
-* [s-trim-left](#s-trim-left-s) `(s)`
-* [s-trim-right](#s-trim-right-s) `(s)`
-* [s-collapse-whitespace](#s-collapse-whitespace-s) `(s)`
-* [s-lines](#s-lines-s) `(s)`
-* [s-join](#s-join-separator-strings) `(separator strings)`
-* [s-concat](#s-concat-rest-strings) `(&rest strings)`
-* [s-repeat](#s-repeat-num-s) `(num s)`
+
+### Shorten string
+
 * [s-truncate](#s-truncate-len-s) `(len s)`
-* [s-word-wrap](#s-word-wrap-len-s) `(len s)`
 * [s-left](#s-left-len-s) `(len s)`
 * [s-right](#s-right-len-s) `(len s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 * [s-chop-suffixes](#s-chop-suffixes-suffixes-s) `(suffixes s)`
+
+### Tweak whitespace
+
 * [s-chomp](#s-chomp-s) `(s)`
+* [s-trim](#s-trim-s) `(s)`
+* [s-trim-left](#s-trim-left-s) `(s)`
+* [s-trim-right](#s-trim-right-s) `(s)`
+* [s-collapse-whitespace](#s-collapse-whitespace-s) `(s)`
+* [s-word-wrap](#s-word-wrap-len-s) `(len s)`
+
+### To and from lists
+
+* [s-lines](#s-lines-s) `(s)`
+* [s-join](#s-join-separator-strings) `(separator strings)`
+* [s-concat](#s-concat-rest-strings) `(&rest strings)`
+
+### Predicates
+
 * [s-equals?](#s-equals-s1-s2) `(s1 s2)`
 * [s-ends-with?](#s-ends-with-suffix-s-optional-ignore-case) `(suffix s &optional ignore-case)`
 * [s-starts-with?](#s-starts-with-prefix-s-optional-ignore-case) `(prefix s &optional ignore-case)`
@@ -35,10 +46,17 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-uppercase?](#s-uppercase-s) `(s)`
 * [s-mixedcase?](#s-mixedcase-s) `(s)`
 * [s-matches?](#s-matches-regexp-s) `(regexp s)`
+
+### The misc bucket
+
+* [s-repeat](#s-repeat-num-s) `(num s)`
 * [s-replace](#s-replace-old-new-s) `(old new s)`
 * [s-downcase](#s-downcase-s) `(s)`
 * [s-upcase](#s-upcase-s) `(s)`
 * [s-capitalize](#s-capitalize-s) `(s)`
+
+### Pertaining to words
+
 * [s-split-words](#s-split-words-s) `(s)`
 * [s-lower-camel-case](#s-lower-camel-case-s) `(s)`
 * [s-upper-camel-case](#s-upper-camel-case-s) `(s)`
@@ -48,76 +66,6 @@ Or you can just dump `s.el` in your load path somewhere.
 
 ## Documentation and examples
 
-### s-trim `(s)`
-
-Remove whitespace at the beginning and end of `s`.
-
-```cl
-(s-trim "trim ") ;; => "trim"
-(s-trim " this") ;; => "this"
-(s-trim " only  trims beg and end  ") ;; => "only  trims beg and end"
-```
-
-### s-trim-left `(s)`
-
-Remove whitespace at the beginning of `s`.
-
-```cl
-(s-trim-left "trim ") ;; => "trim "
-(s-trim-left " this") ;; => "this"
-```
-
-### s-trim-right `(s)`
-
-Remove whitespace at the end of `s`.
-
-```cl
-(s-trim-right "trim ") ;; => "trim"
-(s-trim-right " this") ;; => " this"
-```
-
-### s-collapse-whitespace `(s)`
-
-Convert all adjacent whitespace characters to a single space.
-
-```cl
-(s-collapse-whitespace "only   one space   please") ;; => "only one space please"
-(s-collapse-whitespace "collapse \n all \t sorts of \r whitespace") ;; => "collapse all sorts of whitespace"
-```
-
-### s-lines `(s)`
-
-Splits `s` into a list of strings on newline characters.
-
-```cl
-(s-lines "abc\ndef\nghi") ;; => '("abc" "def" "ghi")
-```
-
-### s-join `(separator strings)`
-
-Join all the strings in `strings` with `separator` in between.
-
-```cl
-(s-join "+" '("abc" "def" "ghi")) ;; => "abc+def+ghi"
-(s-join "\n" '("abc" "def" "ghi")) ;; => "abc\ndef\nghi"
-```
-
-### s-concat `(&rest strings)`
-
-Join all the string arguments into one string.
-
-```cl
-(s-concat "abc" "def" "ghi") ;; => "abcdefghi"
-```
-
-### s-repeat `(num s)`
-
-Make a string of `s` repeated `num` times.
-
-```cl
-(s-repeat 10 " ") ;; => "          "
-(s-concat (s-repeat 8 "Na") " Batman!") ;; => "NaNaNaNaNaNaNaNa Batman!"
-```
 
 ### s-truncate `(len s)`
 
@@ -127,16 +75,6 @@ If `s` is longer than `len`, cut it down and add ... at the end.
 (s-truncate 6 "This is too long") ;; => "Thi..."
 (s-truncate 16 "This is also too long") ;; => "This is also ..."
 (s-truncate 16 "But this is not!") ;; => "But this is not!"
-```
-
-### s-word-wrap `(len s)`
-
-If `s` is longer than `len`, wrap the words with newlines.
-
-```cl
-(s-word-wrap 10 "This is too long") ;; => "This is\ntoo long"
-(s-word-wrap 10 "This is way way too long") ;; => "This is\nway way\ntoo long"
-(s-word-wrap 10 "It-wraps-words-but-does-not-break-them") ;; => "It-wraps-words-but-does-not-break-them"
 ```
 
 ### s-left `(len s)`
@@ -177,6 +115,7 @@ Remove `suffixes` one by one in order, if they are at the end of `s`.
 (s-chop-suffixes '("\n" "\r") "penguin\r\n") ;; => "penguin"
 ```
 
+
 ### s-chomp `(s)`
 
 Remove one trailing `\n`, `\r` or `\r\n` from `s`.
@@ -186,6 +125,80 @@ Remove one trailing `\n`, `\r` or `\r\n` from `s`.
 (s-chomp "no newlines\r\n") ;; => "no newlines"
 (s-chomp "some newlines\n\n") ;; => "some newlines\n"
 ```
+
+### s-trim `(s)`
+
+Remove whitespace at the beginning and end of `s`.
+
+```cl
+(s-trim "trim ") ;; => "trim"
+(s-trim " this") ;; => "this"
+(s-trim " only  trims beg and end  ") ;; => "only  trims beg and end"
+```
+
+### s-trim-left `(s)`
+
+Remove whitespace at the beginning of `s`.
+
+```cl
+(s-trim-left "trim ") ;; => "trim "
+(s-trim-left " this") ;; => "this"
+```
+
+### s-trim-right `(s)`
+
+Remove whitespace at the end of `s`.
+
+```cl
+(s-trim-right "trim ") ;; => "trim"
+(s-trim-right " this") ;; => " this"
+```
+
+### s-collapse-whitespace `(s)`
+
+Convert all adjacent whitespace characters to a single space.
+
+```cl
+(s-collapse-whitespace "only   one space   please") ;; => "only one space please"
+(s-collapse-whitespace "collapse \n all \t sorts of \r whitespace") ;; => "collapse all sorts of whitespace"
+```
+
+### s-word-wrap `(len s)`
+
+If `s` is longer than `len`, wrap the words with newlines.
+
+```cl
+(s-word-wrap 10 "This is too long") ;; => "This is\ntoo long"
+(s-word-wrap 10 "This is way way too long") ;; => "This is\nway way\ntoo long"
+(s-word-wrap 10 "It-wraps-words-but-does-not-break-them") ;; => "It-wraps-words-but-does-not-break-them"
+```
+
+
+### s-lines `(s)`
+
+Splits `s` into a list of strings on newline characters.
+
+```cl
+(s-lines "abc\ndef\nghi") ;; => '("abc" "def" "ghi")
+```
+
+### s-join `(separator strings)`
+
+Join all the strings in `strings` with `separator` in between.
+
+```cl
+(s-join "+" '("abc" "def" "ghi")) ;; => "abc+def+ghi"
+(s-join "\n" '("abc" "def" "ghi")) ;; => "abc\ndef\nghi"
+```
+
+### s-concat `(&rest strings)`
+
+Join all the string arguments into one string.
+
+```cl
+(s-concat "abc" "def" "ghi") ;; => "abcdefghi"
+```
+
 
 ### s-equals? `(s1 s2)`
 
@@ -283,6 +296,16 @@ This is a simple wrapper around the built-in `string-match-p`.
 (s-matches? "^[0-9]+$" "a123") ;; => nil
 ```
 
+
+### s-repeat `(num s)`
+
+Make a string of `s` repeated `num` times.
+
+```cl
+(s-repeat 10 " ") ;; => "          "
+(s-concat (s-repeat 8 "Na") " Batman!") ;; => "NaNaNaNaNaNaNaNa Batman!"
+```
+
 ### s-replace `(old new s)`
 
 Replaces `old` with `new` in `s`.
@@ -319,8 +342,9 @@ Convert each word's first character to upper case and the rest to lower case in 
 This is a simple wrapper around the built-in `capitalize`.
 
 ```cl
-(s-capitalize "abc def") ;; => "Abc Def"
+(s-capitalize "abc DEF") ;; => "Abc Def"
 ```
+
 
 ### s-split-words `(s)`
 
