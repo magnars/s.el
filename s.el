@@ -81,8 +81,8 @@
   s)
 
 (defun s-chomp (s)
-  "Remove trailing newline from S."
-  (s-chop-suffix "\n" s))
+  "Remove one trailing `\\n`, `\\r` or `\\r\\n` from S."
+  (s-chop-suffixes '("\n" "\r") s))
 
 (defun s-truncate (len s)
   "If S is longer than LEN, cut it down and add ... at the end."

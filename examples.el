@@ -66,6 +66,7 @@
 
 (defexamples s-chomp
   (s-chomp "no newlines\n") => "no newlines"
+  (s-chomp "no newlines\r\n") => "no newlines"
   (s-chomp "some newlines\n\n") => "some newlines\n")
 
 (defexamples s-equals?

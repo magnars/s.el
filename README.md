@@ -179,10 +179,11 @@ Remove `suffixes` one by one in order, if they are at the end of `s`.
 
 ### s-chomp `(s)`
 
-Remove trailing newline from `s`.
+Remove one trailing `\n`, `\r` or `\r\n` from `s`.
 
 ```cl
 (s-chomp "no newlines\n") ;; => "no newlines"
+(s-chomp "no newlines\r\n") ;; => "no newlines"
 (s-chomp "some newlines\n\n") ;; => "some newlines\n"
 ```
 
@@ -407,10 +408,6 @@ You'll find the repo at:
  - `(s-blank? s)` is s nil or ""?
  - `(s-index-of needle s)` returns position of needle in s, or nil
  - `(s-distance s1 s2)` calculates Levenshtein distance between s1 and s2
-
-Also;
-
- - `s-chomp` should chop off both `\n`, `\r` and `\r\n`
 
 ## Development
 

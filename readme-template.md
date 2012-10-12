@@ -44,10 +44,6 @@ You'll find the repo at:
  - `(s-index-of needle s)` returns position of needle in s, or nil
  - `(s-distance s1 s2)` calculates Levenshtein distance between s1 and s2
 
-Also;
-
- - `s-chomp` should chop off both `\n`, `\r` and `\r\n`
-
 ## Development
 
 Run the tests with
