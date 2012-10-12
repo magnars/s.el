@@ -174,6 +174,13 @@ This is a simple wrapper around the built-in `string-equal'."
   (let ((case-fold-search nil))
     (not (string-match-p "[a-zæøå]" s))))
 
+(defun s-mixedcase? (s)
+  "Are there both lower case and upper case letters in S?"
+  (let ((case-fold-search nil))
+    (s--truthy?
+     (and (string-match-p "[a-zæøå]" s)
+          (string-match-p "[A-ZÆØÅ]" s)))))
+
 (defun s-replace (old new s)
   "Replaces OLD with NEW in S."
   (replace-regexp-in-string (regexp-quote old) new s t t))

@@ -32,6 +32,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-contains?](#s-contains-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
 * [s-lowercase?](#s-lowercase-s) `(s)`
 * [s-uppercase?](#s-uppercase-s) `(s)`
+* [s-mixedcase?](#s-mixedcase-s) `(s)`
 * [s-matches?](#s-matches-regexp-s) `(regexp s)`
 * [s-replace](#s-replace-old-new-s) `(old new s)`
 * [s-downcase](#s-downcase-s) `(s)`
@@ -247,6 +248,16 @@ Are all the letters in `s` in upper case?
 (s-uppercase? "HULK SMASH") ;; => t
 (s-uppercase? "Bruce no smash") ;; => nil
 (s-uppercase? "123?") ;; => t
+```
+
+### s-mixedcase? `(s)`
+
+Are there both lower case and upper case letters in `s`?
+
+```cl
+(s-mixedcase? "HULK SMASH") ;; => nil
+(s-mixedcase? "Bruce no smash") ;; => t
+(s-mixedcase? "123?") ;; => nil
 ```
 
 ### s-matches? `(regexp s)`

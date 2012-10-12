@@ -98,6 +98,11 @@
   (s-uppercase? "Bruce no smash") => nil
   (s-uppercase? "123?") => t)
 
+(defexamples s-mixedcase?
+  (s-mixedcase? "HULK SMASH") => nil
+  (s-mixedcase? "Bruce no smash") => t
+  (s-mixedcase? "123?") => nil)
+
 (defexamples s-matches?
   (s-matches? "^[0-9]+$" "123") => t
   (s-matches? "^[0-9]+$" "a123") => nil)
