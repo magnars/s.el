@@ -74,6 +74,10 @@
     (s-equals? "abc" "ABC") => nil
     (s-equals? "abc" "abc") => t)
 
+  (defexamples s-matches?
+    (s-matches? "^[0-9]+$" "123") => t
+    (s-matches? "^[0-9]+$" "a123") => nil)
+
   (defexamples s-ends-with?
     (s-ends-with? ".md" "readme.md") => t
     (s-ends-with? ".MD" "readme.md") => nil
@@ -108,11 +112,7 @@
   (defexamples s-mixedcase?
     (s-mixedcase? "HULK SMASH") => nil
     (s-mixedcase? "Bruce no smash") => t
-    (s-mixedcase? "123?") => nil)
-
-  (defexamples s-matches?
-    (s-matches? "^[0-9]+$" "123") => t
-    (s-matches? "^[0-9]+$" "a123") => nil))
+    (s-mixedcase? "123?") => nil))
 
 (def-example-group "The misc bucket"
   (defexamples s-repeat

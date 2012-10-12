@@ -39,13 +39,13 @@ Or you can just dump `s.el` in your load path somewhere.
 ### Predicates
 
 * [s-equals?](#s-equals-s1-s2) `(s1 s2)`
+* [s-matches?](#s-matches-regexp-s) `(regexp s)`
 * [s-ends-with?](#s-ends-with-suffix-s-optional-ignore-case) `(suffix s &optional ignore-case)`
 * [s-starts-with?](#s-starts-with-prefix-s-optional-ignore-case) `(prefix s &optional ignore-case)`
 * [s-contains?](#s-contains-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
 * [s-lowercase?](#s-lowercase-s) `(s)`
 * [s-uppercase?](#s-uppercase-s) `(s)`
 * [s-mixedcase?](#s-mixedcase-s) `(s)`
-* [s-matches?](#s-matches-regexp-s) `(regexp s)`
 
 ### The misc bucket
 
@@ -211,6 +211,17 @@ This is a simple wrapper around the built-in `string-equal`.
 (s-equals? "abc" "abc") ;; => t
 ```
 
+### s-matches? `(regexp s)`
+
+Does `regexp` match `s`?
+
+This is a simple wrapper around the built-in `string-match-p`.
+
+```cl
+(s-matches? "^[0-9]+$" "123") ;; => t
+(s-matches? "^[0-9]+$" "a123") ;; => nil
+```
+
 ### s-ends-with? `(suffix s &optional ignore-case)`
 
 Does `s` end with `suffix`?
@@ -283,17 +294,6 @@ Are there both lower case and upper case letters in `s`?
 (s-mixedcase? "HULK SMASH") ;; => nil
 (s-mixedcase? "Bruce no smash") ;; => t
 (s-mixedcase? "123?") ;; => nil
-```
-
-### s-matches? `(regexp s)`
-
-Does `regexp` match `s`?
-
-This is a simple wrapper around the built-in `string-match-p`.
-
-```cl
-(s-matches? "^[0-9]+$" "123") ;; => t
-(s-matches? "^[0-9]+$" "a123") ;; => nil
 ```
 
 

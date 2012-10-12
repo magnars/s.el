@@ -155,14 +155,6 @@ attention to case differences."
 
 (defalias 's-contains-p 's-contains?)
 
-(defun s-matches? (regexp s)
-  "Does REGEXP match S?
-
-This is a simple wrapper around the built-in `string-match-p'."
-  (s--truthy? (string-match-p regexp s)))
-
-(defalias 's-matches-p 's-matches?)
-
 (defun s-equals? (s1 s2)
   "Is S1 equal to S2?
 
@@ -170,6 +162,14 @@ This is a simple wrapper around the built-in `string-equal'."
   (string-equal s1 s2))
 
 (defalias 's-equals-p 's-equals?)
+
+(defun s-matches? (regexp s)
+  "Does REGEXP match S?
+
+This is a simple wrapper around the built-in `string-match-p'."
+  (s--truthy? (string-match-p regexp s)))
+
+(defalias 's-matches-p 's-matches?)
 
 (defun s-lowercase? (s)
   "Are all the letters in S in lower case?"
