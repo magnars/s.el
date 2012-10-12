@@ -55,6 +55,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-downcase](#s-downcase-s) `(s)`
 * [s-upcase](#s-upcase-s) `(s)`
 * [s-capitalize](#s-capitalize-s) `(s)`
+* [s-index-of](#s-index-of-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
 
 ### Pertaining to words
 
@@ -356,6 +357,19 @@ This is a simple wrapper around the built-in `capitalize`.
 (s-capitalize "abc DEF") ;; => "Abc Def"
 ```
 
+### s-index-of `(needle s &optional ignore-case)`
+
+Returns first index of `needle` in `s`, or nil.
+
+If `ignore-case` is non-nil, the comparison is done without paying
+attention to case differences.
+
+```cl
+(s-index-of "abc" "abcdef") ;; => 0
+(s-index-of "CDE" "abcdef" t) ;; => 2
+(s-index-of "n.t" "not a regexp") ;; => nil
+```
+
 
 ### s-split-words `(s)`
 
@@ -440,7 +454,6 @@ You'll find the repo at:
 **Looking for work?** Here are some features we would like:
 
  - `(s-center 80 s)` pads s with spaces to center the string.
- - `(s-index-of needle s)` returns position of needle in s, or nil
  - `(s-distance s1 s2)` calculates Levenshtein distance between s1 and s2
 
 ## Development

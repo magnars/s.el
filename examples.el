@@ -135,7 +135,12 @@
     (s-upcase "abc") => "ABC")
 
   (defexamples s-capitalize
-    (s-capitalize "abc DEF") => "Abc Def"))
+    (s-capitalize "abc DEF") => "Abc Def")
+
+  (defexamples s-index-of
+    (s-index-of "abc" "abcdef") => 0
+    (s-index-of "CDE" "abcdef" t) => 2
+    (s-index-of "n.t" "not a regexp") => nil))
 
 (def-example-group "Pertaining to words"
   (defexamples s-split-words

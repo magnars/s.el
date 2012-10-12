@@ -214,6 +214,14 @@ This is a simple wrapper around the built-in `upcase'."
 This is a simple wrapper around the built-in `capitalize'."
   (capitalize s))
 
+(defun s-index-of (needle s &optional ignore-case)
+  "Returns first index of NEEDLE in S, or nil.
+
+If IGNORE-CASE is non-nil, the comparison is done without paying
+attention to case differences."
+  (let ((case-fold-search ignore-case))
+    (string-match-p (regexp-quote needle) s)))
+
 (defun s-split-words (s)
   "Split S into list of words."
   (split-string
