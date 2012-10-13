@@ -120,6 +120,12 @@
     (s-mixedcase? "123?") => nil))
 
 (def-example-group "The misc bucket"
+  (defexamples s-match
+    (s-match "^def" "abcdefg") => nil
+    (s-match "^abc" "abcdefg") => '("abc")
+    (s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.html") => '("/some/weird/file.html" "file" "html")
+    (s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.org") => '("/some/weird/file.org" "file" "org"))
+
   (defexamples s-repeat
     (s-repeat 10 " ") => "          "
     (s-concat (s-repeat 8 "Na") " Batman!") => "NaNaNaNaNaNaNaNa Batman!")

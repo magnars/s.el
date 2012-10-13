@@ -50,6 +50,7 @@ Or you can just dump `s.el` in your load path somewhere.
 
 ### The misc bucket
 
+* [s-match](#s-match-regexp-s) `(regexp s)`
 * [s-repeat](#s-repeat-num-s) `(num s)`
 * [s-replace](#s-replace-old-new-s) `(old new s)`
 * [s-downcase](#s-downcase-s) `(s)`
@@ -308,6 +309,18 @@ Are there both lower case and upper case letters in `s`?
 (s-mixedcase? "123?") ;; => nil
 ```
 
+
+### s-match `(regexp s)`
+
+When the given expression matches the string, this function returns a list
+of the whole matching string and a string for each matched subexpressions.
+If it did not match the returned value is an empty list (nil).
+
+```cl
+(s-match "^def" "abcdefg") ;; => nil
+(s-match "^abc" "abcdefg") ;; => '("abc")
+(s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.html") ;; => '("/some/weird/file.html" "file" "html")
+```
 
 ### s-repeat `(num s)`
 
