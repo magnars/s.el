@@ -56,6 +56,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-upcase](#s-upcase-s) `(s)`
 * [s-capitalize](#s-capitalize-s) `(s)`
 * [s-index-of](#s-index-of-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
+* [s-match](#s-match-regexp-s) `(regexp s)`
 
 ### Pertaining to words
 
@@ -368,6 +369,18 @@ attention to case differences.
 (s-index-of "abc" "abcdef") ;; => 0
 (s-index-of "CDE" "abcdef" t) ;; => 2
 (s-index-of "n.t" "not a regexp") ;; => nil
+```
+
+### s-match `(regexp s)`
+
+When the given expression matches the string, this function returns a list
+of the whole matching string and a string for each matched subexpressions.
+If it did not match the returned value is an empty list (nil).
+
+```cl
+(s-match "^def" "abcdefg") ;; => nil
+(s-match "^abc" "abcdefg") ;; => '("abc")
+(s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.html") ;; => '("/some/weird/file.html" "file" "html")
 ```
 
 
