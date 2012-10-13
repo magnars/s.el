@@ -27,6 +27,11 @@
                             (car (cddr (symbol-function ',cmd))) ;; docstring
                             (examples-to-strings ',examples)))) ;; examples
 
+(defmacro def-example-group (group &rest examples)
+  `(progn
+     (add-to-list 'functions ,group)
+     ,@examples))
+
 (defun quote-and-downcase (string)
   (format "`%s`" (downcase string)))
 
@@ -37,15 +42,17 @@
   docstring)
 
 (defun function-to-md (function)
-  (let ((command-name (car function))
-        (signature (cadr function))
-        (docstring (quote-docstring (cadr (cdr function))))
-        (examples (cadr (cddr function))))
-    (format "### %s `%s`\n\n%s\n\n```cl\n%s\n```\n"
-            command-name
-            signature
-            docstring
-            (mapconcat 'identity (three-first examples) "\n"))))
+  (if (stringp function)
+      ""
+    (let ((command-name (car function))
+          (signature (cadr function))
+          (docstring (quote-docstring (cadr (cdr function))))
+          (examples (cadr (cddr function))))
+      (format "### %s `%s`\n\n%s\n\n```cl\n%s\n```\n"
+              command-name
+              signature
+              docstring
+              (mapconcat 'identity (three-first examples) "\n")))))
 
 (defun split-name (s)
   "Split name into list of words"
@@ -65,9 +72,11 @@
   (dashed-words (format "%s %s" command-name signature)))
 
 (defun function-summary (function)
-  (let ((command-name (car function))
-        (signature (cadr function)))
-    (format "* [%s](#%s) `%s`" command-name (github-id command-name signature) signature)))
+  (if (stringp function)
+      (concat "\n### " function "\n")
+    (let ((command-name (car function))
+          (signature (cadr function)))
+      (format "* [%s](#%s) `%s`" command-name (github-id command-name signature) signature))))
 
 (defun simplify-quotes ()
   (goto-char (point-min))

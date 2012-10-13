@@ -73,9 +73,16 @@
         (substring s 0 pos)
       s)))
 
+(defun s-chop-suffixes (suffixes s)
+  "Remove SUFFIXES one by one in order, if they are at the end of S."
+  (while suffixes
+    (setq s (s-chop-suffix (car suffixes) s))
+    (setq suffixes (cdr suffixes)))
+  s)
+
 (defun s-chomp (s)
-  "Remove trailing newline from S."
-  (s-chop-suffix "\n" s))
+  "Remove one trailing `\\n`, `\\r` or `\\r\\n` from S."
+  (s-chop-suffixes '("\n" "\r") s))
 
 (defun s-truncate (len s)
   "If S is longer than LEN, cut it down and add ... at the end."
@@ -148,6 +155,14 @@ attention to case differences."
 
 (defalias 's-contains-p 's-contains?)
 
+(defun s-equals? (s1 s2)
+  "Is S1 equal to S2?
+
+This is a simple wrapper around the built-in `string-equal'."
+  (string-equal s1 s2))
+
+(defalias 's-equals-p 's-equals?)
+
 (defun s-matches? (regexp s)
   "Does REGEXP match S?
 
@@ -171,13 +186,26 @@ If it did not match the returned value is an empty list (nil)."
                   (cddr match-data-list))))
         (nreverse result))))
 
-(defun s-equals? (s1 s2)
-  "Is S1 equal to S2?
+(defun s-blank? (s)
+  "Is S nil or the empty string?"
+  (or (null s) (string= "" s)))
 
-This is a simple wrapper around the built-in `string-equal'."
-  (string-equal s1 s2))
+(defun s-lowercase? (s)
+  "Are all the letters in S in lower case?"
+  (let ((case-fold-search nil))
+    (not (string-match-p "[A-ZÆØÅ]" s))))
 
-(defalias 's-equals-p 's-equals?)
+(defun s-uppercase? (s)
+  "Are all the letters in S in upper case?"
+  (let ((case-fold-search nil))
+    (not (string-match-p "[a-zæøå]" s))))
+
+(defun s-mixedcase? (s)
+  "Are there both lower case and upper case letters in S?"
+  (let ((case-fold-search nil))
+    (s--truthy?
+     (and (string-match-p "[a-zæøå]" s)
+          (string-match-p "[A-ZÆØÅ]" s)))))
 
 (defun s-replace (old new s)
   "Replaces OLD with NEW in S."
@@ -200,6 +228,14 @@ This is a simple wrapper around the built-in `upcase'."
 
 This is a simple wrapper around the built-in `capitalize'."
   (capitalize s))
+
+(defun s-index-of (needle s &optional ignore-case)
+  "Returns first index of NEEDLE in S, or nil.
+
+If IGNORE-CASE is non-nil, the comparison is done without paying
+attention to case differences."
+  (let ((case-fold-search ignore-case))
+    (string-match-p (regexp-quote needle) s)))
 
 (defun s-split-words (s)
   "Split S into list of words."

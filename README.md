@@ -12,30 +12,54 @@ Or you can just dump `s.el` in your load path somewhere.
 
 ## Functions
 
+
+### Shorten string
+
+* [s-truncate](#s-truncate-len-s) `(len s)`
+* [s-left](#s-left-len-s) `(len s)`
+* [s-right](#s-right-len-s) `(len s)`
+* [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
+* [s-chop-suffixes](#s-chop-suffixes-suffixes-s) `(suffixes s)`
+
+### Tweak whitespace
+
+* [s-chomp](#s-chomp-s) `(s)`
 * [s-trim](#s-trim-s) `(s)`
 * [s-trim-left](#s-trim-left-s) `(s)`
 * [s-trim-right](#s-trim-right-s) `(s)`
 * [s-collapse-whitespace](#s-collapse-whitespace-s) `(s)`
+* [s-word-wrap](#s-word-wrap-len-s) `(len s)`
+
+### To and from lists
+
 * [s-lines](#s-lines-s) `(s)`
 * [s-join](#s-join-separator-strings) `(separator strings)`
 * [s-concat](#s-concat-rest-strings) `(&rest strings)`
-* [s-repeat](#s-repeat-num-s) `(num s)`
-* [s-truncate](#s-truncate-len-s) `(len s)`
-* [s-word-wrap](#s-word-wrap-len-s) `(len s)`
-* [s-left](#s-left-len-s) `(len s)`
-* [s-right](#s-right-len-s) `(len s)`
-* [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
-* [s-chomp](#s-chomp-s) `(s)`
+
+### Predicates
+
 * [s-equals?](#s-equals-s1-s2) `(s1 s2)`
+* [s-matches?](#s-matches-regexp-s) `(regexp s)`
+* [s-blank?](#s-blank-s) `(s)`
 * [s-ends-with?](#s-ends-with-suffix-s-optional-ignore-case) `(suffix s &optional ignore-case)`
 * [s-starts-with?](#s-starts-with-prefix-s-optional-ignore-case) `(prefix s &optional ignore-case)`
 * [s-contains?](#s-contains-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
-* [s-matches?](#s-matches-regexp-s) `(regexp s)`
+* [s-lowercase?](#s-lowercase-s) `(s)`
+* [s-uppercase?](#s-uppercase-s) `(s)`
+* [s-mixedcase?](#s-mixedcase-s) `(s)`
+
+### The misc bucket
+
 * [s-match](#s-match-regexp-s) `(regexp s)`
+* [s-repeat](#s-repeat-num-s) `(num s)`
 * [s-replace](#s-replace-old-new-s) `(old new s)`
 * [s-downcase](#s-downcase-s) `(s)`
 * [s-upcase](#s-upcase-s) `(s)`
 * [s-capitalize](#s-capitalize-s) `(s)`
+* [s-index-of](#s-index-of-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
+
+### Pertaining to words
+
 * [s-split-words](#s-split-words-s) `(s)`
 * [s-lower-camel-case](#s-lower-camel-case-s) `(s)`
 * [s-upper-camel-case](#s-upper-camel-case-s) `(s)`
@@ -44,6 +68,66 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-capitalized-words](#s-capitalized-words-s) `(s)`
 
 ## Documentation and examples
+
+
+### s-truncate `(len s)`
+
+If `s` is longer than `len`, cut it down and add ... at the end.
+
+```cl
+(s-truncate 6 "This is too long") ;; => "Thi..."
+(s-truncate 16 "This is also too long") ;; => "This is also ..."
+(s-truncate 16 "But this is not!") ;; => "But this is not!"
+```
+
+### s-left `(len s)`
+
+Returns up to the `len` first chars of `s`.
+
+```cl
+(s-left 3 "lib/file.js") ;; => "lib"
+(s-left 3 "li") ;; => "li"
+```
+
+### s-right `(len s)`
+
+Returns up to the `len` last chars of `s`.
+
+```cl
+(s-right 3 "lib/file.js") ;; => ".js"
+(s-right 3 "li") ;; => "li"
+```
+
+### s-chop-suffix `(suffix s)`
+
+Remove `suffix` if it is at end of `s`.
+
+```cl
+(s-chop-suffix "-test.js" "penguin-test.js") ;; => "penguin"
+(s-chop-suffix "\n" "no newlines\n") ;; => "no newlines"
+(s-chop-suffix "\n" "some newlines\n\n") ;; => "some newlines\n"
+```
+
+### s-chop-suffixes `(suffixes s)`
+
+Remove `suffixes` one by one in order, if they are at the end of `s`.
+
+```cl
+(s-chop-suffixes '("_test.js" "-test.js" "Test.js") "penguin-test.js") ;; => "penguin"
+(s-chop-suffixes '("\r" "\n") "penguin\r\n") ;; => "penguin\r"
+(s-chop-suffixes '("\n" "\r") "penguin\r\n") ;; => "penguin"
+```
+
+
+### s-chomp `(s)`
+
+Remove one trailing `\n`, `\r` or `\r\n` from `s`.
+
+```cl
+(s-chomp "no newlines\n") ;; => "no newlines"
+(s-chomp "no newlines\r\n") ;; => "no newlines"
+(s-chomp "some newlines\n\n") ;; => "some newlines\n"
+```
 
 ### s-trim `(s)`
 
@@ -82,6 +166,17 @@ Convert all adjacent whitespace characters to a single space.
 (s-collapse-whitespace "collapse \n all \t sorts of \r whitespace") ;; => "collapse all sorts of whitespace"
 ```
 
+### s-word-wrap `(len s)`
+
+If `s` is longer than `len`, wrap the words with newlines.
+
+```cl
+(s-word-wrap 10 "This is too long") ;; => "This is\ntoo long"
+(s-word-wrap 10 "This is way way too long") ;; => "This is\nway way\ntoo long"
+(s-word-wrap 10 "It-wraps-words-but-does-not-break-them") ;; => "It-wraps-words-but-does-not-break-them"
+```
+
+
 ### s-lines `(s)`
 
 Splits `s` into a list of strings on newline characters.
@@ -107,71 +202,6 @@ Join all the string arguments into one string.
 (s-concat "abc" "def" "ghi") ;; => "abcdefghi"
 ```
 
-### s-repeat `(num s)`
-
-Make a string of `s` repeated `num` times.
-
-```cl
-(s-repeat 10 " ") ;; => "          "
-(s-concat (s-repeat 8 "Na") " Batman!") ;; => "NaNaNaNaNaNaNaNa Batman!"
-```
-
-### s-truncate `(len s)`
-
-If `s` is longer than `len`, cut it down and add ... at the end.
-
-```cl
-(s-truncate 6 "This is too long") ;; => "Thi..."
-(s-truncate 16 "This is also too long") ;; => "This is also ..."
-(s-truncate 16 "But this is not!") ;; => "But this is not!"
-```
-
-### s-word-wrap `(len s)`
-
-If `s` is longer than `len`, wrap the words with newlines.
-
-```cl
-(s-word-wrap 10 "This is too long") ;; => "This is\ntoo long"
-(s-word-wrap 10 "This is way way too long") ;; => "This is\nway way\ntoo long"
-(s-word-wrap 10 "It-wraps-words-but-does-not-break-them") ;; => "It-wraps-words-but-does-not-break-them"
-```
-
-### s-left `(len s)`
-
-Returns up to the `len` first chars of `s`.
-
-```cl
-(s-left 3 "lib/file.js") ;; => "lib"
-(s-left 3 "li") ;; => "li"
-```
-
-### s-right `(len s)`
-
-Returns up to the `len` last chars of `s`.
-
-```cl
-(s-right 3 "lib/file.js") ;; => ".js"
-(s-right 3 "li") ;; => "li"
-```
-
-### s-chop-suffix `(suffix s)`
-
-Remove `suffix` if it is at end of `s`.
-
-```cl
-(s-chop-suffix "-test.js" "penguin-test.js") ;; => "penguin"
-(s-chop-suffix "\n" "no newlines\n") ;; => "no newlines"
-(s-chop-suffix "\n" "some newlines\n\n") ;; => "some newlines\n"
-```
-
-### s-chomp `(s)`
-
-Remove trailing newline from `s`.
-
-```cl
-(s-chomp "no newlines\n") ;; => "no newlines"
-(s-chomp "some newlines\n\n") ;; => "some newlines\n"
-```
 
 ### s-equals? `(s1 s2)`
 
@@ -182,6 +212,27 @@ This is a simple wrapper around the built-in `string-equal`.
 ```cl
 (s-equals? "abc" "ABC") ;; => nil
 (s-equals? "abc" "abc") ;; => t
+```
+
+### s-matches? `(regexp s)`
+
+Does `regexp` match `s`?
+
+This is a simple wrapper around the built-in `string-match-p`.
+
+```cl
+(s-matches? "^[0-9]+$" "123") ;; => t
+(s-matches? "^[0-9]+$" "a123") ;; => nil
+```
+
+### s-blank? `(s)`
+
+Is `s` nil or the empty string?
+
+```cl
+(s-blank? "") ;; => t
+(s-blank? nil) ;; => t
+(s-blank? " ") ;; => nil
 ```
 
 ### s-ends-with? `(suffix s &optional ignore-case)`
@@ -228,16 +279,36 @@ attention to case differences.
 (s-contains? "^a" "it's not ^a regexp") ;; => t
 ```
 
-### s-matches? `(regexp s)`
+### s-lowercase? `(s)`
 
-Does `regexp` match `s`?
-
-This is a simple wrapper around the built-in `string-match-p`.
+Are all the letters in `s` in lower case?
 
 ```cl
-(s-matches? "^[0-9]+$" "123") ;; => t
-(s-matches? "^[0-9]+$" "a123") ;; => nil
+(s-lowercase? "file") ;; => t
+(s-lowercase? "File") ;; => nil
+(s-lowercase? "123?") ;; => t
 ```
+
+### s-uppercase? `(s)`
+
+Are all the letters in `s` in upper case?
+
+```cl
+(s-uppercase? "HULK SMASH") ;; => t
+(s-uppercase? "Bruce no smash") ;; => nil
+(s-uppercase? "123?") ;; => t
+```
+
+### s-mixedcase? `(s)`
+
+Are there both lower case and upper case letters in `s`?
+
+```cl
+(s-mixedcase? "HULK SMASH") ;; => nil
+(s-mixedcase? "Bruce no smash") ;; => t
+(s-mixedcase? "123?") ;; => nil
+```
+
 
 ### s-match `(regexp s)`
 
@@ -249,6 +320,15 @@ If it did not match the returned value is an empty list (nil).
 (s-match "^def" "abcdefg") ;; => nil
 (s-match "^abc" "abcdefg") ;; => '("abc")
 (s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.html") ;; => '("/some/weird/file.html" "file" "html")
+```
+
+### s-repeat `(num s)`
+
+Make a string of `s` repeated `num` times.
+
+```cl
+(s-repeat 10 " ") ;; => "          "
+(s-concat (s-repeat 8 "Na") " Batman!") ;; => "NaNaNaNaNaNaNaNa Batman!"
 ```
 
 ### s-replace `(old new s)`
@@ -287,8 +367,22 @@ Convert each word's first character to upper case and the rest to lower case in 
 This is a simple wrapper around the built-in `capitalize`.
 
 ```cl
-(s-capitalize "abc def") ;; => "Abc Def"
+(s-capitalize "abc DEF") ;; => "Abc Def"
 ```
+
+### s-index-of `(needle s &optional ignore-case)`
+
+Returns first index of `needle` in `s`, or nil.
+
+If `ignore-case` is non-nil, the comparison is done without paying
+attention to case differences.
+
+```cl
+(s-index-of "abc" "abcdef") ;; => 0
+(s-index-of "CDE" "abcdef" t) ;; => 2
+(s-index-of "n.t" "not a regexp") ;; => nil
+```
+
 
 ### s-split-words `(s)`
 
@@ -373,13 +467,7 @@ You'll find the repo at:
 **Looking for work?** Here are some features we would like:
 
  - `(s-center 80 s)` pads s with spaces to center the string.
- - `(s-blank? s)` is s nil or ""?
- - `(s-index-of needle s)` returns position of needle in s, or nil
  - `(s-distance s1 s2)` calculates Levenshtein distance between s1 and s2
-
-Also;
-
- - `s-chomp` should chop off both `\n`, `\r` and `\r\n`
 
 ## Development
 
