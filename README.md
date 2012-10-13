@@ -33,6 +33,7 @@ Or you can just dump `s.el` in your load path somewhere.
 ### To and from lists
 
 * [s-lines](#s-lines-s) `(s)`
+* [s-match](#s-match-regexp-s) `(regexp s)`
 * [s-join](#s-join-separator-strings) `(separator strings)`
 * [s-concat](#s-concat-rest-strings) `(&rest strings)`
 
@@ -56,7 +57,6 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-upcase](#s-upcase-s) `(s)`
 * [s-capitalize](#s-capitalize-s) `(s)`
 * [s-index-of](#s-index-of-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
-* [s-match](#s-match-regexp-s) `(regexp s)`
 
 ### Pertaining to words
 
@@ -183,6 +183,18 @@ Splits `s` into a list of strings on newline characters.
 
 ```cl
 (s-lines "abc\ndef\nghi") ;; => '("abc" "def" "ghi")
+```
+
+### s-match `(regexp s)`
+
+When the given expression matches the string, this function returns a list
+of the whole matching string and a string for each matched subexpressions.
+If it did not match the returned value is an empty list (nil).
+
+```cl
+(s-match "^def" "abcdefg") ;; => nil
+(s-match "^abc" "abcdefg") ;; => '("abc")
+(s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.html") ;; => '("/some/weird/file.html" "file" "html")
 ```
 
 ### s-join `(separator strings)`
@@ -371,18 +383,6 @@ attention to case differences.
 (s-index-of "n.t" "not a regexp") ;; => nil
 ```
 
-### s-match `(regexp s)`
-
-When the given expression matches the string, this function returns a list
-of the whole matching string and a string for each matched subexpressions.
-If it did not match the returned value is an empty list (nil).
-
-```cl
-(s-match "^def" "abcdefg") ;; => nil
-(s-match "^abc" "abcdefg") ;; => '("abc")
-(s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.html") ;; => '("/some/weird/file.html" "file" "html")
-```
-
 
 ### s-split-words `(s)`
 
@@ -454,6 +454,12 @@ somewhere else to dig for the command you were looking for.
 
 The wrapping functions serve as both documentation for existing functions and
 makes for a consistent API.
+
+## Contributors
+
+* [Arthur Andersen](https://github.com/leoc) contributed `s-match`
+
+Thanks!
 
 ## Contribute
 

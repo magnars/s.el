@@ -28,6 +28,12 @@ somewhere else to dig for the command you were looking for.
 The wrapping functions serve as both documentation for existing functions and
 makes for a consistent API.
 
+## Contributors
+
+* [Arthur Andersen](https://github.com/leoc) contributed `s-match`
+
+Thanks!
+
 ## Contribute
 
 Yes, please do. There's a suite of tests, so remember to add tests for your
