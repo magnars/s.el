@@ -56,7 +56,11 @@
   (defexamples s-word-wrap
     (s-word-wrap 10 "This is too long") => "This is\ntoo long"
     (s-word-wrap 10 "This is way way too long") => "This is\nway way\ntoo long"
-    (s-word-wrap 10 "It-wraps-words-but-does-not-break-them") => "It-wraps-words-but-does-not-break-them"))
+    (s-word-wrap 10 "It-wraps-words-but-does-not-break-them") => "It-wraps-words-but-does-not-break-them")
+
+  (defexamples s-center
+    (s-center 20 "Center this") => "    Center this     "
+    (s-center 1 "Center this") => "Center this"))
 
 (def-example-group "To and from lists"
   (defexamples s-lines
