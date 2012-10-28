@@ -28,6 +28,12 @@ somewhere else to dig for the command you were looking for.
 The wrapping functions serve as both documentation for existing functions and
 makes for a consistent API.
 
+## Other string related libraries
+
+* [inflections](https://github.com/eschulte/jump.el/blob/master/inflections.el) package
+provides functions for strings pluralization and singularization.
+
+
 ## Contributors
 
 * [Arthur Andersen](https://github.com/leoc) contributed `s-match`
