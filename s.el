@@ -100,6 +100,20 @@
       (fill-region (point-min) (point-max)))
     (buffer-substring-no-properties (point-min) (point-max))))
 
+(defun s-center (len s)
+  "Pads S with spaces to center the string until S reaches size LEN."
+  (with-temp-buffer
+    (insert s)
+    ;; Temporarily change `fill-column' and `indent-tabs-mode' so
+    ;; `center-line' does what we want
+    (let ((fill-column len)
+          (indent-tabs-mode nil))
+      (center-line)
+      (end-of-line)
+      (when (> len (current-column))
+        (insert (s-repeat (- len (current-column)) " ")))
+      (buffer-string))))
+
 (defun s-left (len s)
   "Returns up to the LEN first chars of S."
   (if (> (length s) len)

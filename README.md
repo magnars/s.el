@@ -29,6 +29,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-trim-right](#s-trim-right-s) `(s)`
 * [s-collapse-whitespace](#s-collapse-whitespace-s) `(s)`
 * [s-word-wrap](#s-word-wrap-len-s) `(len s)`
+* [s-center](#s-center-len-s) `(len s)`
 
 ### To and from lists
 
@@ -174,6 +175,15 @@ If `s` is longer than `len`, wrap the words with newlines.
 (s-word-wrap 10 "This is too long") ;; => "This is\ntoo long"
 (s-word-wrap 10 "This is way way too long") ;; => "This is\nway way\ntoo long"
 (s-word-wrap 10 "It-wraps-words-but-does-not-break-them") ;; => "It-wraps-words-but-does-not-break-them"
+```
+
+### s-center `(len s)`
+
+Pads `s` with spaces to center the string until `s` reaches size `len`.
+
+```cl
+(s-center 20 "Center this") ;; => "    Center this     "
+(s-center 1 "Center this") ;; => "Center this"
 ```
 
 
