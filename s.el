@@ -111,8 +111,7 @@
       (center-line)
       (end-of-line)
       (when (> len (current-column))
-        (dotimes (i (- len (current-column)))
-          (insert ? )))
+        (insert (s-repeat (- len (current-column)) " ")))
       (buffer-string))))
 
 (defun s-left (len s)
