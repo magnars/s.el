@@ -33,6 +33,10 @@ makes for a consistent API.
 * [inflections](https://github.com/eschulte/jump.el/blob/master/inflections.el) package
 provides functions for strings pluralization and singularization.
 
+* [levenshtein](http://emacswiki.org/emacs/levenshtein.el) package provides a function to
+calculate the Levenshtein distance between two strings.
+
+* [string-utils](https://github.com/rolandwalker/string-utils) is another general string manipulation library.
 
 ## Contributors
 
