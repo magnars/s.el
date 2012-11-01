@@ -29,6 +29,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-trim-right](#s-trim-right-s) `(s)`
 * [s-collapse-whitespace](#s-collapse-whitespace-s) `(s)`
 * [s-word-wrap](#s-word-wrap-len-s) `(len s)`
+* [s-center](#s-center-len-s) `(len s)`
 
 ### To and from lists
 
@@ -174,6 +175,16 @@ If `s` is longer than `len`, wrap the words with newlines.
 (s-word-wrap 10 "This is too long") ;; => "This is\ntoo long"
 (s-word-wrap 10 "This is way way too long") ;; => "This is\nway way\ntoo long"
 (s-word-wrap 10 "It-wraps-words-but-does-not-break-them") ;; => "It-wraps-words-but-does-not-break-them"
+```
+
+### s-center `(len s)`
+
+If `s` is shorter than `len`, pad it with spaces so it is centered.
+
+```cl
+(s-center 5 "a") ;; => "  a  "
+(s-center 5 "ab") ;; => "  ab "
+(s-center 1 "abc") ;; => "abc"
 ```
 
 
@@ -472,7 +483,6 @@ You'll find the repo at:
 
 **Looking for work?** Here are some features we would like:
 
- - `(s-center 80 s)` pads s with spaces to center the string.
  - `(s-distance s1 s2)` calculates Levenshtein distance between s1 and s2
  - `(s-shared-start s1 s2)` returns the longest prefix s1 and s2 have in common
  - `(s-shared-end s1 s2)` returns the longest suffix s1 and s2 have in common

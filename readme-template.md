@@ -45,7 +45,6 @@ You'll find the repo at:
 
 **Looking for work?** Here are some features we would like:
 
- - `(s-center 80 s)` pads s with spaces to center the string.
  - `(s-distance s1 s2)` calculates Levenshtein distance between s1 and s2
  - `(s-shared-start s1 s2)` returns the longest prefix s1 and s2 have in common
  - `(s-shared-end s1 s2)` returns the longest suffix s1 and s2 have in common
