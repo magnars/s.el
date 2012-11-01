@@ -20,6 +20,8 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-right](#s-right-len-s) `(len s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 * [s-chop-suffixes](#s-chop-suffixes-suffixes-s) `(suffixes s)`
+* [s-shared-start](#s-shared-start-s1-s2) `(s1 s2)`
+* [s-shared-end](#s-shared-end-s1-s2) `(s1 s2)`
 
 ### Tweak whitespace
 
@@ -118,6 +120,26 @@ Remove `suffixes` one by one in order, if they are at the end of `s`.
 (s-chop-suffixes '("_test.js" "-test.js" "Test.js") "penguin-test.js") ;; => "penguin"
 (s-chop-suffixes '("\r" "\n") "penguin\r\n") ;; => "penguin\r"
 (s-chop-suffixes '("\n" "\r") "penguin\r\n") ;; => "penguin"
+```
+
+### s-shared-start `(s1 s2)`
+
+Returns the longest prefix `s1` and `s2` have in common.
+
+```cl
+(s-shared-start "foobar" "foo") ;; => "foo"
+(s-shared-start "bar" "foo") ;; => ""
+(s-shared-start "" "foo") ;; => ""
+```
+
+### s-shared-end `(s1 s2)`
+
+Returns the longest suffix `s1` and `s2` have in common.
+
+```cl
+(s-shared-end "bar" "ar") ;; => "ar"
+(s-shared-end "bar" "foo") ;; => ""
+(s-shared-end "foo" "foo") ;; => "foo"
 ```
 
 
@@ -508,8 +530,6 @@ You'll find the repo at:
 **Looking for work?** Here are some features we would like:
 
  - `(s-distance s1 s2)` calculates Levenshtein distance between s1 and s2
- - `(s-shared-start s1 s2)` returns the longest prefix s1 and s2 have in common
- - `(s-shared-end s1 s2)` returns the longest suffix s1 and s2 have in common
 
 ## Development
 

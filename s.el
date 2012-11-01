@@ -82,6 +82,25 @@
     (setq suffixes (cdr suffixes)))
   s)
 
+(defun s-shared-start (s1 s2)
+  "Returns the longest prefix S1 and S2 have in common."
+  (flet ((same-char-at-index (s1 s2 index)
+           "Return T if S1 and S2 have the same char at their INDEX"
+           (= (aref s1 index) (aref s2 index))))
+    (let ((search-length (min (length s1) (length s2)))
+           (i 0))
+      (while (and (< i search-length)
+                  (same-char-at-index s1 s2 i))
+        (setq i (1+ i)))
+      (substring s1 0 i))))
+
+(defun s-shared-end (s1 s2)
+  "Returns the longest suffix S1 and S2 have in common."
+  (flet ((reverse-string (string) ;; from org-babel-reverse-string
+             "Return the reverse of STRING."
+             (apply 'string (reverse (string-to-list string)))))
+    (reverse-string (s-shared-start (reverse-string s1) (reverse-string s2)))))
+
 (defun s-chomp (s)
   "Remove one trailing `\\n`, `\\r` or `\\r\\n` from S."
   (s-chop-suffixes '("\n" "\r") s))
