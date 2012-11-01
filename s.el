@@ -224,6 +224,19 @@ This is a simple wrapper around the built-in `upcase'."
 This is a simple wrapper around the built-in `capitalize'."
   (capitalize s))
 
+(defmacro s-with (s form &rest more)
+  "Threads S through the forms. Inserts S as the last item
+in the first form, making a list of it if it is not a list
+already. If there are more forms, inserts the first form as the
+last item in second form, etc."
+  (if (null more)
+      (if (listp form)
+          `(,(car form) ,@(cdr form) ,s)
+        (list form s))
+    `(s-with (s-with ,s ,form) ,@more)))
+
+(put 's-with 'lisp-indent-function 1)
+
 (defun s-index-of (needle s &optional ignore-case)
   "Returns first index of NEEDLE in S, or nil.
 

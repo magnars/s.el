@@ -57,6 +57,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-downcase](#s-downcase-s) `(s)`
 * [s-upcase](#s-upcase-s) `(s)`
 * [s-capitalize](#s-capitalize-s) `(s)`
+* [s-with](#s-with-s-form-rest-more) `(s form &rest more)`
 * [s-index-of](#s-index-of-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
 
 ### Pertaining to words
@@ -379,6 +380,19 @@ This is a simple wrapper around the built-in `capitalize`.
 
 ```cl
 (s-capitalize "abc DEF") ;; => "Abc Def"
+```
+
+### s-with `(s form &rest more)`
+
+Threads `s` through the forms. Inserts `s` as the last item
+in the first form, making a list of it if it is not a list
+already. If there are more forms, inserts the first form as the
+last item in second form, etc.
+
+```cl
+(s-with "   hulk smash   " s-trim s-upcase) ;; => "HULK SMASH"
+(s-with "My name is Bond" (s-replace "name" "car") (s-replace "Bond" "a Toyota")) ;; => "My car is a Toyota"
+(s-with "abc \ndef  \nghi" s-lines (mapcar 's-trim) (s-join "-")) ;; => "abc-def-ghi"
 ```
 
 ### s-index-of `(needle s &optional ignore-case)`

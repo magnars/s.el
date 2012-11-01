@@ -149,6 +149,11 @@
   (defexamples s-capitalize
     (s-capitalize "abc DEF") => "Abc Def")
 
+  (defexamples s-with
+    (s-with "   hulk smash   " s-trim s-upcase) => "HULK SMASH"
+    (s-with "My name is Bond" (s-replace "name" "car") (s-replace "Bond" "a Toyota")) => "My car is a Toyota"
+    (s-with "abc \ndef  \nghi" s-lines (mapcar 's-trim) (s-join "-")) => "abc-def-ghi")
+
   (defexamples s-index-of
     (s-index-of "abc" "abcdef") => 0
     (s-index-of "CDE" "abcdef" t) => 2
