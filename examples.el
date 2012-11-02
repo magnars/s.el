@@ -28,6 +28,21 @@
     (s-chop-suffixes '("_test.js" "-test.js" "Test.js") "penguin-test.js") => "penguin"
     (s-chop-suffixes '("\r" "\n") "penguin\r\n") => "penguin\r"
     (s-chop-suffixes '("\n" "\r") "penguin\r\n") => "penguin")
+
+  (defexamples s-shared-start
+    (s-shared-start "foobar" "foo") => "foo"
+    (s-shared-start "bar" "foo") => ""
+    (s-shared-start "" "foo") => ""
+    (s-shared-start "foo" "foo") => "foo"
+    (s-shared-start "" "") => ""
+    (s-shared-start "bar" "baz") => "ba")
+
+  (defexamples s-shared-end
+    (s-shared-end "bar" "ar") => "ar"
+    (s-shared-end "bar" "foo") => ""
+    (s-shared-end "foo" "foo") => "foo"
+    (s-shared-end "" "foo") => ""
+    (s-shared-end "" "") => "")
   )
 
 (def-example-group "Tweak whitespace"
@@ -157,7 +172,12 @@
   (defexamples s-index-of
     (s-index-of "abc" "abcdef") => 0
     (s-index-of "CDE" "abcdef" t) => 2
-    (s-index-of "n.t" "not a regexp") => nil))
+    (s-index-of "n.t" "not a regexp") => nil)
+
+  (defexamples s-reverse
+    (s-reverse "abc") => "cba"
+    (s-reverse "ab xyz") => "zyx ba"
+    (s-reverse "") => ""))
 
 (def-example-group "Pertaining to words"
   (defexamples s-split-words
