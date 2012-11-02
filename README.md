@@ -128,9 +128,9 @@ Remove `suffixes` one by one in order, if they are at the end of `s`.
 Returns the longest prefix `s1` and `s2` have in common.
 
 ```cl
+(s-shared-start "bar" "baz") ;; => "ba"
 (s-shared-start "foobar" "foo") ;; => "foo"
 (s-shared-start "bar" "foo") ;; => ""
-(s-shared-start "" "foo") ;; => ""
 ```
 
 ### s-shared-end `(s1 s2)`
@@ -138,7 +138,7 @@ Returns the longest prefix `s1` and `s2` have in common.
 Returns the longest suffix `s1` and `s2` have in common.
 
 ```cl
-(s-shared-end "bar" "ar") ;; => "ar"
+(s-shared-end "bar" "var") ;; => "ar"
 (s-shared-end "bar" "foo") ;; => ""
 (s-shared-end "foo" "foo") ;; => "foo"
 ```
@@ -415,7 +415,7 @@ last item in second form, etc.
 ```cl
 (s-with "   hulk smash   " s-trim s-upcase) ;; => "HULK SMASH"
 (s-with "My name is Bond" (s-replace "name" "car") (s-replace "Bond" "a Toyota")) ;; => "My car is a Toyota"
-(s-with "abc \ndef  \nghi" s-lines (mapcar 's-trim) (s-join "-")) ;; => "abc-def-ghi"
+(s-with "abc \ndef  \nghi" s-lines (mapcar 's-trim) (s-join "-") s-reverse) ;; => "ihg-fed-cba"
 ```
 
 ### s-index-of `(needle s &optional ignore-case)`

@@ -30,20 +30,19 @@
     (s-chop-suffixes '("\n" "\r") "penguin\r\n") => "penguin")
 
   (defexamples s-shared-start
+    (s-shared-start "bar" "baz") => "ba"
     (s-shared-start "foobar" "foo") => "foo"
     (s-shared-start "bar" "foo") => ""
     (s-shared-start "" "foo") => ""
     (s-shared-start "foo" "foo") => "foo"
-    (s-shared-start "" "") => ""
-    (s-shared-start "bar" "baz") => "ba")
+    (s-shared-start "" "") => "")
 
   (defexamples s-shared-end
-    (s-shared-end "bar" "ar") => "ar"
+    (s-shared-end "bar" "var") => "ar"
     (s-shared-end "bar" "foo") => ""
     (s-shared-end "foo" "foo") => "foo"
     (s-shared-end "" "foo") => ""
-    (s-shared-end "" "") => "")
-  )
+    (s-shared-end "" "") => ""))
 
 (def-example-group "Tweak whitespace"
   (defexamples s-chomp
@@ -167,7 +166,7 @@
   (defexamples s-with
     (s-with "   hulk smash   " s-trim s-upcase) => "HULK SMASH"
     (s-with "My name is Bond" (s-replace "name" "car") (s-replace "Bond" "a Toyota")) => "My car is a Toyota"
-    (s-with "abc \ndef  \nghi" s-lines (mapcar 's-trim) (s-join "-")) => "abc-def-ghi")
+    (s-with "abc \ndef  \nghi" s-lines (mapcar 's-trim) (s-join "-") s-reverse) => "ihg-fed-cba")
 
   (defexamples s-index-of
     (s-index-of "abc" "abcdef") => 0

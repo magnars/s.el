@@ -82,26 +82,23 @@
     (setq suffixes (cdr suffixes)))
   s)
 
-(defun s--same-char-at-index (s1 s2 index)
-  "Return T if S1 and S2 have the same char at their INDEX."
-  (= (aref s1 index) (aref s2 index)))
-
 (defun s-shared-start (s1 s2)
   "Returns the longest prefix S1 and S2 have in common."
   (let ((search-length (min (length s1) (length s2)))
         (i 0))
     (while (and (< i search-length)
-                (s--same-char-at-index s1 s2 i))
+                (= (aref s1 i) (aref s2 i)))
       (setq i (1+ i)))
     (substring s1 0 i)))
 
 (defun s-shared-end (s1 s2)
   "Returns the longest suffix S1 and S2 have in common."
-  (let ((search-length (min (length s1) (length s2)))
-        (i 0))
+  (let* ((l1 (length s1))
+         (l2 (length s2))
+         (search-length (min l1 l2))
+         (i 0))
     (while (and (< i search-length)
-                (= (aref s1 (1- (- (length s1) i)))
-                   (aref s2 (1- (- (length s2) i)))))
+                (= (aref s1 (- l1 i 1)) (aref s2 (- l2 i 1))))
       (setq i (1+ i)))
     ;; If I is 0, then it means that there's no common suffix between
     ;; S1 and S2.
