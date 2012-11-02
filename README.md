@@ -61,6 +61,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-capitalize](#s-capitalize-s) `(s)`
 * [s-with](#s-with-s-form-rest-more) `(s form &rest more)`
 * [s-index-of](#s-index-of-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
+* [s-reverse](#s-reverse-s) `(s)`
 
 ### Pertaining to words
 
@@ -428,6 +429,16 @@ attention to case differences.
 (s-index-of "abc" "abcdef") ;; => 0
 (s-index-of "CDE" "abcdef" t) ;; => 2
 (s-index-of "n.t" "not a regexp") ;; => nil
+```
+
+### s-reverse `(s)`
+
+Return the reverse of `s`.
+
+```cl
+(s-reverse "abc") ;; => "cba"
+(s-reverse "ab xyz") ;; => "zyx ba"
+(s-reverse "") ;; => ""
 ```
 
 
