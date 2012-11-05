@@ -306,34 +306,23 @@ If it did not match the returned value is an empty list (nil)."
 
 (defun s-lower-camel-case (s)
   "Convert S to lowerCamelCase."
-  (mapconcat 'identity (s--mapcar-head
-                        (lambda (word) (downcase word))
-                        (lambda (word) (capitalize (downcase word)))
-                        (s-split-words s)) ""))
+  (s-join "" (s--mapcar-head 'downcase 'capitalize (s-split-words s))))
 
 (defun s-upper-camel-case (s)
   "Convert S to UpperCamelCase."
-  (mapconcat 'identity (mapcar
-                        (lambda (word) (capitalize (downcase word)))
-                        (s-split-words s)) ""))
+  (s-join "" (mapcar 'capitalize (s-split-words s))))
 
 (defun s-snake-case (s)
   "Convert S to snake_case."
-  (mapconcat 'identity (mapcar
-                        (lambda (word) (downcase word))
-                        (s-split-words s)) "_"))
+  (s-join "_" (mapcar 'downcase (s-split-words s))))
 
 (defun s-dashed-words (s)
   "Convert S to dashed-words."
-  (mapconcat 'identity (mapcar
-                        (lambda (word) (downcase word))
-                        (s-split-words s)) "-"))
+  (s-join "-" (mapcar 'downcase (s-split-words s))))
 
 (defun s-capitalized-words (s)
   "Convert S to Capitalized Words."
-  (mapconcat 'identity (mapcar
-                        (lambda (word) (capitalize (downcase word)))
-                        (s-split-words s)) " "))
+  (s-join " " (mapcar 'capitalize (s-split-words s))))
 
 (provide 's)
 ;;; s.el ends here
