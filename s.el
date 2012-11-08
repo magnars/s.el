@@ -82,6 +82,21 @@
     (setq suffixes (cdr suffixes)))
   s)
 
+(defun s-chop-prefix (prefix s)
+  "Remove PREFIX if it is at the start of S."
+  (let ((pos (length prefix)))
+    (if (and (>= (length s) (length prefix))
+             (string= prefix (substring s 0 pos)))
+        (substring s pos)
+      s)))
+
+(defun s-chop-prefixes (prefixes s)
+  "Remove PREFIXES one by one in order, if they are at the start of S."
+  (while prefixes
+    (setq s (s-chop-prefix (car prefixes) s))
+    (setq prefixes (cdr prefixes)))
+  s)
+
 (defun s-shared-start (s1 s2)
   "Returns the longest prefix S1 and S2 have in common."
   (let ((search-length (min (length s1) (length s2)))

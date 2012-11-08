@@ -29,6 +29,14 @@
     (s-chop-suffixes '("\r" "\n") "penguin\r\n") => "penguin\r"
     (s-chop-suffixes '("\n" "\r") "penguin\r\n") => "penguin")
 
+  (defexamples s-chop-prefix
+    (s-chop-prefix "/tmp" "/tmp/file.js") => "/file.js"
+    (s-chop-prefix "/tmp" "/tmp/tmp/file.js") => "/tmp/file.js")
+
+  (defexamples s-chop-prefixes
+    (s-chop-prefixes '("/tmp" "/my") "/tmp/my/file.js") => "/file.js"
+    (s-chop-prefixes '("/my" "/tmp") "/tmp/my/file.js") => "/my/file.js")
+
   (defexamples s-shared-start
     (s-shared-start "bar" "baz") => "ba"
     (s-shared-start "foobar" "foo") => "foo"

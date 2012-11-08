@@ -20,6 +20,8 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-right](#s-right-len-s) `(len s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 * [s-chop-suffixes](#s-chop-suffixes-suffixes-s) `(suffixes s)`
+* [s-chop-prefix](#s-chop-prefix-prefix-s) `(prefix s)`
+* [s-chop-prefixes](#s-chop-prefixes-prefixes-s) `(prefixes s)`
 * [s-shared-start](#s-shared-start-s1-s2) `(s1 s2)`
 * [s-shared-end](#s-shared-end-s1-s2) `(s1 s2)`
 
@@ -121,6 +123,24 @@ Remove `suffixes` one by one in order, if they are at the end of `s`.
 (s-chop-suffixes '("_test.js" "-test.js" "Test.js") "penguin-test.js") ;; => "penguin"
 (s-chop-suffixes '("\r" "\n") "penguin\r\n") ;; => "penguin\r"
 (s-chop-suffixes '("\n" "\r") "penguin\r\n") ;; => "penguin"
+```
+
+### s-chop-prefix `(prefix s)`
+
+Remove `prefix` if it is at the start of `s`.
+
+```cl
+(s-chop-prefix "/tmp" "/tmp/file.js") ;; => "/file.js"
+(s-chop-prefix "/tmp" "/tmp/tmp/file.js") ;; => "/tmp/file.js"
+```
+
+### s-chop-prefixes `(prefixes s)`
+
+Remove `prefixes` one by one in order, if they are at the start of `s`.
+
+```cl
+(s-chop-prefixes '("/tmp" "/my") "/tmp/my/file.js") ;; => "/file.js"
+(s-chop-prefixes '("/my" "/tmp") "/tmp/my/file.js") ;; => "/my/file.js"
 ```
 
 ### s-shared-start `(s1 s2)`
