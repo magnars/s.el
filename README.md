@@ -232,8 +232,8 @@ Returns the longest suffix `s1` and `s2` have in common.
 
 ```cl
 (s-shared-end "bar" "var") ;; => "ar"
-(s-shared-end "bar" "foo") ;; => ""
 (s-shared-end "foo" "foo") ;; => "foo"
+(s-shared-end "bar" "foo") ;; => ""
 ```
 
 
@@ -277,6 +277,8 @@ Splits `s` into a list of strings on newline characters.
 
 ```cl
 (s-lines "abc\ndef\nghi") ;; => '("abc" "def" "ghi")
+(s-lines "abc\rdef\rghi") ;; => '("abc" "def" "ghi")
+(s-lines "abc\r\ndef\r\nghi") ;; => '("abc" "def" "ghi")
 ```
 
 ### s-match `(regexp s)`

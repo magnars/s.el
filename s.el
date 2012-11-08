@@ -49,7 +49,7 @@
 
 (defun s-lines (s)
   "Splits S into a list of strings on newline characters."
-  (split-string s "\n"))
+  (split-string s "\\(\r\n\\|[\n\r]\\)"))
 
 (defun s-join (separator strings)
   "Join all the strings in STRINGS with SEPARATOR in between."

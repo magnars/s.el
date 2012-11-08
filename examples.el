@@ -81,8 +81,8 @@
 
   (defexamples s-shared-end
     (s-shared-end "bar" "var") => "ar"
-    (s-shared-end "bar" "foo") => ""
     (s-shared-end "foo" "foo") => "foo"
+    (s-shared-end "bar" "foo") => ""
     (s-shared-end "" "foo") => ""
     (s-shared-end "" "") => ""))
 
@@ -102,7 +102,9 @@
 
 (def-example-group "To and from lists"
   (defexamples s-lines
-    (s-lines "abc\ndef\nghi") => '("abc" "def" "ghi"))
+    (s-lines "abc\ndef\nghi") => '("abc" "def" "ghi")
+    (s-lines "abc\rdef\rghi") => '("abc" "def" "ghi")
+    (s-lines "abc\r\ndef\r\nghi") => '("abc" "def" "ghi"))
 
   (defexamples s-match
     (s-match "^def" "abcdefg") => nil
