@@ -5,7 +5,41 @@
 
 (require 's)
 
-(def-example-group "Shorten string"
+(def-example-group "Tweak whitespace"
+  (defexamples s-trim
+    (s-trim "trim ") => "trim"
+    (s-trim " this") => "this"
+    (s-trim " only  trims beg and end  ") => "only  trims beg and end")
+
+  (defexamples s-trim-left
+    (s-trim-left "trim ") => "trim "
+    (s-trim-left " this") => "this")
+
+  (defexamples s-trim-right
+    (s-trim-right "trim ") => "trim"
+    (s-trim-right " this") => " this")
+
+  (defexamples s-chomp
+    (s-chomp "no newlines\n") => "no newlines"
+    (s-chomp "no newlines\r\n") => "no newlines"
+    (s-chomp "some newlines\n\n") => "some newlines\n")
+
+  (defexamples s-collapse-whitespace
+    (s-collapse-whitespace "only   one space   please") => "only one space please"
+    (s-collapse-whitespace "collapse \n all \t sorts of \r whitespace") => "collapse all sorts of whitespace")
+
+  (defexamples s-word-wrap
+    (s-word-wrap 10 "This is too long") => "This is\ntoo long"
+    (s-word-wrap 10 "This is way way too long") => "This is\nway way\ntoo long"
+    (s-word-wrap 10 "It-wraps-words-but-does-not-break-them") => "It-wraps-words-but-does-not-break-them")
+
+  (defexamples s-center
+    (s-center 5 "a") => "  a  "
+    (s-center 5 "ab") => "  ab "
+    (s-center 1 "abc") => "abc"
+    (s-center 6 "ab") => "  ab  "))
+
+(def-example-group "To shorter string"
   (defexamples s-truncate
     (s-truncate 6 "This is too long") => "Thi..."
     (s-truncate 16 "This is also too long") => "This is also ..."
@@ -52,39 +86,13 @@
     (s-shared-end "" "foo") => ""
     (s-shared-end "" "") => ""))
 
-(def-example-group "Tweak whitespace"
-  (defexamples s-chomp
-    (s-chomp "no newlines\n") => "no newlines"
-    (s-chomp "no newlines\r\n") => "no newlines"
-    (s-chomp "some newlines\n\n") => "some newlines\n")
+(def-example-group "To longer string"
+  (defexamples s-repeat
+    (s-repeat 10 " ") => "          "
+    (s-concat (s-repeat 8 "Na") " Batman!") => "NaNaNaNaNaNaNaNa Batman!")
 
-  (defexamples s-trim
-    (s-trim "trim ") => "trim"
-    (s-trim " this") => "this"
-    (s-trim " only  trims beg and end  ") => "only  trims beg and end")
-
-  (defexamples s-trim-left
-    (s-trim-left "trim ") => "trim "
-    (s-trim-left " this") => "this")
-
-  (defexamples s-trim-right
-    (s-trim-right "trim ") => "trim"
-    (s-trim-right " this") => " this")
-
-  (defexamples s-collapse-whitespace
-    (s-collapse-whitespace "only   one space   please") => "only one space please"
-    (s-collapse-whitespace "collapse \n all \t sorts of \r whitespace") => "collapse all sorts of whitespace")
-
-  (defexamples s-word-wrap
-    (s-word-wrap 10 "This is too long") => "This is\ntoo long"
-    (s-word-wrap 10 "This is way way too long") => "This is\nway way\ntoo long"
-    (s-word-wrap 10 "It-wraps-words-but-does-not-break-them") => "It-wraps-words-but-does-not-break-them")
-
-  (defexamples s-center
-    (s-center 5 "a") => "  a  "
-    (s-center 5 "ab") => "  ab "
-    (s-center 1 "abc") => "abc"
-    (s-center 6 "ab") => "  ab  "))
+  (defexamples s-concat
+    (s-concat "abc" "def" "ghi") => "abcdefghi"))
 
 (def-example-group "To and from lists"
   (defexamples s-lines
@@ -98,10 +106,7 @@
 
   (defexamples s-join
     (s-join "+" '("abc" "def" "ghi")) => "abc+def+ghi"
-    (s-join "\n" '("abc" "def" "ghi")) => "abc\ndef\nghi")
-
-  (defexamples s-concat
-    (s-concat "abc" "def" "ghi") => "abcdefghi"))
+    (s-join "\n" '("abc" "def" "ghi")) => "abc\ndef\nghi"))
 
 (def-example-group "Predicates"
   (defexamples s-equals?
@@ -154,10 +159,6 @@
     (s-mixedcase? "123?") => nil))
 
 (def-example-group "The misc bucket"
-  (defexamples s-repeat
-    (s-repeat 10 " ") => "          "
-    (s-concat (s-repeat 8 "Na") " Batman!") => "NaNaNaNaNaNaNaNa Batman!")
-
   (defexamples s-replace
     (s-replace "file" "nope" "lib/file.js") => "lib/nope.js"
     (s-replace "^a" "\\1" "it's not ^a regexp") => "it's not \\1 regexp")

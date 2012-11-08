@@ -13,7 +13,17 @@ Or you can just dump `s.el` in your load path somewhere.
 ## Functions
 
 
-### Shorten string
+### Tweak whitespace
+
+* [s-trim](#s-trim-s) `(s)`
+* [s-trim-left](#s-trim-left-s) `(s)`
+* [s-trim-right](#s-trim-right-s) `(s)`
+* [s-chomp](#s-chomp-s) `(s)`
+* [s-collapse-whitespace](#s-collapse-whitespace-s) `(s)`
+* [s-word-wrap](#s-word-wrap-len-s) `(len s)`
+* [s-center](#s-center-len-s) `(len s)`
+
+### To shorter string
 
 * [s-truncate](#s-truncate-len-s) `(len s)`
 * [s-left](#s-left-len-s) `(len s)`
@@ -25,22 +35,16 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-shared-start](#s-shared-start-s1-s2) `(s1 s2)`
 * [s-shared-end](#s-shared-end-s1-s2) `(s1 s2)`
 
-### Tweak whitespace
+### To longer string
 
-* [s-chomp](#s-chomp-s) `(s)`
-* [s-trim](#s-trim-s) `(s)`
-* [s-trim-left](#s-trim-left-s) `(s)`
-* [s-trim-right](#s-trim-right-s) `(s)`
-* [s-collapse-whitespace](#s-collapse-whitespace-s) `(s)`
-* [s-word-wrap](#s-word-wrap-len-s) `(len s)`
-* [s-center](#s-center-len-s) `(len s)`
+* [s-repeat](#s-repeat-num-s) `(num s)`
+* [s-concat](#s-concat-rest-strings) `(&rest strings)`
 
 ### To and from lists
 
 * [s-lines](#s-lines-s) `(s)`
 * [s-match](#s-match-regexp-s) `(regexp s)`
 * [s-join](#s-join-separator-strings) `(separator strings)`
-* [s-concat](#s-concat-rest-strings) `(&rest strings)`
 
 ### Predicates
 
@@ -56,7 +60,6 @@ Or you can just dump `s.el` in your load path somewhere.
 
 ### The misc bucket
 
-* [s-repeat](#s-repeat-num-s) `(num s)`
 * [s-replace](#s-replace-old-new-s) `(old new s)`
 * [s-downcase](#s-downcase-s) `(s)`
 * [s-upcase](#s-upcase-s) `(s)`
@@ -75,6 +78,74 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-capitalized-words](#s-capitalized-words-s) `(s)`
 
 ## Documentation and examples
+
+
+### s-trim `(s)`
+
+Remove whitespace at the beginning and end of `s`.
+
+```cl
+(s-trim "trim ") ;; => "trim"
+(s-trim " this") ;; => "this"
+(s-trim " only  trims beg and end  ") ;; => "only  trims beg and end"
+```
+
+### s-trim-left `(s)`
+
+Remove whitespace at the beginning of `s`.
+
+```cl
+(s-trim-left "trim ") ;; => "trim "
+(s-trim-left " this") ;; => "this"
+```
+
+### s-trim-right `(s)`
+
+Remove whitespace at the end of `s`.
+
+```cl
+(s-trim-right "trim ") ;; => "trim"
+(s-trim-right " this") ;; => " this"
+```
+
+### s-chomp `(s)`
+
+Remove one trailing `\n`, `\r` or `\r\n` from `s`.
+
+```cl
+(s-chomp "no newlines\n") ;; => "no newlines"
+(s-chomp "no newlines\r\n") ;; => "no newlines"
+(s-chomp "some newlines\n\n") ;; => "some newlines\n"
+```
+
+### s-collapse-whitespace `(s)`
+
+Convert all adjacent whitespace characters to a single space.
+
+```cl
+(s-collapse-whitespace "only   one space   please") ;; => "only one space please"
+(s-collapse-whitespace "collapse \n all \t sorts of \r whitespace") ;; => "collapse all sorts of whitespace"
+```
+
+### s-word-wrap `(len s)`
+
+If `s` is longer than `len`, wrap the words with newlines.
+
+```cl
+(s-word-wrap 10 "This is too long") ;; => "This is\ntoo long"
+(s-word-wrap 10 "This is way way too long") ;; => "This is\nway way\ntoo long"
+(s-word-wrap 10 "It-wraps-words-but-does-not-break-them") ;; => "It-wraps-words-but-does-not-break-them"
+```
+
+### s-center `(len s)`
+
+If `s` is shorter than `len`, pad it with spaces so it is centered.
+
+```cl
+(s-center 5 "a") ;; => "  a  "
+(s-center 5 "ab") ;; => "  ab "
+(s-center 1 "abc") ;; => "abc"
+```
 
 
 ### s-truncate `(len s)`
@@ -164,71 +235,21 @@ Returns the longest suffix `s1` and `s2` have in common.
 ```
 
 
-### s-chomp `(s)`
+### s-repeat `(num s)`
 
-Remove one trailing `\n`, `\r` or `\r\n` from `s`.
+Make a string of `s` repeated `num` times.
 
 ```cl
-(s-chomp "no newlines\n") ;; => "no newlines"
-(s-chomp "no newlines\r\n") ;; => "no newlines"
-(s-chomp "some newlines\n\n") ;; => "some newlines\n"
+(s-repeat 10 " ") ;; => "          "
+(s-concat (s-repeat 8 "Na") " Batman!") ;; => "NaNaNaNaNaNaNaNa Batman!"
 ```
 
-### s-trim `(s)`
+### s-concat `(&rest strings)`
 
-Remove whitespace at the beginning and end of `s`.
-
-```cl
-(s-trim "trim ") ;; => "trim"
-(s-trim " this") ;; => "this"
-(s-trim " only  trims beg and end  ") ;; => "only  trims beg and end"
-```
-
-### s-trim-left `(s)`
-
-Remove whitespace at the beginning of `s`.
+Join all the string arguments into one string.
 
 ```cl
-(s-trim-left "trim ") ;; => "trim "
-(s-trim-left " this") ;; => "this"
-```
-
-### s-trim-right `(s)`
-
-Remove whitespace at the end of `s`.
-
-```cl
-(s-trim-right "trim ") ;; => "trim"
-(s-trim-right " this") ;; => " this"
-```
-
-### s-collapse-whitespace `(s)`
-
-Convert all adjacent whitespace characters to a single space.
-
-```cl
-(s-collapse-whitespace "only   one space   please") ;; => "only one space please"
-(s-collapse-whitespace "collapse \n all \t sorts of \r whitespace") ;; => "collapse all sorts of whitespace"
-```
-
-### s-word-wrap `(len s)`
-
-If `s` is longer than `len`, wrap the words with newlines.
-
-```cl
-(s-word-wrap 10 "This is too long") ;; => "This is\ntoo long"
-(s-word-wrap 10 "This is way way too long") ;; => "This is\nway way\ntoo long"
-(s-word-wrap 10 "It-wraps-words-but-does-not-break-them") ;; => "It-wraps-words-but-does-not-break-them"
-```
-
-### s-center `(len s)`
-
-If `s` is shorter than `len`, pad it with spaces so it is centered.
-
-```cl
-(s-center 5 "a") ;; => "  a  "
-(s-center 5 "ab") ;; => "  ab "
-(s-center 1 "abc") ;; => "abc"
+(s-concat "abc" "def" "ghi") ;; => "abcdefghi"
 ```
 
 
@@ -259,14 +280,6 @@ Join all the strings in `strings` with `separator` in between.
 ```cl
 (s-join "+" '("abc" "def" "ghi")) ;; => "abc+def+ghi"
 (s-join "\n" '("abc" "def" "ghi")) ;; => "abc\ndef\nghi"
-```
-
-### s-concat `(&rest strings)`
-
-Join all the string arguments into one string.
-
-```cl
-(s-concat "abc" "def" "ghi") ;; => "abcdefghi"
 ```
 
 
@@ -376,15 +389,6 @@ Are there both lower case and upper case letters in `s`?
 (s-mixedcase? "123?") ;; => nil
 ```
 
-
-### s-repeat `(num s)`
-
-Make a string of `s` repeated `num` times.
-
-```cl
-(s-repeat 10 " ") ;; => "          "
-(s-concat (s-repeat 8 "Na") " Batman!") ;; => "NaNaNaNaNaNaNaNa Batman!"
-```
 
 ### s-replace `(old new s)`
 
