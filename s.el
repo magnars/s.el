@@ -59,6 +59,14 @@
   "Join all the string arguments into one string."
   (apply 'concat strings))
 
+(defun s-prepend (prefix s)
+  "Concatenate PREFIX and S."
+  (concat prefix s))
+
+(defun s-append (suffix s)
+  "Concatenate S and SUFFIX."
+  (concat s suffix))
+
 (defun s-repeat (num s)
   "Make a string of S repeated NUM times."
   (let (ss)

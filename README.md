@@ -39,6 +39,8 @@ Or you can just dump `s.el` in your load path somewhere.
 
 * [s-repeat](#s-repeat-num-s) `(num s)`
 * [s-concat](#s-concat-rest-strings) `(&rest strings)`
+* [s-prepend](#s-prepend-prefix-s) `(prefix s)`
+* [s-append](#s-append-suffix-s) `(suffix s)`
 
 ### To and from lists
 
@@ -252,6 +254,22 @@ Join all the string arguments into one string.
 (s-concat "abc" "def" "ghi") ;; => "abcdefghi"
 ```
 
+### s-prepend `(prefix s)`
+
+Concatenate `prefix` and `s`.
+
+```cl
+(s-prepend "abc" "def") ;; => "abcdef"
+```
+
+### s-append `(suffix s)`
+
+Concatenate `s` and `suffix`.
+
+```cl
+(s-append "abc" "def") ;; => "defabc"
+```
+
 
 ### s-lines `(s)`
 
@@ -438,7 +456,7 @@ last item in second form, etc.
 
 ```cl
 (s-with "   hulk smash   " s-trim s-upcase) ;; => "HULK SMASH"
-(s-with "My name is Bond" (s-replace "name" "car") (s-replace "Bond" "a Toyota")) ;; => "My car is a Toyota"
+(s-with "My car is a Toyota" (s-replace "car" "name") (s-replace "a Toyota" "Bond") (s-append ", James Bond")) ;; => "My name is Bond, James Bond"
 (s-with "abc \ndef  \nghi" s-lines (mapcar 's-trim) (s-join "-") s-reverse) ;; => "ihg-fed-cba"
 ```
 

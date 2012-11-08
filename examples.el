@@ -92,7 +92,13 @@
     (s-concat (s-repeat 8 "Na") " Batman!") => "NaNaNaNaNaNaNaNa Batman!")
 
   (defexamples s-concat
-    (s-concat "abc" "def" "ghi") => "abcdefghi"))
+    (s-concat "abc" "def" "ghi") => "abcdefghi")
+
+  (defexamples s-prepend
+    (s-prepend "abc" "def") => "abcdef")
+
+  (defexamples s-append
+    (s-append "abc" "def") => "defabc"))
 
 (def-example-group "To and from lists"
   (defexamples s-lines
@@ -174,7 +180,7 @@
 
   (defexamples s-with
     (s-with "   hulk smash   " s-trim s-upcase) => "HULK SMASH"
-    (s-with "My name is Bond" (s-replace "name" "car") (s-replace "Bond" "a Toyota")) => "My car is a Toyota"
+    (s-with "My car is a Toyota" (s-replace "car" "name") (s-replace "a Toyota" "Bond") (s-append ", James Bond")) => "My name is Bond, James Bond"
     (s-with "abc \ndef  \nghi" s-lines (mapcar 's-trim) (s-join "-") s-reverse) => "ihg-fed-cba")
 
   (defexamples s-index-of
