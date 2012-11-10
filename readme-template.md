@@ -28,6 +28,16 @@ somewhere else to dig for the command you were looking for.
 The wrapping functions serve as both documentation for existing functions and
 makes for a consistent API.
 
+## Changelist
+
+### From 1.2.1 to 1.3.0
+
+- **Breaking change:** `s-capitalize` now converts the first word's first
+  character to upper case and the rest to lower case. `s-titleize`
+  works like the old `s-capitalize` and capitalizes each word.
+
+- `s-capitalized-words` and `s-titleized-words` mirror this change.
+
 ## Other string related libraries
 
 * [inflections](https://github.com/eschulte/jump.el/blob/master/inflections.el) package
