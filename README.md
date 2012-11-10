@@ -66,6 +66,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-downcase](#s-downcase-s) `(s)`
 * [s-upcase](#s-upcase-s) `(s)`
 * [s-capitalize](#s-capitalize-s) `(s)`
+* [s-titleize](#s-titleize-s) `(s)`
 * [s-with](#s-with-s-form-rest-more) `(s form &rest more)`
 * [s-index-of](#s-index-of-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
 * [s-reverse](#s-reverse-s) `(s)`
@@ -78,6 +79,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-snake-case](#s-snake-case-s) `(s)`
 * [s-dashed-words](#s-dashed-words-s) `(s)`
 * [s-capitalized-words](#s-capitalized-words-s) `(s)`
+* [s-titleized-words](#s-titleized-words-s) `(s)`
 
 ## Documentation and examples
 
@@ -441,12 +443,22 @@ This is a simple wrapper around the built-in `upcase`.
 
 ### s-capitalize `(s)`
 
+Convert the first word's first character to upper case and the rest to lower case in `s`.
+
+```cl
+(s-capitalize "abc DEF") ;; => "Abc def"
+(s-capitalize "abc.DEF") ;; => "Abc.def"
+```
+
+### s-titleize `(s)`
+
 Convert each word's first character to upper case and the rest to lower case in `s`.
 
 This is a simple wrapper around the built-in `capitalize`.
 
 ```cl
-(s-capitalize "abc DEF") ;; => "Abc Def"
+(s-titleize "abc DEF") ;; => "Abc Def"
+(s-titleize "abc.DEF") ;; => "Abc.Def"
 ```
 
 ### s-with `(s form &rest more)`
@@ -541,9 +553,19 @@ Convert `s` to dashed-words.
 Convert `s` to Capitalized Words.
 
 ```cl
-(s-capitalized-words "some words") ;; => "Some Words"
-(s-capitalized-words "under_scored_words") ;; => "Under Scored Words"
-(s-capitalized-words "camelCasedWords") ;; => "Camel Cased Words"
+(s-capitalized-words "some words") ;; => "Some words"
+(s-capitalized-words "under_scored_words") ;; => "Under scored words"
+(s-capitalized-words "camelCasedWords") ;; => "Camel cased words"
+```
+
+### s-titleized-words `(s)`
+
+Convert `s` to Titleized Words.
+
+```cl
+(s-titleized-words "some words") ;; => "Some Words"
+(s-titleized-words "under_scored_words") ;; => "Under Scored Words"
+(s-titleized-words "camelCasedWords") ;; => "Camel Cased Words"
 ```
 
 
