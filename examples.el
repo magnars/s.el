@@ -178,7 +178,12 @@
     (s-upcase "abc") => "ABC")
 
   (defexamples s-capitalize
-    (s-capitalize "abc DEF") => "Abc Def")
+    (s-capitalize "abc DEF") => "Abc def"
+    (s-capitalize "abc.DEF") => "Abc.def")
+
+  (defexamples s-titleize
+    (s-titleize "abc DEF") => "Abc Def"
+    (s-titleize "abc.DEF") => "Abc.Def")
 
   (defexamples s-with
     (s-with "   hulk smash   " s-trim s-upcase) => "HULK SMASH"
@@ -223,6 +228,11 @@
     (s-dashed-words "camelCasedWords") => "camel-cased-words")
 
   (defexamples s-capitalized-words
-    (s-capitalized-words "some words") => "Some Words"
-    (s-capitalized-words "under_scored_words") => "Under Scored Words"
-    (s-capitalized-words "camelCasedWords") => "Camel Cased Words"))
+    (s-capitalized-words "some words") => "Some words"
+    (s-capitalized-words "under_scored_words") => "Under scored words"
+    (s-capitalized-words "camelCasedWords") => "Camel cased words")
+
+  (defexamples s-titleized-words
+    (s-titleized-words "some words") => "Some Words"
+    (s-titleized-words "under_scored_words") => "Under Scored Words"
+    (s-titleized-words "camelCasedWords") => "Camel Cased Words"))

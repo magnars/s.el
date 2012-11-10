@@ -270,6 +270,10 @@ This is a simple wrapper around the built-in `upcase'."
   (upcase s))
 
 (defun s-capitalize (s)
+  "Convert the first word's first character to upper case and the rest to lower case in S."
+  (concat (upcase (substring s 0 1)) (downcase (substring s 1))))
+
+(defun s-titleize (s)
   "Convert each word's first character to upper case and the rest to lower case in S.
 
 This is a simple wrapper around the built-in `capitalize'."
@@ -345,7 +349,12 @@ If it did not match the returned value is an empty list (nil)."
 
 (defun s-capitalized-words (s)
   "Convert S to Capitalized Words."
-  (s-join " " (mapcar 'capitalize (s-split-words s))))
+  (let ((words (s-split-words s)))
+    (s-join " " (cons (capitalize (car words)) (mapcar 'downcase (cdr words))))))
+
+(defun s-titleized-words (s)
+  "Convert S to Titleized Words."
+  (s-join " " (mapcar 's-titleize (s-split-words s))))
 
 (provide 's)
 ;;; s.el ends here
