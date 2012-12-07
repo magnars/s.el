@@ -69,7 +69,15 @@ You'll find the repo at:
 
  - `(s-distance s1 s2)` calculates Levenshtein distance between s1 and s2
 
-## Development
+## Contribute
+
+Yes, please do. Pure functions in the string manipulation realm only,
+please. There's a suite of tests in `dev/examples.el`, so remember to add
+tests for your function, or I might break it later.
+
+You'll find the repo at:
+
+    https://github.com/magnars/s.el
 
 Run the tests with
 
