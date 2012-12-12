@@ -70,6 +70,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-with](#s-with-s-form-rest-more) `(s form &rest more)`
 * [s-index-of](#s-index-of-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
 * [s-reverse](#s-reverse-s) `(s)`
+* [s-format](#s-format-template-replacer-optional-extra) `(template replacer &optional extra)`
 
 ### Pertaining to words
 
@@ -495,6 +496,34 @@ Return the reverse of `s`.
 (s-reverse "abc") ;; => "cba"
 (s-reverse "ab xyz") ;; => "zyx ba"
 (s-reverse "") ;; => ""
+```
+
+### s-format `(template replacer &optional extra)`
+
+Format `template` with the function `replacer`.
+
+`replacer` takes an argument of the format variable and optionally
+an extra argument which is the `extra` value from the call to
+`s-format`:
+
+  (s-format "${name}"
+     (lambda (var &optional extra)
+        (cdr (assoc var extra))))
+
+Several standard `s-format` helper functions are recognized and
+adapted for this:
+
+  (s-format "${name}" 'gethash hash-table)
+  (s-format "${name}" 'aget alist)
+  (s-format "$0" 'elt sequence)
+
+The `replacer` function may be used to do any other kind of
+transformation.
+
+```cl
+(s-format "hello ${name}, nice day" 'gethash #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8 data ("name" "nic" "malady" "on fire"))) ;; => "hello nic, nice day"
+(s-format "hello ${name}, nice day" (lambda (var-name) "nic")) ;; => "hello nic, nice day"
+(s-format "help ${name}! I'm ${malady}" 'gethash #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8 data ("name" "nic" "malady" "on fire"))) ;; => "help nic! I'm on fire"
 ```
 
 
