@@ -13,6 +13,7 @@
     (nreverse result)))
 
 (defmacro defexamples (cmd &rest examples)
+  (declare (indent 1))
   `(ert-deftest ,cmd ()
      ,@(examples-to-should examples)))
 
