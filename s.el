@@ -356,5 +356,63 @@ If it did not match the returned value is an empty list (nil)."
   "Convert S to Titleized Words."
   (s-join " " (mapcar 's-titleize (s-split-words s))))
 
+
+;; Errors for s-format
+(progn
+  (put 's-format-resolve
+       'error-conditions
+       '(error s-format s-format-resolve))
+  (put 's-format-resolve
+       'error-message
+       "Cannot resolve a template to values"))
+
+(defun s-format (template replacer &optional extra)
+  "Format TEMPLATE with the function REPLACER.
+
+REPLACER takes an argument of the format variable and optionally
+an extra argument which is the EXTRA value from the call to
+`s-format':
+
+  (s-format \"${name}\"
+     (lambda (var &optional extra)
+        (cdr (assoc var extra))))
+
+Several standard `s-format' helper functions are recognized and
+adapted for this:
+
+  (s-format \"${name}\" 'gethash hash-table)
+  (s-format \"${name}\" 'aget alist)
+  (s-format \"$0\" 'elt sequence)
+
+The REPLACER function may be used to do any other kind of
+transformation."
+  (let ((saved-match-data (match-data)))
+    (unwind-protect
+         (replace-regexp-in-string
+          "\\$\\({\\([^}]+\\)}\\|[0-9]+\\)"
+          (lambda (md)
+            (let ((var
+                   (let ((m (match-string 2 md)))
+                     (if m m
+                         (string-to-number (match-string 1 md)))))
+                  (replacer-match-data (match-data)))
+              (unwind-protect
+                   (let ((v
+                          (cond
+                            ((eq replacer 'gethash)
+                             (funcall replacer var extra))
+                            ((eq replacer 'aget)
+                             (funcall replacer extra var))
+                            ((eq replacer 'elt)
+                             (funcall replacer extra var))
+                            (t
+                             (set-match-data saved-match-data)
+                             (if extra
+                                 (funcall replacer var extra)
+                                 (funcall replacer var))))))
+                     (if v v (signal 's-format-resolve md)))
+                (set-match-data replacer-match-data)))) template)
+      (set-match-data saved-match-data))))
+
 (provide 's)
 ;;; s.el ends here
