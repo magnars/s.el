@@ -198,7 +198,35 @@
   (defexamples s-reverse
     (s-reverse "abc") => "cba"
     (s-reverse "ab xyz") => "zyx ba"
-    (s-reverse "") => ""))
+    (s-reverse "") => "")
+
+  (defexamples s-format
+     ;; One with a hash-table works
+    (s-format
+     "hello ${name}, nice day"
+     'gethash
+     #s(hash-table test equal data ("name" "nic" "malady" "on fire")))
+    => "hello nic, nice day"
+
+    ;; One with a function works
+    (s-format "hello ${name}, nice day" (lambda (var-name) "nic"))
+    => "hello nic, nice day"
+
+    ;; Two with a hash-table works
+    (s-format
+     "help ${name}! I'm ${malady}"
+     'gethash
+     #s(hash-table test equal data ("name" "nic" "malady" "on fire")))
+    => "help nic! I'm on fire"
+
+    ;; What happens when we don't have the elements? with hash...
+    (condition-case err
+        (s-format
+         "help ${name}! I'm ${malady}"
+         'gethash
+         #s(hash-table test equal data ("name" "nic" )))
+      (s-format-resolve (car err)))
+    => 's-format-resolve))
 
 (def-example-group "Pertaining to words"
   (defexamples s-split-words

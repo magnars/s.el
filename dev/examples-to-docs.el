@@ -31,6 +31,7 @@
     (car (cddr cmd))))
 
 (defmacro defexamples (cmd &rest examples)
+  (declare (indent 1))
   `(add-to-list 'functions (list
                             ',cmd
                             (docs--signature (symbol-function ',cmd))
