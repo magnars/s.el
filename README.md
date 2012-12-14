@@ -633,6 +633,7 @@ calculate the Levenshtein distance between two strings.
 * [Arthur Andersen](https://github.com/leoc) contributed `s-match`
 * [Rolando](https://github.com/rolando2424) contributed `s-shared-start` and `s-shared-end`
 * [Johan Andersson](https://github.com/rejeep) added `s-titleize` and changed `s-capitalize`
+* [Nic Ferrier](https://github.com/nicferrier) added `s-format`
 
 Thanks!
 
