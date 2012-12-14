@@ -4,6 +4,7 @@
 ;; so make those good.
 
 (require 's)
+(require 'assoc)
 
 (def-example-group "Tweak whitespace"
   (defexamples s-trim
@@ -201,15 +202,19 @@
     (s-reverse "") => "")
 
   (defexamples s-format
-     ;; One with a hash-table works
+     ;; One with an alist works
     (s-format
-     "hello ${name}, nice day"
-     'gethash
-     #s(hash-table test equal data ("name" "nic" "malady" "on fire")))
-    => "hello nic, nice day"
+     "help ${name}! I'm ${malady}"
+     'aget
+     '(("name" . "nic") ("malady" . "on fire")))
+    => "help nic! I'm on fire"
 
     ;; One with a function works
     (s-format "hello ${name}, nice day" (lambda (var-name) "nic"))
+    => "hello nic, nice day"
+
+    ;; One with a list works
+    (s-format "hello $0, nice $1" 'elt '("nic" "day"))
     => "hello nic, nice day"
 
     ;; Two with a hash-table works

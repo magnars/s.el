@@ -371,18 +371,14 @@ If it did not match the returned value is an empty list (nil)."
 
 REPLACER takes an argument of the format variable and optionally
 an extra argument which is the EXTRA value from the call to
-`s-format':
-
-  (s-format \"${name}\"
-     (lambda (var &optional extra)
-        (cdr (assoc var extra))))
+`s-format'.
 
 Several standard `s-format' helper functions are recognized and
 adapted for this:
 
-  (s-format \"${name}\" 'gethash hash-table)
-  (s-format \"${name}\" 'aget alist)
-  (s-format \"$0\" 'elt sequence)
+    (s-format \"${name}\" 'gethash hash-table)
+    (s-format \"${name}\" 'aget alist)
+    (s-format \"$0\" 'elt sequence)
 
 The REPLACER function may be used to do any other kind of
 transformation."

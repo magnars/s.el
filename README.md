@@ -504,26 +504,22 @@ Format `template` with the function `replacer`.
 
 `replacer` takes an argument of the format variable and optionally
 an extra argument which is the `extra` value from the call to
-`s-format`:
-
-  (s-format "${name}"
-     (lambda (var &optional extra)
-        (cdr (assoc var extra))))
+`s-format`.
 
 Several standard `s-format` helper functions are recognized and
 adapted for this:
 
-  (s-format "${name}" 'gethash hash-table)
-  (s-format "${name}" 'aget alist)
-  (s-format "$0" 'elt sequence)
+    (s-format "${name}" 'gethash hash-table)
+    (s-format "${name}" 'aget alist)
+    (s-format "$0" 'elt sequence)
 
 The `replacer` function may be used to do any other kind of
 transformation.
 
 ```cl
-(s-format "hello ${name}, nice day" 'gethash #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8 data ("name" "nic" "malady" "on fire"))) ;; => "hello nic, nice day"
+(s-format "help ${name}! I'm ${malady}" 'aget '(("name" . "nic") ("malady" . "on fire"))) ;; => "help nic! I'm on fire"
 (s-format "hello ${name}, nice day" (lambda (var-name) "nic")) ;; => "hello nic, nice day"
-(s-format "help ${name}! I'm ${malady}" 'gethash #s(hash-table size 65 test equal rehash-size 1.5 rehash-threshold 0.8 data ("name" "nic" "malady" "on fire"))) ;; => "help nic! I'm on fire"
+(s-format "hello $0, nice $1" 'elt '("nic" "day")) ;; => "hello nic, nice day"
 ```
 
 
