@@ -111,7 +111,10 @@
     (s-match "^def" "abcdefg") => nil
     (s-match "^abc" "abcdefg") => '("abc")
     (s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.html") => '("/some/weird/file.html" "file" "html")
-    (s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.org") => '("/some/weird/file.org" "file" "org"))
+    (s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.org") => '("/some/weird/file.org" "file" "org")
+    (s-match "^\\(abc\\)\\(def\\)?" "abcdef") => '("abcdef" "abc" "def")
+    (s-match "^\\(abc\\)\\(def\\)?" "abc") => '("abc" "abc")
+    (s-match "^\\(abc\\)\\(def\\)?\\(ghi\\)" "abcghi") => '("abcghi" "abc" nil "ghi"))
 
   (defexamples s-join
     (s-join "+" '("abc" "def" "ghi")) => "abc+def+ghi"
