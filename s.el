@@ -312,9 +312,10 @@ If it did not match the returned value is an empty list (nil)."
       (let ((match-data-list (match-data))
             result)
         (while match-data-list
-          (let ((beg (car match-data-list))
-                (end (cadr match-data-list)))
-            (setq result (cons (substring s beg end) result))
+          (let* ((beg (car match-data-list))
+                 (end (cadr match-data-list))
+                 (subs (if (and beg end) (substring s beg end) nil)))
+            (setq result (cons subs result))
             (setq match-data-list
                   (cddr match-data-list))))
         (nreverse result))))
