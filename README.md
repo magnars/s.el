@@ -59,6 +59,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-lowercase?](#s-lowercase-s) `(s)`
 * [s-uppercase?](#s-uppercase-s) `(s)`
 * [s-mixedcase?](#s-mixedcase-s) `(s)`
+* [s-numeric?](#s-numeric-s) `(s)`
 
 ### The misc bucket
 
@@ -410,6 +411,15 @@ Are there both lower case and upper case letters in `s`?
 (s-mixedcase? "HULK SMASH") ;; => nil
 (s-mixedcase? "Bruce no smash") ;; => t
 (s-mixedcase? "123?") ;; => nil
+```
+
+### s-numeric? `(s)`
+
+Is `s` a number?
+
+```cl
+(s-numeric? "123") ;; => t
+(s-numeric? "onetwothree") ;; => nil
 ```
 
 

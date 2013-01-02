@@ -253,6 +253,11 @@ This is a simple wrapper around the built-in `string-match-p'."
      (and (string-match-p "[a-zæøå]" s)
           (string-match-p "[A-ZÆØÅ]" s)))))
 
+(defun s-numeric? (s)
+  "Is S a number?"
+  (s--truthy?
+   (string-match-p "[0-9]+" s)))
+
 (defun s-replace (old new s)
   "Replaces OLD with NEW in S."
   (replace-regexp-in-string (regexp-quote old) new s t t))

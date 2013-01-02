@@ -168,7 +168,11 @@
   (defexamples s-mixedcase?
     (s-mixedcase? "HULK SMASH") => nil
     (s-mixedcase? "Bruce no smash") => t
-    (s-mixedcase? "123?") => nil))
+    (s-mixedcase? "123?") => nil)
+
+  (defexamples s-numeric?
+    (s-numeric? "123") => t
+    (s-numeric? "onetwothree") => nil))
 
 (def-example-group "The misc bucket"
   (defexamples s-replace
