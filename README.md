@@ -626,6 +626,13 @@ calculate the Levenshtein distance between two strings.
 
 ## Changelist
 
+### From 1.3.0 to 1.3.1
+
+- s-numeric?
+- s-match
+- s-format
+- Move .el files out of root to avoid problems with require.
+
 ### From 1.2.1 to 1.3.0
 
 - **Breaking change:** `s-capitalize` now converts the first word's first
