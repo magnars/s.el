@@ -47,9 +47,11 @@
   "Convert all adjacent whitespace characters to a single space."
   (replace-regexp-in-string "[ \t\n\r]+" " " s))
 
+(defalias 's-split 'split-string)
+
 (defun s-lines (s)
   "Splits S into a list of strings on newline characters."
-  (split-string s "\\(\r\n\\|[\n\r]\\)"))
+  (s-split s "\\(\r\n\\|[\n\r]\\)"))
 
 (defun s-join (separator strings)
   "Join all the strings in STRINGS with SEPARATOR in between."
@@ -327,7 +329,7 @@ If it did not match the returned value is an empty list (nil)."
 
 (defun s-split-words (s)
   "Split S into list of words."
-  (split-string
+  (s-split
    (let ((case-fold-search nil))
      (replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s))
    "[^A-Za-z0-9]+" t))
