@@ -59,6 +59,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-lowercase?](#s-lowercase-s) `(s)`
 * [s-uppercase?](#s-uppercase-s) `(s)`
 * [s-mixedcase?](#s-mixedcase-s) `(s)`
+* [s-capitalized?](#s-capitalized-s) `(s)`
 * [s-numeric?](#s-numeric-s) `(s)`
 
 ### The misc bucket
@@ -411,6 +412,16 @@ Are there both lower case and upper case letters in `s`?
 (s-mixedcase? "HULK SMASH") ;; => nil
 (s-mixedcase? "Bruce no smash") ;; => t
 (s-mixedcase? "123?") ;; => nil
+```
+
+### s-capitalized? `(s)`
+
+In `s`, is the first letter upper case, and all other letters lower case?
+
+```cl
+(s-capitalized? "Capitalized") ;; => t
+(s-capitalized? "I am capitalized") ;; => t
+(s-capitalized? "I Am Titleized") ;; => nil
 ```
 
 ### s-numeric? `(s)`

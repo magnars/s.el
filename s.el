@@ -253,6 +253,12 @@ This is a simple wrapper around the built-in `string-match-p'."
      (and (string-match-p "[a-zæøå]" s)
           (string-match-p "[A-ZÆØÅ]" s)))))
 
+(defun s-capitalized? (s)
+  "In S, is the first letter upper case, and all other letters lower case?"
+  (let ((case-fold-search nil))
+    (s--truthy?
+     (string-match-p "^[A-ZÆØÅ][^A-ZÆØÅ]*$" s))))
+
 (defun s-numeric? (s)
   "Is S a number?"
   (s--truthy?

@@ -170,6 +170,13 @@
     (s-mixedcase? "Bruce no smash") => t
     (s-mixedcase? "123?") => nil)
 
+  (defexamples s-capitalized?
+    (s-capitalized? "Capitalized") => t
+    (s-capitalized? "I am capitalized") => t
+    (s-capitalized? "I Am Titleized") => nil
+    (s-capitalized? "lower") => nil
+    (s-capitalized? "UPPER") => nil)
+
   (defexamples s-numeric?
     (s-numeric? "123") => t
     (s-numeric? "onetwothree") => nil))
