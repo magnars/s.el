@@ -129,7 +129,9 @@
 
   (defexamples s-matches?
     (s-matches? "^[0-9]+$" "123") => t
-    (s-matches? "^[0-9]+$" "a123") => nil)
+    (s-matches? "^[0-9]+$" "a123") => nil
+    (s-matches? "1" "1a" 1) => nil
+    (s-matches? "1" "1a1" 1) => t)
 
   (defexamples s-blank?
     (s-blank? "") => t

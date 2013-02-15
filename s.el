@@ -224,11 +224,12 @@ This is a simple wrapper around the built-in `string-equal'."
 
 (defalias 's-equals-p 's-equals?)
 
-(defun s-matches? (regexp s)
+(defun s-matches? (regexp s &optional start)
   "Does REGEXP match S?
+If START is non-nil the search starts at that index.
 
 This is a simple wrapper around the built-in `string-match-p'."
-  (s--truthy? (string-match-p regexp s)))
+  (s--truthy? (string-match-p regexp s start)))
 
 (defalias 's-matches-p 's-matches?)
 
