@@ -158,16 +158,22 @@
   (defexamples s-lowercase?
     (s-lowercase? "file") => t
     (s-lowercase? "File") => nil
+    (s-lowercase? "filä") => t
+    (s-lowercase? "filÄ") => nil
     (s-lowercase? "123?") => t)
 
   (defexamples s-uppercase?
     (s-uppercase? "HULK SMASH") => t
     (s-uppercase? "Bruce no smash") => nil
+    (s-uppercase? "FöB") => nil
+    (s-uppercase? "FÖB") => t
     (s-uppercase? "123?") => t)
 
   (defexamples s-mixedcase?
     (s-mixedcase? "HULK SMASH") => nil
     (s-mixedcase? "Bruce no smash") => t
+    (s-mixedcase? "BRÜCE") => nil
+    (s-mixedcase? "BRüCE") => t
     (s-mixedcase? "123?") => nil)
 
   (defexamples s-numeric?

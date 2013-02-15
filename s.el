@@ -239,19 +239,19 @@ This is a simple wrapper around the built-in `string-match-p'."
 (defun s-lowercase? (s)
   "Are all the letters in S in lower case?"
   (let ((case-fold-search nil))
-    (not (string-match-p "[A-ZÆØÅ]" s))))
+    (not (string-match-p "[[:upper:]]" s))))
 
 (defun s-uppercase? (s)
   "Are all the letters in S in upper case?"
   (let ((case-fold-search nil))
-    (not (string-match-p "[a-zæøå]" s))))
+    (not (string-match-p "[[:lower:]]" s))))
 
 (defun s-mixedcase? (s)
   "Are there both lower case and upper case letters in S?"
   (let ((case-fold-search nil))
     (s--truthy?
-     (and (string-match-p "[a-zæøå]" s)
-          (string-match-p "[A-ZÆØÅ]" s)))))
+     (and (string-match-p "[[:lower:]]" s)
+          (string-match-p "[[:upper:]]" s)))))
 
 (defun s-numeric? (s)
   "Is S a number?"
