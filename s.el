@@ -47,9 +47,16 @@
   "Convert all adjacent whitespace characters to a single space."
   (replace-regexp-in-string "[ \t\n\r]+" " " s))
 
+(defun s-split (separators s &optional omit-nulls)
+  "Split S into substrings bounded by matches for SEPARATORS.
+If OMIT-NULLS is t, zeo-length substrins are ommitted.
+
+This is a simple wrapper around the built-in `split-string'."
+  (split-string s separators omit-nulls))
+
 (defun s-lines (s)
   "Splits S into a list of strings on newline characters."
-  (split-string s "\\(\r\n\\|[\n\r]\\)"))
+  (s-split "\\(\r\n\\|[\n\r]\\)" s))
 
 (defun s-join (separator strings)
   "Join all the strings in STRINGS with SEPARATOR in between."
@@ -333,10 +340,11 @@ If it did not match the returned value is an empty list (nil)."
 
 (defun s-split-words (s)
   "Split S into list of words."
-  (split-string
+  (s-split
+   "[^A-Za-z0-9]+"
    (let ((case-fold-search nil))
      (replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s))
-   "[^A-Za-z0-9]+" t))
+   t))
 
 (defun s--mapcar-head (fn-head fn-rest list)
   "Like MAPCAR, but applies a different function to the first element."
