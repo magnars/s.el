@@ -114,7 +114,9 @@
     (s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.org") => '("/some/weird/file.org" "file" "org")
     (s-match "^\\(abc\\)\\(def\\)?" "abcdef") => '("abcdef" "abc" "def")
     (s-match "^\\(abc\\)\\(def\\)?" "abc") => '("abc" "abc")
-    (s-match "^\\(abc\\)\\(def\\)?\\(ghi\\)" "abcghi") => '("abcghi" "abc" nil "ghi"))
+    (s-match "^\\(abc\\)\\(def\\)?\\(ghi\\)" "abcghi") => '("abcghi" "abc" nil "ghi")
+    (s-match "abc" "abcdef" 1) => nil
+    (s-match "abc" "abcdefabc" 2) => '("abc"))
 
   (defexamples s-join
     (s-join "+" '("abc" "def" "ghi")) => "abc+def+ghi"

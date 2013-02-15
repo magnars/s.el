@@ -309,21 +309,24 @@ attention to case differences."
   "Return the reverse of S."
   (apply 'string (nreverse (string-to-list s))))
 
-(defun s-match (regexp s)
+(defun s-match (regexp s &optional start)
   "When the given expression matches the string, this function returns a list
 of the whole matching string and a string for each matched subexpressions.
-If it did not match the returned value is an empty list (nil)."
-  (if (string-match regexp s)
-      (let ((match-data-list (match-data))
-            result)
-        (while match-data-list
-          (let* ((beg (car match-data-list))
-                 (end (cadr match-data-list))
-                 (subs (if (and beg end) (substring s beg end) nil)))
-            (setq result (cons subs result))
-            (setq match-data-list
-                  (cddr match-data-list))))
-        (nreverse result))))
+If it did not match the returned value is an empty list (nil).
+
+When START is non-nil the search will start at that index."
+  (save-match-data
+    (if (string-match regexp s start)
+        (let ((match-data-list (match-data))
+              result)
+          (while match-data-list
+            (let* ((beg (car match-data-list))
+                   (end (cadr match-data-list))
+                   (subs (if (and beg end) (substring s beg end) nil)))
+              (setq result (cons subs result))
+              (setq match-data-list
+                    (cddr match-data-list))))
+          (nreverse result)))))
 
 (defun s-split-words (s)
   "Split S into list of words."
