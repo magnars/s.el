@@ -116,6 +116,14 @@
     (s-match "^\\(abc\\)\\(def\\)?" "abc") => '("abc" "abc")
     (s-match "^\\(abc\\)\\(def\\)?\\(ghi\\)" "abcghi") => '("abcghi" "abc" nil "ghi"))
 
+  (defexamples s-split
+    (s-split "a|bc|12|3" "|") => '("a" "bc" "12" "3")
+    (s-split "a,c,d" ":") => '("a,c,d")
+    (s-split "z\nefg\n" "\n") => '("z" "efg" "")
+    (s-split "z\nefg\n" "\n" t) => '("z" "efg")
+    (s-split "xyöözeföklmö" "ö") => '("xy" "" "zef" "klm" "")
+    (s-split "xyöözeföklmö" "ö" t) => '("xy" "zef" "klm"))
+
   (defexamples s-join
     (s-join "+" '("abc" "def" "ghi")) => "abc+def+ghi"
     (s-join "\n" '("abc" "def" "ghi")) => "abc\ndef\nghi"))
