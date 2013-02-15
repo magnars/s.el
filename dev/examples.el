@@ -172,7 +172,9 @@
 
   (defexamples s-numeric?
     (s-numeric? "123") => t
-    (s-numeric? "onetwothree") => nil))
+    (s-numeric? "onetwothree") => nil
+    (s-numeric? "7a") => nil
+    (s-numeric? "a89") => nil))
 
 (def-example-group "The misc bucket"
   (defexamples s-replace

@@ -256,7 +256,7 @@ This is a simple wrapper around the built-in `string-match-p'."
 (defun s-numeric? (s)
   "Is S a number?"
   (s--truthy?
-   (string-match-p "[0-9]+" s)))
+   (string-match-p "^[0-9]+$" s)))
 
 (defun s-replace (old new s)
   "Replaces OLD with NEW in S."
