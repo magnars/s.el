@@ -47,7 +47,7 @@
   "Convert all adjacent whitespace characters to a single space."
   (replace-regexp-in-string "[ \t\n\r]+" " " s))
 
-(defun s-split (s &optional separators omit-nulls)
+(defun s-split (separators s &optional omit-nulls)
   "Split S into substrings bounded by matches for SEPARATORS.
 If OMIT-NULLS is t, zeo-length substrins are ommitted.
 
