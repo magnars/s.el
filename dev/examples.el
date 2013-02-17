@@ -166,16 +166,22 @@
   (defexamples s-lowercase?
     (s-lowercase? "file") => t
     (s-lowercase? "File") => nil
+    (s-lowercase? "filä") => t
+    (s-lowercase? "filÄ") => nil
     (s-lowercase? "123?") => t)
 
   (defexamples s-uppercase?
     (s-uppercase? "HULK SMASH") => t
     (s-uppercase? "Bruce no smash") => nil
+    (s-uppercase? "FöB") => nil
+    (s-uppercase? "FÖB") => t
     (s-uppercase? "123?") => t)
 
   (defexamples s-mixedcase?
     (s-mixedcase? "HULK SMASH") => nil
     (s-mixedcase? "Bruce no smash") => t
+    (s-mixedcase? "BRÜCE") => nil
+    (s-mixedcase? "BRüCE") => t
     (s-mixedcase? "123?") => nil)
 
   (defexamples s-capitalized?
@@ -187,7 +193,9 @@
 
   (defexamples s-numeric?
     (s-numeric? "123") => t
-    (s-numeric? "onetwothree") => nil))
+    (s-numeric? "onetwothree") => nil
+    (s-numeric? "7a") => nil
+    (s-numeric? "a89") => nil))
 
 (def-example-group "The misc bucket"
   (defexamples s-replace
