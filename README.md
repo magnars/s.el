@@ -45,13 +45,15 @@ Or you can just dump `s.el` in your load path somewhere.
 ### To and from lists
 
 * [s-lines](#s-lines-s) `(s)`
-* [s-match](#s-match-regexp-s) `(regexp s)`
+* [s-match](#s-match-regexp-s-optional-start) `(regexp s &optional start)`
+* [s-split](#s-split-separators-s-optional-omit-nulls) `(separators s &optional omit-nulls)`
 * [s-join](#s-join-separator-strings) `(separator strings)`
 
 ### Predicates
 
 * [s-equals?](#s-equals-s1-s2) `(s1 s2)`
-* [s-matches?](#s-matches-regexp-s) `(regexp s)`
+* [s-less?](#s-less-s1-s2) `(s1 s2)`
+* [s-matches?](#s-matches-regexp-s-optional-start) `(regexp s &optional start)`
 * [s-blank?](#s-blank-s) `(s)`
 * [s-ends-with?](#s-ends-with-suffix-s-optional-ignore-case) `(suffix s &optional ignore-case)`
 * [s-starts-with?](#s-starts-with-prefix-s-optional-ignore-case) `(prefix s &optional ignore-case)`
@@ -286,16 +288,31 @@ Splits `s` into a list of strings on newline characters.
 (s-lines "abc\r\ndef\r\nghi") ;; => '("abc" "def" "ghi")
 ```
 
-### s-match `(regexp s)`
+### s-match `(regexp s &optional start)`
 
 When the given expression matches the string, this function returns a list
 of the whole matching string and a string for each matched subexpressions.
 If it did not match the returned value is an empty list (nil).
 
+When `start` is non-nil the search will start at that index.
+
 ```cl
 (s-match "^def" "abcdefg") ;; => nil
 (s-match "^abc" "abcdefg") ;; => '("abc")
 (s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.html") ;; => '("/some/weird/file.html" "file" "html")
+```
+
+### s-split `(separators s &optional omit-nulls)`
+
+Split `s` into substrings bounded by matches for `separators`.
+If `omit-nulls` is t, zeo-length substrins are ommitted.
+
+This is a simple wrapper around the built-in `split-string`.
+
+```cl
+(s-split "|" "a|bc|12|3") ;; => '("a" "bc" "12" "3")
+(s-split ":" "a,c,d") ;; => '("a,c,d")
+(s-split "\n" "z\nefg\n") ;; => '("z" "efg" "")
 ```
 
 ### s-join `(separator strings)`
@@ -319,15 +336,29 @@ This is a simple wrapper around the built-in `string-equal`.
 (s-equals? "abc" "abc") ;; => t
 ```
 
-### s-matches? `(regexp s)`
+### s-less? `(s1 s2)`
+
+Is `s1` less than `s2`?
+
+This is a simple wrapper around the built-in `string-lessp`.
+
+```cl
+(s-less? "abc" "abd") ;; => t
+(s-less? "abd" "abc") ;; => nil
+(s-less? "abc" "abc") ;; => nil
+```
+
+### s-matches? `(regexp s &optional start)`
 
 Does `regexp` match `s`?
+If `start` is non-nil the search starts at that index.
 
 This is a simple wrapper around the built-in `string-match-p`.
 
 ```cl
 (s-matches? "^[0-9]+$" "123") ;; => t
 (s-matches? "^[0-9]+$" "a123") ;; => nil
+(s-matches? "1" "1a" 1) ;; => nil
 ```
 
 ### s-blank? `(s)`
@@ -391,7 +422,7 @@ Are all the letters in `s` in lower case?
 ```cl
 (s-lowercase? "file") ;; => t
 (s-lowercase? "File") ;; => nil
-(s-lowercase? "123?") ;; => t
+(s-lowercase? "filä") ;; => t
 ```
 
 ### s-uppercase? `(s)`
@@ -401,7 +432,7 @@ Are all the letters in `s` in upper case?
 ```cl
 (s-uppercase? "HULK SMASH") ;; => t
 (s-uppercase? "Bruce no smash") ;; => nil
-(s-uppercase? "123?") ;; => t
+(s-uppercase? "FöB") ;; => nil
 ```
 
 ### s-mixedcase? `(s)`
@@ -411,7 +442,7 @@ Are there both lower case and upper case letters in `s`?
 ```cl
 (s-mixedcase? "HULK SMASH") ;; => nil
 (s-mixedcase? "Bruce no smash") ;; => t
-(s-mixedcase? "123?") ;; => nil
+(s-mixedcase? "BRÜCE") ;; => nil
 ```
 
 ### s-capitalized? `(s)`
@@ -431,6 +462,7 @@ Is `s` a number?
 ```cl
 (s-numeric? "123") ;; => t
 (s-numeric? "onetwothree") ;; => nil
+(s-numeric? "7a") ;; => nil
 ```
 
 
