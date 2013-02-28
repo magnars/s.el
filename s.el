@@ -231,6 +231,14 @@ This is a simple wrapper around the built-in `string-equal'."
 
 (defalias 's-equals-p 's-equals?)
 
+(defun s-less? (s1 s2)
+  "Is S1 less than S2?
+
+This is a simple wrapper around the built-in `string-lessp'."
+  (string-lessp s1 s2))
+
+(defalias 's-less-p 's-less?)
+
 (defun s-matches? (regexp s &optional start)
   "Does REGEXP match S?
 If START is non-nil the search starts at that index.
