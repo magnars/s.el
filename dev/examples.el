@@ -135,6 +135,11 @@
     (s-equals? "abc" "ABC") => nil
     (s-equals? "abc" "abc") => t)
 
+  (defexamples s-less?
+    (s-less? "abc" "abd") => t
+    (s-less? "abd" "abc") => nil
+    (s-less? "abc" "abc") => nil)
+
   (defexamples s-matches?
     (s-matches? "^[0-9]+$" "123") => t
     (s-matches? "^[0-9]+$" "a123") => nil
