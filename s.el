@@ -27,6 +27,8 @@
 
 ;;; Code:
 
+(require 'assoc)
+
 (defun s-trim-left (s)
   "Remove whitespace at the beginning of S."
   (if (string-match "\\`[ \t\n\r]+" s)
@@ -283,6 +285,12 @@ This is a simple wrapper around the built-in `string-match-p'."
 (defun s-replace (old new s)
   "Replaces OLD with NEW in S."
   (replace-regexp-in-string (regexp-quote old) new s t t))
+
+(defun s-replace-all (replacements s)
+  "REPLACEMENTS is a list of cons-cells. Each `car` is replaced with `cdr` in S."
+  (replace-regexp-in-string (regexp-opt (mapcar 'car replacements))
+                            (lambda (it) (aget replacements it))
+                            s))
 
 (defun s-downcase (s)
   "Convert S to lower case.

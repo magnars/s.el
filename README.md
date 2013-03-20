@@ -67,6 +67,7 @@ Or you can just dump `s.el` in your load path somewhere.
 ### The misc bucket
 
 * [s-replace](#s-replace-old-new-s) `(old new s)`
+* [s-replace-all](#s-replace-all-replacements-s) `(replacements s)`
 * [s-downcase](#s-downcase-s) `(s)`
 * [s-upcase](#s-upcase-s) `(s)`
 * [s-capitalize](#s-capitalize-s) `(s)`
@@ -473,6 +474,15 @@ Replaces `old` with `new` in `s`.
 ```cl
 (s-replace "file" "nope" "lib/file.js") ;; => "lib/nope.js"
 (s-replace "^a" "\\1" "it's not ^a regexp") ;; => "it's not \\1 regexp"
+```
+
+### s-replace-all `(replacements s)`
+
+`replacements` is a list of cons-cells. Each `car` is replaced with `cdr` in `s`.
+
+```cl
+(s-replace-all '(("lib" . "test") ("file" . "file_test")) "lib/file.js") ;; => "test/file_test.js"
+(s-replace-all '(("lib" . "test") ("test" . "lib")) "lib/test.js") ;; => "test/lib.js"
 ```
 
 ### s-downcase `(s)`

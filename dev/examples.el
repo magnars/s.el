@@ -211,6 +211,10 @@
     (s-replace "file" "nope" "lib/file.js") => "lib/nope.js"
     (s-replace "^a" "\\1" "it's not ^a regexp") => "it's not \\1 regexp")
 
+  (defexamples s-replace-all
+    (s-replace-all '(("lib" . "test") ("file" . "file_test")) "lib/file.js") => "test/file_test.js"
+    (s-replace-all '(("lib" . "test") ("test" . "lib")) "lib/test.js") => "test/lib.js")
+
   (defexamples s-downcase
     (s-downcase "ABC") => "abc")
 
