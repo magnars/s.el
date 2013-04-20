@@ -46,7 +46,8 @@ Or you can just dump `s.el` in your load path somewhere.
 
 * [s-lines](#s-lines-s) `(s)`
 * [s-match](#s-match-regexp-s-optional-start) `(regexp s &optional start)`
-* [s-split](#s-split-separators-s-optional-omit-nulls) `(separators s &optional omit-nulls)`
+* [s-slice-at](#s-slice-at-regexp-s) `(regexp s)`
+* [s-split](#s-split-separator-s-optional-omit-nulls) `(separator s &optional omit-nulls)`
 * [s-join](#s-join-separator-strings) `(separator strings)`
 
 ### Predicates
@@ -303,10 +304,20 @@ When `start` is non-nil the search will start at that index.
 (s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.html") ;; => '("/some/weird/file.html" "file" "html")
 ```
 
-### s-split `(separators s &optional omit-nulls)`
+### s-slice-at `(regexp s)`
 
-Split `s` into substrings bounded by matches for `separators`.
-If `omit-nulls` is t, zeo-length substrins are ommitted.
+Slices `s` up at every index matching `regexp`.
+
+```cl
+(s-slice-at "-" "abc") ;; => '("abc")
+(s-slice-at "-" "abc-def") ;; => '("abc" "-def")
+(s-slice-at "[.#]" "abc.def.ghi#id") ;; => '("abc" ".def" ".ghi" "#id")
+```
+
+### s-split `(separator s &optional omit-nulls)`
+
+Split `s` into substrings bounded by matches for regexp `separator`.
+If `omit-nulls` is t, zero-length substrings are omitted.
 
 This is a simple wrapper around the built-in `split-string`.
 
