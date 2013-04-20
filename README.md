@@ -695,9 +695,9 @@ calculate the Levenshtein distance between two strings.
 - Add `s-capitalized?`
 - Add `s-replace-all`
 - Add `s-slice-at`
-- Add `s-split' alias for `split-string' (Rüdiger Sone)
-- Add `s-less?' predicate (Rüdiger Sone)
-- Add START parameter to s-matches? (Rüdiger Sone)
+- Add `s-split` alias for `split-string` (Rüdiger Sone)
+- Add `s-less?` predicate (Rüdiger Sone)
+- Add START parameter to `s-matches?` (Rüdiger Sone)
 - Bugfixes
 
 ### From 1.3.0 to 1.3.1

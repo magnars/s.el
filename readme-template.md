@@ -40,11 +40,21 @@ calculate the Levenshtein distance between two strings.
 
 ## Changelist
 
+### From 1.3.1 to 1.4.0
+
+- Add `s-capitalized?`
+- Add `s-replace-all`
+- Add `s-slice-at`
+- Add `s-split` alias for `split-string` (Rüdiger Sone)
+- Add `s-less?` predicate (Rüdiger Sone)
+- Add START parameter to `s-matches?` (Rüdiger Sone)
+- Bugfixes
+
 ### From 1.3.0 to 1.3.1
 
-- s-numeric?
-- s-match
-- s-format
+- Add `s-numeric?`
+- Add `s-match`
+- Add `s-format`
 - Move .el files out of root to avoid problems with require.
 
 ### From 1.2.1 to 1.3.0
