@@ -466,7 +466,7 @@ transformation."
 
 `s-lex-format' inserts values with (format \"%S\").")
 
-(defvar s-lex-value-when-dynamic nil
+(defvar s-lex-value-when-dynamic :symbol-value
   "What to do in `s-lex-format' when not lexical.
 
 This variables can be in one of the following states:
