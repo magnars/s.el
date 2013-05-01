@@ -77,6 +77,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-index-of](#s-index-of-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
 * [s-reverse](#s-reverse-s) `(s)`
 * [s-format](#s-format-template-replacer-optional-extra) `(template replacer &optional extra)`
+* [s-lex-format](#s-lex-format-format-str) `(format-str)`
 
 ### Pertaining to words
 
@@ -594,6 +595,28 @@ transformation.
 (s-format "help ${name}! I'm ${malady}" 'aget '(("name" . "nic") ("malady" . "on fire"))) ;; => "help nic! I'm on fire"
 (s-format "hello ${name}, nice day" (lambda (var-name) "nic")) ;; => "hello nic, nice day"
 (s-format "hello $0, nice $1" 'elt '("nic" "day")) ;; => "hello nic, nice day"
+```
+
+### s-lex-format `(format-str)`
+
+`s-format` with the lexical environment.
+
+`format-str` may use the `s-format` variable reference to refer to
+any lexical variable:
+
+ (let ((x 1))
+   (s-lex-format "x is: ${x}"))
+
+The values of the lexical variables are interpolated with "%s"
+unless the variable `s-lex-value-as-lisp` is `t` and then they
+are interpolated with "%S".
+
+If the macro is used in a non-lexical-binding context then it's
+behaviour depends on the variable `'
+
+```cl
+(let ((x 1)) (s-lex-format "x is ${x}")) ;; => "x is 1"
+(let ((str1 "this") (str2 "that")) (s-lex-format "${str1} and ${str2}")) ;; => "this and that"
 ```
 
 
