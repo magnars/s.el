@@ -730,8 +730,8 @@ calculate the Levenshtein distance between two strings.
 ### From 1.3.0 to 1.3.1
 
 - Add `s-numeric?`
-- Add `s-match`
-- Add `s-format`
+- Add `s-match` (Arthur Andersen)
+- Add `s-format` (Nic Ferrier)
 - Move .el files out of root to avoid problems with require.
 
 ### From 1.2.1 to 1.3.0
@@ -739,6 +739,7 @@ calculate the Levenshtein distance between two strings.
 - **Breaking change:** `s-capitalize` now converts the first word's first
   character to upper case and the rest to lower case. `s-titleize`
   works like the old `s-capitalize` and capitalizes each word.
+  (Johan Andersson)
 
 - `s-capitalized-words` and `s-titleized-words` mirror this change.
 
