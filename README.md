@@ -690,6 +690,10 @@ calculate the Levenshtein distance between two strings.
 
 ## Changelist
 
+### From 1.4.0 to master
+
+- Add `s-lex-format` (Nic Ferrier)
+
 ### From 1.3.1 to 1.4.0
 
 - Add `s-capitalized?`
@@ -720,7 +724,7 @@ calculate the Levenshtein distance between two strings.
 * [Arthur Andersen](https://github.com/leoc) contributed `s-match`
 * [Rolando](https://github.com/rolando2424) contributed `s-shared-start` and `s-shared-end`
 * [Johan Andersson](https://github.com/rejeep) added `s-titleize` and changed `s-capitalize`
-* [Nic Ferrier](https://github.com/nicferrier) added `s-format`
+* [Nic Ferrier](https://github.com/nicferrier) added `s-format` and `s-lex-format`
 
 Thanks!
 
