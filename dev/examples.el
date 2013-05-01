@@ -280,7 +280,19 @@
          'gethash
          #s(hash-table test equal data ("name" "nic" )))
       (s-format-resolve (car err)))
-    => 's-format-resolve))
+    => 's-format-resolve)
+
+  (defexamples s-lex-format
+      ;; lexical stuff
+      (let ((x 1))
+        (s-lex-format "x is ${x}"))
+    => "x is 1"
+
+    (let ((str1 "this")
+          (str2 "that"))
+      (s-lex-format "${str1} and ${str2}"))
+    => "this and that"
+    ))
 
 (def-example-group "Pertaining to words"
   (defexamples s-split-words

@@ -461,5 +461,56 @@ transformation."
                (set-match-data replacer-match-data)))) template)
       (set-match-data saved-match-data))))
 
+(defvar s-lex-value-as-lisp nil
+  "If `t' interpolate lisp values as lisp.
+
+`s-lex-format' inserts values with (format \"%S\").")
+
+(defvar s-lex-value-when-dynamic :symbol-value
+  "What to do in `s-lex-format' when not lexical.
+
+This variables can be in one of the following states:
+
+ `:error' - using the macro causes an error to be signalled
+ `:symbol-value' - uses `symbol-value' to look up the dynamic value
+ `t' - uses the name of the variable reference
+
+Let bind this variable to change the behaviour of
+`s-lex-format'.")
+
+(defmacro s-lex-format (format-str)
+  "`s-format' with the lexical environment.
+
+FORMAT-STR may use the `s-format' variable reference to refer to
+any lexical variable:
+
+ (let ((x 1))
+   (s-lex-format \"x is: ${x}\"))
+
+The values of the lexical variables are interpolated with \"%s\"
+unless the variable `s-lex-value-as-lisp' is `t' and then they
+are interpolated with \"%S\".
+
+If the macro is used in a non-lexical-binding context then it's
+behaviour depends on the variable `'"
+  (let ((pv (make-symbol "pv")))
+    `(let ((,pv (lambda ())))
+       (s-format
+        ,format-str
+        (lambda (var-name)
+          (let ((value
+                 (if (eq 'closure (car ,pv))
+                     (let ((value 
+                            (assoc (intern var-name) (cadr ,pv))))
+                       (when value (cdr value)))
+                     (case s-lex-value-when-dynamic
+                       (:error (error "not in a lexical environment"))
+                       (:symbol-value (symbol-value
+                                       (intern var-name)))
+                       (t var-name)))))
+            (if s-lex-value-as-lisp
+                (format "%S" value)
+                (format "%s" value))))))))
+
 (provide 's)
 ;;; s.el ends here
