@@ -46,6 +46,7 @@ Or you can just dump `s.el` in your load path somewhere.
 
 * [s-lines](#s-lines-s) `(s)`
 * [s-match](#s-match-regexp-s-optional-start) `(regexp s &optional start)`
+* [s-match-strings-all](#s-match-strings-all-regex-string) `(regex string)`
 * [s-slice-at](#s-slice-at-regexp-s) `(regexp s)`
 * [s-split](#s-split-separator-s-optional-omit-nulls) `(separator s &optional omit-nulls)`
 * [s-join](#s-join-separator-strings) `(separator strings)`
@@ -303,6 +304,16 @@ When `start` is non-nil the search will start at that index.
 (s-match "^def" "abcdefg") ;; => nil
 (s-match "^abc" "abcdefg") ;; => '("abc")
 (s-match "^/.*/\\([a-z]+\\)\\.\\([a-z]+\\)" "/some/weird/file.html") ;; => '("/some/weird/file.html" "file" "html")
+```
+
+### s-match-strings-all `(regex string)`
+
+Return a list of every match for `regex` in `string`.
+
+Each element itself is a list of matches, as per `match-string`.
+
+```cl
+(s-match-strings-all "{\\([^}]+\\)}" "x is {x} and y is {y}") ;; => '(("{x}" "x") ("{y}" "y"))
 ```
 
 ### s-slice-at `(regexp s)`
