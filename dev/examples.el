@@ -118,8 +118,8 @@
     (s-match "abc" "abcdef" 1) => nil
     (s-match "abc" "abcdefabc" 2) => '("abc"))
 
-  (defexamples s-all-match-strings
-    (s-all-match-strings
+  (defexamples s-match-strings-all
+    (s-match-strings-all
       "{\\([^}]+\\)}" "x is {x} and y is {y}")  => '(("{x}" "x")("{y}" "y")))
 
   (defexamples s-slice-at
