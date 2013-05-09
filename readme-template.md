@@ -42,6 +42,7 @@ calculate the Levenshtein distance between two strings.
 
 ### From 1.4.0 to master
 
+- Add `s-all-match-strings` (Geoff Gole)
 - Add `s-lex-format` (Nic Ferrier)
 
 ### From 1.3.1 to 1.4.0
@@ -77,6 +78,7 @@ calculate the Levenshtein distance between two strings.
 * [Johan Andersson](https://github.com/rejeep) added `s-titleize` and changed `s-capitalize`
 * [Nic Ferrier](https://github.com/nicferrier) added `s-format` and `s-lex-format`
 * [Rüdiger Sonderfeld](https://github.com/ruediger) contributed `s-less?`, `s-split` and several bugfixes.
+* [Geoff Gole](https://github.com/gsg) contributed `s-all-match-strings`
 
 Thanks!
 
