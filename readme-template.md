@@ -40,7 +40,7 @@ calculate the Levenshtein distance between two strings.
 
 ## Changelist
 
-### From 1.4.0 to master
+### From 1.4.0 to 1.5.0
 
 - Add `s-all-match-strings` (Geoff Gole)
 - Add `s-lex-format` (Nic Ferrier)
