@@ -22,6 +22,8 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-collapse-whitespace](#s-collapse-whitespace-s) `(s)`
 * [s-word-wrap](#s-word-wrap-len-s) `(len s)`
 * [s-center](#s-center-len-s) `(len s)`
+* [s-pad-left](#s-pad-left-len-padding-s) `(len padding s)`
+* [s-pad-right](#s-pad-right-len-padding-s) `(len padding s)`
 
 ### To shorter string
 
@@ -158,6 +160,26 @@ If `s` is shorter than `len`, pad it with spaces so it is centered.
 (s-center 5 "a") ;; => "  a  "
 (s-center 5 "ab") ;; => "  ab "
 (s-center 1 "abc") ;; => "abc"
+```
+
+### s-pad-left `(len padding s)`
+
+If `s` is shorter than `len`, pad it with `padding` on the left.
+
+```cl
+(s-pad-left 3 "0" "3") ;; => "003"
+(s-pad-left 3 "0" "23") ;; => "023"
+(s-pad-left 3 "0" "1234") ;; => "1234"
+```
+
+### s-pad-right `(len padding s)`
+
+If `s` is shorter than `len`, pad it with `padding` on the left.
+
+```cl
+(s-pad-right 3 "." "3") ;; => "3.."
+(s-pad-right 3 "." "23") ;; => "23."
+(s-pad-right 3 "." "1234") ;; => "1234"
 ```
 
 
