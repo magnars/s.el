@@ -622,9 +622,6 @@ The values of the lexical variables are interpolated with "%s"
 unless the variable `s-lex-value-as-lisp` is `t` and then they
 are interpolated with "%S".
 
-If the macro is used in a non-lexical-binding context then it's
-behaviour depends on the variable `'
-
 ```cl
 (let ((x 1)) (s-lex-format "x is ${x}")) ;; => "x is 1"
 (let ((str1 "this") (str2 "that")) (s-lex-format "${str1} and ${str2}")) ;; => "this and that"
@@ -724,8 +721,9 @@ calculate the Levenshtein distance between two strings.
 
 ## Changelist
 
-### From 1.4.0 to master
+### From 1.4.0 to 1.5.0
 
+- Add `s-all-match-strings` (Geoff Gole)
 - Add `s-lex-format` (Nic Ferrier)
 
 ### From 1.3.1 to 1.4.0
@@ -761,6 +759,7 @@ calculate the Levenshtein distance between two strings.
 * [Johan Andersson](https://github.com/rejeep) added `s-titleize` and changed `s-capitalize`
 * [Nic Ferrier](https://github.com/nicferrier) added `s-format` and `s-lex-format`
 * [Rüdiger Sonderfeld](https://github.com/ruediger) contributed `s-less?`, `s-split` and several bugfixes.
+* [Geoff Gole](https://github.com/gsg) contributed `s-all-match-strings`
 
 Thanks!
 
