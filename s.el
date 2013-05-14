@@ -478,7 +478,9 @@ transformation."
                               (funcall replacer var extra)
                             (funcall replacer var))))))
                    (if v v (signal 's-format-resolve md)))
-               (set-match-data replacer-match-data)))) template)
+               (set-match-data replacer-match-data)))) template
+               ;; Need literal to make sure it works
+               nil t)
       (set-match-data saved-match-data))))
 
 (defvar s-lex-value-as-lisp nil
