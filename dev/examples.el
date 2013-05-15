@@ -38,7 +38,17 @@
     (s-center 5 "a") => "  a  "
     (s-center 5 "ab") => "  ab "
     (s-center 1 "abc") => "abc"
-    (s-center 6 "ab") => "  ab  "))
+    (s-center 6 "ab") => "  ab  ")
+
+  (defexamples s-pad-left
+    (s-pad-left 3 "0" "3") => "003"
+    (s-pad-left 3 "0" "23") => "023"
+    (s-pad-left 3 "0" "1234") => "1234")
+
+  (defexamples s-pad-right
+    (s-pad-right 3 "." "3") => "3.."
+    (s-pad-right 3 "." "23") => "23."
+    (s-pad-right 3 "." "1234") => "1234"))
 
 (def-example-group "To shorter string"
   (defexamples s-truncate
