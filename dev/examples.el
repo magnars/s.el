@@ -287,18 +287,18 @@
      #s(hash-table test equal data ("name" "nic" "malady" "on fire")))
     => "help nic! I'm on fire"
 
-    ;; Replacing case is about the variable name and case-replace
+    ;; Replacing case has no effect on s-format
     (let ((case-replace t)) 
       (s-format "help ${NAME}!" 'aget '(("NAME" . "Nick"))))
-    => "help Nick!" ; forced case insertion
+    => "help Nick!"
 
     (let ((case-replace nil)) 
       (s-format "help ${NAME}!" 'aget '(("NAME" . "Nick"))))
-    => "help NICK!" ; match the case to the var name
+    => "help Nick!"
 
     (let ((case-replace nil)) 
       (s-format "help ${name}!" 'aget '(("name" . "Nick"))))
-    => "help Nick!" ; match the case to the var name FAILS
+    => "help Nick!"
 
     ;; What happens when we have literal slashes?
     (s-format "$0" 'elt '("Hello\\nWorld"))
