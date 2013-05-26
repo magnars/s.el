@@ -287,6 +287,23 @@
      #s(hash-table test equal data ("name" "nic" "malady" "on fire")))
     => "help nic! I'm on fire"
 
+    ;; Replacing case has no effect on s-format
+    (let ((case-replace t)) 
+      (s-format "help ${NAME}!" 'aget '(("NAME" . "Nick"))))
+    => "help Nick!"
+
+    (let ((case-replace nil)) 
+      (s-format "help ${NAME}!" 'aget '(("NAME" . "Nick"))))
+    => "help Nick!"
+
+    (let ((case-replace nil)) 
+      (s-format "help ${name}!" 'aget '(("name" . "Nick"))))
+    => "help Nick!"
+
+    ;; What happens when we have literal slashes?
+    (s-format "$0" 'elt '("Hello\\nWorld"))
+    => "Hello\\nWorld"
+
     ;; What happens when we don't have the elements? with hash...
     (condition-case err
         (s-format
@@ -306,6 +323,11 @@
           (str2 "that"))
       (s-lex-format "${str1} and ${str2}"))
     => "this and that"
+
+    ;; Have a litteral \ in the replacement
+    (let ((foo "Hello\\nWorld"))
+      (s-lex-format "${foo}"))
+    => "Hello\\nWorld"
     ))
 
 (def-example-group "Pertaining to words"
