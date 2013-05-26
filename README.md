@@ -647,6 +647,7 @@ are interpolated with "%S".
 ```cl
 (let ((x 1)) (s-lex-format "x is ${x}")) ;; => "x is 1"
 (let ((str1 "this") (str2 "that")) (s-lex-format "${str1} and ${str2}")) ;; => "this and that"
+(let ((foo "Hello\\nWorld")) (s-lex-format "${foo}")) ;; => "Hello\\nWorld"
 ```
 
 
@@ -742,6 +743,11 @@ calculate the Levenshtein distance between two strings.
 * [string-utils](https://github.com/rolandwalker/string-utils) is another general string manipulation library.
 
 ## Changelist
+
+### From 1.5.0 to 1.6.0
+
+- Add `s-pad-left` and `s-pad-right`
+- Bugfixes for `s-format` (Nic Ferrier)
 
 ### From 1.4.0 to 1.5.0
 

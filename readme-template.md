@@ -40,6 +40,11 @@ calculate the Levenshtein distance between two strings.
 
 ## Changelist
 
+### From 1.5.0 to 1.6.0
+
+- Add `s-pad-left` and `s-pad-right`
+- Bugfixes for `s-format` (Nic Ferrier)
+
 ### From 1.4.0 to 1.5.0
 
 - Add `s-all-match-strings` (Geoff Gole)
