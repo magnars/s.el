@@ -632,17 +632,17 @@ transformation.
 
 ### s-lex-format `(format-str)`
 
-`s-format` with the lexical environment.
+`s-format` with the currently defined variables.
 
 `format-str` may use the `s-format` variable reference to refer to
-any lexical variable:
+any variable:
 
  (let ((x 1))
    (s-lex-format "x is: ${x}"))
 
-The values of the lexical variables are interpolated with "%s"
-unless the variable `s-lex-value-as-lisp` is `t` and then they
-are interpolated with "%S".
+The values of the variables are interpolated with "%s" unless
+the variable `s-lex-value-as-lisp` is `t` and then they are
+interpolated with "%S".
 
 ```cl
 (let ((x 1)) (s-lex-format "x is ${x}")) ;; => "x is 1"
