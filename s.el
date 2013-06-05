@@ -515,17 +515,17 @@ transformation."
                  (s-match-strings-all "${\\([^}]+\\)}" fmt)))))
 
 (defmacro s-lex-format (format-str)
-  "`s-format' with the lexical environment.
+  "`s-format` with the current environment.
 
 FORMAT-STR may use the `s-format' variable reference to refer to
-any lexical variable:
+any variable:
 
  (let ((x 1))
    (s-lex-format \"x is: ${x}\"))
 
-The values of the lexical variables are interpolated with \"%s\"
-unless the variable `s-lex-value-as-lisp' is `t' and then they
-are interpolated with \"%S\"."
+The values of the variables are interpolated with \"%s\" unless
+the variable `s-lex-value-as-lisp' is `t' and then they are
+interpolated with \"%S\"."
   (s-lex-fmt|expand format-str))
 
 (provide 's)
