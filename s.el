@@ -353,7 +353,7 @@ attention to case differences."
   (apply 'string (nreverse (string-to-list s))))
 
 (defun s-match-strings-all (regex string)
-  "Return a list of every match for REGEX in STRING.
+  "Return a list of every non-overlapping match for REGEX in STRING.
 
 Each element itself is a list of matches, as per `match-string'."
   (let (all-strings
