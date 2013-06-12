@@ -330,7 +330,7 @@ When `start` is non-nil the search will start at that index.
 
 ### s-match-strings-all `(regex string)`
 
-Return a list of every match for `regex` in `string`.
+Return a list of every non-overlapping match for `regex` in `string`.
 
 Each element itself is a list of matches, as per `match-string`.
 
@@ -632,7 +632,7 @@ transformation.
 
 ### s-lex-format `(format-str)`
 
-`s-format` with the currently defined variables.
+`s-format` with the current environment.
 
 `format-str` may use the `s-format` variable reference to refer to
 any variable:
