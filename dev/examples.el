@@ -130,7 +130,9 @@
 
   (defexamples s-match-strings-all
     (s-match-strings-all
-      "{\\([^}]+\\)}" "x is {x} and y is {y}")  => '(("{x}" "x")("{y}" "y")))
+     "{\\([^}]+\\)}" "x is {x} and y is {y}") => '(("{x}" "x") ("{y}" "y"))
+    (s-match-strings-all "ab." "abXabY") => '(("abX") ("abY"))
+    (s-match-strings-all "\\<" "foo bar baz") => '(("") ("") ("")))
 
   (defexamples s-slice-at
     (s-slice-at "-" "abc") => '("abc")
