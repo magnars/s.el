@@ -353,16 +353,16 @@ attention to case differences."
   (apply 'string (nreverse (string-to-list s))))
 
 (defun s-match-strings-all (regex string)
-  "Return a list of every match for REGEX in STRING.
+  "Return a list of matches for REGEX in STRING.
 
-Each element itself is a list of matches, as per `match-string'."
-  (let (all-strings
-        (i 0))
+Each element itself is a list of matches, as per
+`match-string'. Multiple matches at the same position will be
+ignored after the first."
+  (let ((all-strings ())
+  (i 0))
     (while (and (< i (length string))
                 (string-match regex string i))
-      (if (= (match-end 0) i)
-          (setq i (1+ i))
-        (setq i (match-end 0)))
+      (setq i (1+ (match-beginning 0)))
       (let (strings
             (num-matches (/ (length (match-data)) 2))
             (match 0))
