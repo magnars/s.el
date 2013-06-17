@@ -362,7 +362,7 @@ ignored after the first."
   (i 0))
     (while (and (< i (length string))
                 (string-match regex string i))
-      (setq i (1+ i))
+      (setq i (1+ (match-beginning 0)))
       (let (strings
             (num-matches (/ (length (match-data)) 2))
             (match 0))
