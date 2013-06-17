@@ -330,12 +330,16 @@ When `start` is non-nil the search will start at that index.
 
 ### s-match-strings-all `(regex string)`
 
-Return a list of every match for `regex` in `string`.
+Return a list of matches for `regex` in `string`.
 
-Each element itself is a list of matches, as per `match-string`.
+Each element itself is a list of matches, as per
+`match-string`. Multiple matches at the same position will be
+ignored after the first.
 
 ```cl
 (s-match-strings-all "{\\([^}]+\\)}" "x is {x} and y is {y}") ;; => '(("{x}" "x") ("{y}" "y"))
+(s-match-strings-all "ab." "abXabY") ;; => '(("abX") ("abY"))
+(s-match-strings-all "\\<" "foo bar baz") ;; => '(("") ("") (""))
 ```
 
 ### s-slice-at `(regexp s)`
@@ -632,7 +636,7 @@ transformation.
 
 ### s-lex-format `(format-str)`
 
-`s-format` with the currently defined variables.
+`s-format` with the current environment.
 
 `format-str` may use the `s-format` variable reference to refer to
 any variable:
