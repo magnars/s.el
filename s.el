@@ -285,7 +285,7 @@ This is a simple wrapper around the built-in `string-match-p'."
   "In S, is the first letter upper case, and all other letters lower case?"
   (let ((case-fold-search nil))
     (s--truthy?
-     (string-match-p "^[A-ZÆØÅ][^A-ZÆØÅ]*$" s))))
+     (string-match-p "^[[:upper:]][^[:upper:]]*$" s))))
 
 (defun s-numeric? (s)
   "Is S a number?"
@@ -404,9 +404,9 @@ When START is non-nil the search will start at that index."
 (defun s-split-words (s)
   "Split S into list of words."
   (s-split
-   "[^A-Za-z0-9]+"
+   "[^[:lower:][:upper:]0-9]+"
    (let ((case-fold-search nil))
-     (replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s))
+     (replace-regexp-in-string "\\([[:lower:]]\\)\\([[:upper:]]\\)" "\\1 \\2" s))
    t))
 
 (defun s--mapcar-head (fn-head fn-rest list)

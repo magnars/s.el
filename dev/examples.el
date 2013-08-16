@@ -220,7 +220,8 @@
     (s-capitalized? "I am capitalized") => t
     (s-capitalized? "I Am Titleized") => nil
     (s-capitalized? "lower") => nil
-    (s-capitalized? "UPPER") => nil)
+    (s-capitalized? "UPPER") => nil
+    (s-capitalized? "Привет") => t)
 
   (defexamples s-numeric?
     (s-numeric? "123") => t
@@ -290,15 +291,15 @@
     => "help nic! I'm on fire"
 
     ;; Replacing case has no effect on s-format
-    (let ((case-replace t)) 
+    (let ((case-replace t))
       (s-format "help ${NAME}!" 'aget '(("NAME" . "Nick"))))
     => "help Nick!"
 
-    (let ((case-replace nil)) 
+    (let ((case-replace nil))
       (s-format "help ${NAME}!" 'aget '(("NAME" . "Nick"))))
     => "help Nick!"
 
-    (let ((case-replace nil)) 
+    (let ((case-replace nil))
       (s-format "help ${name}!" 'aget '(("name" . "Nick"))))
     => "help Nick!"
 
@@ -337,7 +338,9 @@
     (s-split-words "under_score") => '("under" "score")
     (s-split-words "some-dashed-words") => '("some" "dashed" "words")
     (s-split-words "evenCamelCase") => '("even" "Camel" "Case")
-    (s-split-words "!map (fn list)") => '("map" "fn" "list"))
+    (s-split-words "!map (fn list)") => '("map" "fn" "list")
+    (s-split-words "Привет, мир") => '("Привет" "мир")
+    (s-split-words "e é è e") => '("e" "é" "è" "e"))
 
   (defexamples s-lower-camel-case
     (s-lower-camel-case "some words") => "someWords"
