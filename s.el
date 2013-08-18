@@ -145,7 +145,7 @@ This is a simple wrapper around the built-in `split-string'."
   (s-chop-suffixes '("\n" "\r") s))
 
 (defun s-truncate (len s)
-  "If S is longer than LEN, cut it down and add ... at the end."
+  "If S is longer than LEN, cut it down to LEN - 3 and add ... at the end."
   (if (> (length s) len)
       (format "%s..." (substring s 0 (- len 3)))
     s))
@@ -173,7 +173,7 @@ This is a simple wrapper around the built-in `split-string'."
             s)))
 
 (defun s-pad-right (len padding s)
-  "If S is shorter than LEN, pad it with PADDING on the left."
+  "If S is shorter than LEN, pad it with PADDING on the right."
   (let ((extra (max 0 (- len (length s)))))
     (concat s
             (make-string extra (string-to-char padding)))))
@@ -431,7 +431,7 @@ When START is non-nil the search will start at that index."
   (s-join "-" (mapcar 'downcase (s-split-words s))))
 
 (defun s-capitalized-words (s)
-  "Convert S to Capitalized Words."
+  "Convert S to Capitalized words."
   (let ((words (s-split-words s)))
     (s-join " " (cons (capitalize (car words)) (mapcar 'downcase (cdr words))))))
 
