@@ -340,7 +340,8 @@
     (s-split-words "evenCamelCase") => '("even" "Camel" "Case")
     (s-split-words "!map (fn list)") => '("map" "fn" "list")
     (s-split-words "Привет, мир") => '("Привет" "мир")
-    (s-split-words "e é è e") => '("e" "é" "è" "e"))
+    (s-split-words "e é è e") => '("e" "é" "è" "e")
+    (s-split-words "MANYUpperCases") => '("MANY" "Upper" "Cases"))
 
   (defexamples s-lower-camel-case
     (s-lower-camel-case "some words") => "someWords"

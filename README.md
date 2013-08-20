@@ -174,7 +174,7 @@ If `s` is shorter than `len`, pad it with `padding` on the left.
 
 ### s-pad-right `(len padding s)`
 
-If `s` is shorter than `len`, pad it with `padding` on the left.
+If `s` is shorter than `len`, pad it with `padding` on the right.
 
 ```cl
 (s-pad-right 3 "." "3") ;; => "3.."
@@ -185,7 +185,7 @@ If `s` is shorter than `len`, pad it with `padding` on the left.
 
 ### s-truncate `(len s)`
 
-If `s` is longer than `len`, cut it down and add ... at the end.
+If `s` is longer than `len`, cut it down to `len` - 3 and add ... at the end.
 
 ```cl
 (s-truncate 6 "This is too long") ;; => "Thi..."
@@ -707,7 +707,7 @@ Convert `s` to dashed-words.
 
 ### s-capitalized-words `(s)`
 
-Convert `s` to Capitalized Words.
+Convert `s` to Capitalized words.
 
 ```cl
 (s-capitalized-words "some words") ;; => "Some words"
