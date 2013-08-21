@@ -406,7 +406,9 @@ When START is non-nil the search will start at that index."
   (s-split
    "[^[:lower:][:upper:]0-9]+"
    (let ((case-fold-search nil))
-     (replace-regexp-in-string "\\([[:lower:]]\\)\\([[:upper:]]\\)" "\\1 \\2" s))
+     (replace-regexp-in-string
+      "\\([[:lower:]]\\)\\([[:upper:]]\\)" "\\1 \\2" 
+      (replace-regexp-in-string "\\([[:upper:]]\\)\\([[:upper:]][0-9[:lower:]]\\)" "\\1 \\2" s)))
    t))
 
 (defun s--mapcar-head (fn-head fn-rest list)
