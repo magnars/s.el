@@ -371,4 +371,10 @@
   (defexamples s-titleized-words
     (s-titleized-words "some words") => "Some Words"
     (s-titleized-words "under_scored_words") => "Under Scored Words"
-    (s-titleized-words "camelCasedWords") => "Camel Cased Words"))
+    (s-titleized-words "camelCasedWords") => "Camel Cased Words")
+
+  (defexamples s-word-initials
+    (s-word-initials "some words") => "sw"
+    (s-word-initials "under_scored_words") => "usw"
+    (s-word-initials "camelCasedWords") => "cCW"
+    (s-word-initials "dashed-words") => "dw"))

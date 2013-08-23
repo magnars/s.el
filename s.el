@@ -441,6 +441,10 @@ When START is non-nil the search will start at that index."
   "Convert S to Titleized Words."
   (s-join " " (mapcar 's-titleize (s-split-words s))))
 
+(defun s-word-initials (s)
+  "Convert S to its initials."
+  (s-join "" (mapcar (lambda (ss) (substring ss 0 1))
+                     (s-split-words s))))
 
 ;; Errors for s-format
 (progn
