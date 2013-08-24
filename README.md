@@ -91,6 +91,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-dashed-words](#s-dashed-words-s) `(s)`
 * [s-capitalized-words](#s-capitalized-words-s) `(s)`
 * [s-titleized-words](#s-titleized-words-s) `(s)`
+* [s-word-initials](#s-word-initials-s) `(s)`
 
 ## Documentation and examples
 
@@ -723,6 +724,16 @@ Convert `s` to Titleized Words.
 (s-titleized-words "some words") ;; => "Some Words"
 (s-titleized-words "under_scored_words") ;; => "Under Scored Words"
 (s-titleized-words "camelCasedWords") ;; => "Camel Cased Words"
+```
+
+### s-word-initials `(s)`
+
+Convert `s` to its initials.
+
+```cl
+(s-word-initials "some words") ;; => "sw"
+(s-word-initials "under_scored_words") ;; => "usw"
+(s-word-initials "camelCasedWords") ;; => "cCW"
 ```
 
 
