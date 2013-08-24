@@ -3,7 +3,7 @@
 ;; Copyright (C) 2012 Magnar Sveen
 
 ;; Author: Magnar Sveen <magnars@gmail.com>
-;; Version: 1.6.2
+;; Version: 1.7.0
 ;; Keywords: strings
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -407,7 +407,7 @@ When START is non-nil the search will start at that index."
    "[^[:lower:][:upper:]0-9]+"
    (let ((case-fold-search nil))
      (replace-regexp-in-string
-      "\\([[:lower:]]\\)\\([[:upper:]]\\)" "\\1 \\2" 
+      "\\([[:lower:]]\\)\\([[:upper:]]\\)" "\\1 \\2"
       (replace-regexp-in-string "\\([[:upper:]]\\)\\([[:upper:]][0-9[:lower:]]\\)" "\\1 \\2" s)))
    t))
 
