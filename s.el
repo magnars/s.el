@@ -404,7 +404,7 @@ When START is non-nil the search will start at that index."
 (defun s-split-words (s)
   "Split S into list of words."
   (s-split
-   "[^[:lower:][:upper:]0-9]+"
+   "[^[:word:]0-9]+"
    (let ((case-fold-search nil))
      (replace-regexp-in-string
       "\\([[:lower:]]\\)\\([[:upper:]]\\)" "\\1 \\2"

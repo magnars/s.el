@@ -341,7 +341,9 @@
     (s-split-words "!map (fn list)") => '("map" "fn" "list")
     (s-split-words "Привет, мир") => '("Привет" "мир")
     (s-split-words "e é è e") => '("e" "é" "è" "e")
-    (s-split-words "MANYUpperCases") => '("MANY" "Upper" "Cases"))
+    (s-split-words "MANYUpperCases") => '("MANY" "Upper" "Cases")
+    (s-split-words "Приве́т") => '("Приве́т")
+    (s-split-words "漢語") => '("漢語"))
 
   (defexamples s-lower-camel-case
     (s-lower-camel-case "some words") => "someWords"
