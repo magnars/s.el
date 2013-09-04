@@ -59,6 +59,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-less?](#s-less-s1-s2) `(s1 s2)`
 * [s-matches?](#s-matches-regexp-s-optional-start) `(regexp s &optional start)`
 * [s-blank?](#s-blank-s) `(s)`
+* [s-present?](#s-present-s) `(s)`
 * [s-ends-with?](#s-ends-with-suffix-s-optional-ignore-case) `(suffix s &optional ignore-case)`
 * [s-starts-with?](#s-starts-with-prefix-s-optional-ignore-case) `(prefix s &optional ignore-case)`
 * [s-contains?](#s-contains-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
@@ -421,6 +422,16 @@ Is `s` nil or the empty string?
 (s-blank? "") ;; => t
 (s-blank? nil) ;; => t
 (s-blank? " ") ;; => nil
+```
+
+### s-present? `(s)`
+
+Is `s` anything but nil or the empty string?
+
+```cl
+(s-present? "") ;; => nil
+(s-present? nil) ;; => nil
+(s-present? " ") ;; => t
 ```
 
 ### s-ends-with? `(suffix s &optional ignore-case)`

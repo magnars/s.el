@@ -173,6 +173,11 @@
     (s-blank? nil) => t
     (s-blank? " ") => nil)
 
+  (defexamples s-present?
+    (s-present? "") => nil
+    (s-present? nil) => nil
+    (s-present? " ") => t)
+
   (defexamples s-ends-with?
     (s-ends-with? ".md" "readme.md") => t
     (s-ends-with? ".MD" "readme.md") => nil

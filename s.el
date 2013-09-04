@@ -264,6 +264,10 @@ This is a simple wrapper around the built-in `string-match-p'."
   "Is S nil or the empty string?"
   (or (null s) (string= "" s)))
 
+(defun s-present? (s)
+  "Is S anything but nil or the empty string?"
+  (not (s-blank? s)))
+
 (defun s-presence (s)
   "Return S if it's not `s-blank?', otherwise return nil."
   (unless (s-blank? s) s))
