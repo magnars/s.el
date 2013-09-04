@@ -380,3 +380,8 @@
     (s-word-initials "under_scored_words") => "usw"
     (s-word-initials "camelCasedWords") => "cCW"
     (s-word-initials "dashed-words") => "dw"))
+
+  (defexamples s-presence
+    (s-presence nil) => nil
+    (s-presence "") => nil
+    (s-presence "foo") => "foo")
