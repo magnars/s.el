@@ -92,6 +92,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-capitalized-words](#s-capitalized-words-s) `(s)`
 * [s-titleized-words](#s-titleized-words-s) `(s)`
 * [s-word-initials](#s-word-initials-s) `(s)`
+* [s-presence](#s-presence-s) `(s)`
 
 ## Documentation and examples
 
@@ -734,6 +735,16 @@ Convert `s` to its initials.
 (s-word-initials "some words") ;; => "sw"
 (s-word-initials "under_scored_words") ;; => "usw"
 (s-word-initials "camelCasedWords") ;; => "cCW"
+```
+
+### s-presence `(s)`
+
+Return `s` if it's not `s-blank?`, otherwise return nil.
+
+```cl
+(s-presence nil) ;; => nil
+(s-presence "") ;; => nil
+(s-presence "foo") ;; => "foo"
 ```
 
 
