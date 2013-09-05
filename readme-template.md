@@ -40,6 +40,11 @@ calculate the Levenshtein distance between two strings.
 
 ## Changelist
 
+### From 1.7.0 to 1.8.0
+
+- Add `s-present?` and `s-present?` (Johan Andersson)
+- Better handling of international characters
+
 ### From 1.6.0 to 1.7.0
 
 - Add `s-word-initials` (Sylvain Rousseau)
@@ -85,7 +90,7 @@ calculate the Levenshtein distance between two strings.
 
 * [Arthur Andersen](https://github.com/leoc) contributed `s-match`
 * [Rolando](https://github.com/rolando2424) contributed `s-shared-start` and `s-shared-end`
-* [Johan Andersson](https://github.com/rejeep) added `s-titleize` and changed `s-capitalize`
+* [Johan Andersson](https://github.com/rejeep) contributed `s-presence`, `s-present?` and fixed `s-titleize` vs `s-capitalize`
 * [Nic Ferrier](https://github.com/nicferrier) added `s-format` and `s-lex-format`
 * [Rüdiger Sonderfeld](https://github.com/ruediger) contributed `s-less?`, `s-split` and several bugfixes.
 * [Geoff Gole](https://github.com/gsg) contributed `s-all-match-strings`
