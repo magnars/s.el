@@ -80,6 +80,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-with](#s-with-s-form-rest-more) `(s form &rest more)`
 * [s-index-of](#s-index-of-needle-s-optional-ignore-case) `(needle s &optional ignore-case)`
 * [s-reverse](#s-reverse-s) `(s)`
+* [s-presence](#s-presence-s) `(s)`
 * [s-format](#s-format-template-replacer-optional-extra) `(template replacer &optional extra)`
 * [s-lex-format](#s-lex-format-format-str) `(format-str)`
 
@@ -93,7 +94,6 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-capitalized-words](#s-capitalized-words-s) `(s)`
 * [s-titleized-words](#s-titleized-words-s) `(s)`
 * [s-word-initials](#s-word-initials-s) `(s)`
-* [s-presence](#s-presence-s) `(s)`
 
 ## Documentation and examples
 
@@ -623,6 +623,16 @@ Return the reverse of `s`.
 (s-reverse "") ;; => ""
 ```
 
+### s-presence `(s)`
+
+Return `s` if it's `s-present?`, otherwise return nil.
+
+```cl
+(s-presence nil) ;; => nil
+(s-presence "") ;; => nil
+(s-presence "foo") ;; => "foo"
+```
+
 ### s-format `(template replacer &optional extra)`
 
 Format `template` with the function `replacer`.
@@ -748,16 +758,6 @@ Convert `s` to its initials.
 (s-word-initials "camelCasedWords") ;; => "cCW"
 ```
 
-### s-presence `(s)`
-
-Return `s` if it's not `s-blank?`, otherwise return nil.
-
-```cl
-(s-presence nil) ;; => nil
-(s-presence "") ;; => nil
-(s-presence "foo") ;; => "foo"
-```
-
 
 ## What's with the built-in wrappers?
 
@@ -780,6 +780,11 @@ calculate the Levenshtein distance between two strings.
 * [string-utils](https://github.com/rolandwalker/string-utils) is another general string manipulation library.
 
 ## Changelist
+
+### From 1.7.0 to 1.8.0
+
+- Add `s-present?` and `s-present?` (Johan Andersson)
+- Better handling of international characters
 
 ### From 1.6.0 to 1.7.0
 
@@ -826,7 +831,7 @@ calculate the Levenshtein distance between two strings.
 
 * [Arthur Andersen](https://github.com/leoc) contributed `s-match`
 * [Rolando](https://github.com/rolando2424) contributed `s-shared-start` and `s-shared-end`
-* [Johan Andersson](https://github.com/rejeep) added `s-titleize` and changed `s-capitalize`
+* [Johan Andersson](https://github.com/rejeep) contributed `s-presence`, `s-present?` and fixed `s-titleize` vs `s-capitalize`
 * [Nic Ferrier](https://github.com/nicferrier) added `s-format` and `s-lex-format`
 * [Rüdiger Sonderfeld](https://github.com/ruediger) contributed `s-less?`, `s-split` and several bugfixes.
 * [Geoff Gole](https://github.com/gsg) contributed `s-all-match-strings`

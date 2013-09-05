@@ -272,6 +272,11 @@
     (s-reverse "ab xyz") => "zyx ba"
     (s-reverse "") => "")
 
+  (defexamples s-presence
+    (s-presence nil) => nil
+    (s-presence "") => nil
+    (s-presence "foo") => "foo")
+
   (defexamples s-format
      ;; One with an alist works
     (s-format
@@ -386,7 +391,3 @@
     (s-word-initials "camelCasedWords") => "cCW"
     (s-word-initials "dashed-words") => "dw"))
 
-  (defexamples s-presence
-    (s-presence nil) => nil
-    (s-presence "") => nil
-    (s-presence "foo") => "foo")
