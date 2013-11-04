@@ -440,6 +440,10 @@ When START is non-nil the search will start at that index."
   "Convert S to dashed-words."
   (s-join "-" (mapcar 'downcase (s-split-words s))))
 
+(defun s-underscored-words (s)
+  "Convert S to underscored_words."
+  (s-join "_" (mapcar 'downcase (s-split-words s))))
+
 (defun s-capitalized-words (s)
   "Convert S to Capitalized words."
   (let ((words (s-split-words s)))
