@@ -40,6 +40,10 @@ calculate the Levenshtein distance between two strings.
 
 ## Changelist
 
+### From 1.8.0 to 1.9.0
+
+- Add `s-count-matches` (Lars Andersen)
+
 ### From 1.7.0 to 1.8.0
 
 - Add `s-present?` and `s-present?` (Johan Andersson)
