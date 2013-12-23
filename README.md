@@ -83,6 +83,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-presence](#s-presence-s) `(s)`
 * [s-format](#s-format-template-replacer-optional-extra) `(template replacer &optional extra)`
 * [s-lex-format](#s-lex-format-format-str) `(format-str)`
+* [s-count-matches](#s-count-matches-regexp-s-optional-start-end) `(regexp s &optional start end)`
 
 ### Pertaining to words
 
@@ -675,6 +676,19 @@ interpolated with "%S".
 (let ((x 1)) (s-lex-format "x is ${x}")) ;; => "x is 1"
 (let ((str1 "this") (str2 "that")) (s-lex-format "${str1} and ${str2}")) ;; => "this and that"
 (let ((foo "Hello\\nWorld")) (s-lex-format "${foo}")) ;; => "Hello\\nWorld"
+```
+
+### s-count-matches `(regexp s &optional start end)`
+
+Count occurrences of `regexp` in `s'.
+
+`start`, inclusive, and `end`, exclusive, delimit the part of `s`
+to match. 
+
+```cl
+(s-count-matches "a" "aba") ;; => 2
+(s-count-matches "a" "aba" 0 2) ;; => 1
+(s-count-matches "\\w\\{2\\}[0-9]+" "ab1bab2frobinator") ;; => 2
 ```
 
 
