@@ -367,7 +367,7 @@ Each element itself is a list of matches, as per
 `match-string'. Multiple matches at the same position will be
 ignored after the first."
   (let ((all-strings ())
-  (i 0))
+        (i 0))
     (while (and (< i (length string))
                 (string-match regex string i))
       (setq i (1+ (match-beginning 0)))
@@ -541,6 +541,16 @@ The values of the variables are interpolated with \"%s\" unless
 the variable `s-lex-value-as-lisp' is `t' and then they are
 interpolated with \"%S\"."
   (s-lex-fmt|expand format-str))
+
+(defun s-count-matches (regexp s &optional start end)
+  "Count occurrences of `regexp' in `s'.
+
+`start', inclusive, and `end', exclusive, delimit the part of `s'
+to match. "
+  (with-temp-buffer
+    (insert s)
+    (goto-char (point-min))
+    (count-matches regexp (or start 1) (or end (point-max)))))
 
 (provide 's)
 ;;; s.el ends here

@@ -341,7 +341,12 @@
     (let ((foo "Hello\\nWorld"))
       (s-lex-format "${foo}"))
     => "Hello\\nWorld"
-    ))
+    )
+
+  (defexamples s-count-matches
+    (s-count-matches "a" "aba") => 2
+    (s-count-matches "a" "aba" 0 2) => 1
+    (s-count-matches "\\w\\{2\\}[0-9]+" "ab1bab2frobinator") => 2))
 
 (def-example-group "Pertaining to words"
   (defexamples s-split-words
