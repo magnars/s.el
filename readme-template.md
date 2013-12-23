@@ -95,6 +95,7 @@ calculate the Levenshtein distance between two strings.
 * [Rüdiger Sonderfeld](https://github.com/ruediger) contributed `s-less?`, `s-split` and several bugfixes.
 * [Geoff Gole](https://github.com/gsg) contributed `s-all-match-strings`
 * [Sylvain Rousseau](https://github.com/thisirs) contributed `s-word-initials`
+* [Lars Andersen](https://github.com/expez) contributed `s-count-matches`
 
 Thanks!
 
