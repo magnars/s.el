@@ -282,7 +282,10 @@
   (defexamples s-reverse
     (s-reverse "abc") => "cba"
     (s-reverse "ab xyz") => "zyx ba"
-    (s-reverse "") => "")
+    (s-reverse "") => ""
+    (s-reverse "résumé") => "émusér"
+    ;; Two combining marks on a single character
+    (s-reverse "Ęyǫgwędę́hte⁷") => "⁷ethę́dęwgǫyĘ")
 
   (defexamples s-presence
     (s-presence nil) => nil

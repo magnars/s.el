@@ -27,6 +27,8 @@
 
 ;;; Code:
 
+(require 'ucs-normalize)
+
 (defun s-trim-left (s)
   "Remove whitespace at the beginning of S."
   (if (string-match "\\`[ \t\n\r]+" s)
@@ -382,9 +384,19 @@ attention to case differences."
   (let ((case-fold-search ignore-case))
     (string-match-p (regexp-quote needle) s)))
 
-(defun s-reverse (s) ;; from org-babel-reverse-string
+(defun s-reverse (s)
   "Return the reverse of S."
-  (apply 'string (nreverse (string-to-list s))))
+  (if (multibyte-string-p s)
+      (let ((input (string-to-list s))
+            (output ()))
+        (while input
+          ;; Handle entire grapheme cluster as a single unit
+          (let ((grapheme (list (pop input))))
+            (while (memql (car input) ucs-normalize-combining-chars)
+              (push (pop input) grapheme))
+            (setq output (nconc (nreverse grapheme) output))))
+        (concat output))
+    (concat (nreverse (string-to-list s)))))
 
 (defun s-match-strings-all (regex string)
   "Return a list of matches for REGEX in STRING.
