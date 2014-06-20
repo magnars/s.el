@@ -49,7 +49,7 @@
 
 (defun s-split (separator s &optional omit-nulls)
   "Split S into substrings bounded by matches for regexp SEPARATOR.
-If OMIT-NULLS is t, zero-length substrings are omitted.
+If OMIT-NULLS is non-nil, zero-length substrings are omitted.
 
 This is a simple wrapper around the built-in `split-string'."
   (split-string s separator omit-nulls))
