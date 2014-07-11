@@ -359,7 +359,7 @@ Slices `s` up at every index matching `regexp`.
 ### s-split `(separator s &optional omit-nulls)`
 
 Split `s` into substrings bounded by matches for regexp `separator`.
-If `omit-nulls` is t, zero-length substrings are omitted.
+If `omit-nulls` is non-nil, zero-length substrings are omitted.
 
 This is a simple wrapper around the built-in `split-string`.
 
@@ -795,6 +795,10 @@ calculate the Levenshtein distance between two strings.
 
 ## Changelist
 
+### From 1.8.0 to 1.9.0
+
+- Add `s-count-matches` (Lars Andersen)
+
 ### From 1.7.0 to 1.8.0
 
 - Add `s-present?` and `s-present?` (Johan Andersson)
@@ -850,6 +854,7 @@ calculate the Levenshtein distance between two strings.
 * [Rüdiger Sonderfeld](https://github.com/ruediger) contributed `s-less?`, `s-split` and several bugfixes.
 * [Geoff Gole](https://github.com/gsg) contributed `s-all-match-strings`
 * [Sylvain Rousseau](https://github.com/thisirs) contributed `s-word-initials`
+* [Lars Andersen](https://github.com/expez) contributed `s-count-matches`
 
 Thanks!
 
