@@ -148,6 +148,18 @@
     (s-split "ö" "xyöözeföklmö") => '("xy" "" "zef" "klm" "")
     (s-split "ö" "xyöözeföklmö" t) => '("xy" "zef" "klm"))
 
+  (defexamples s-split-up-to
+    (s-split-up-to "\\s-*-\\s-*" "Author - Track-number-one" 1) => '("Author" "Track-number-one")
+    (s-split-up-to "\\s-*-\\s-*" "Author - Track-number-one" 2) => '("Author" "Track" "number-one")
+    (s-split-up-to "|" "foo||bar|baz|qux" 3 t) => '("foo" "bar" "baz|qux")
+    (s-split-up-to "|" "foo||bar|baz|qux" 3) => '("foo" "" "bar" "baz|qux")
+    (s-split-up-to ":" "a,b,c" 1) => '("a,b,c")
+    (s-split-up-to ":" "a,b,c" 10) => '("a,b,c")
+    (s-split-up-to "\n" "z\nefg\n" 5) => '("z" "efg" "")
+    (s-split-up-to "\n" "z\nefg\n" 5 t) => '("z" "efg")
+    (s-split-up-to "|" "foo||bar|baz|qux" 10) => '("foo" "" "bar" "baz" "qux")
+    (s-split-up-to "|" "foo||bar|baz|qux" 10 t) => '("foo" "bar" "baz" "qux"))
+
   (defexamples s-join
     (s-join "+" '("abc" "def" "ghi")) => "abc+def+ghi"
     (s-join "\n" '("abc" "def" "ghi")) => "abc\ndef\nghi"))
@@ -395,4 +407,3 @@
     (s-word-initials "under_scored_words") => "usw"
     (s-word-initials "camelCasedWords") => "cCW"
     (s-word-initials "dashed-words") => "dw"))
-
