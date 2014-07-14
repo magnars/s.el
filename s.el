@@ -368,6 +368,7 @@ This is a simple wrapper around the built-in `capitalize'."
 in the first form, making a list of it if it is not a list
 already. If there are more forms, inserts the first form as the
 last item in second form, etc."
+  (declare (debug (form &rest [&or (function &rest form) fboundp])))
   (if (null more)
       (if (listp form)
           `(,(car form) ,@(cdr form) ,s)
@@ -578,6 +579,7 @@ any variable:
 The values of the variables are interpolated with \"%s\" unless
 the variable `s-lex-value-as-lisp' is `t' and then they are
 interpolated with \"%S\"."
+  (declare (debug (form)))
   (s-lex-fmt|expand format-str))
 
 (defun s-count-matches (regexp s &optional start end)
