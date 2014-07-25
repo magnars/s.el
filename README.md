@@ -43,6 +43,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-concat](#s-concat-rest-strings) `(&rest strings)`
 * [s-prepend](#s-prepend-prefix-s) `(prefix s)`
 * [s-append](#s-append-suffix-s) `(suffix s)`
+* [s-wrap](#s-wrap-left-right-s) `(left right s)`
 
 ### To and from lists
 
@@ -306,6 +307,16 @@ Concatenate `s` and `suffix`.
 
 ```cl
 (s-append "abc" "def") ;; => "defabc"
+```
+
+### s-wrap `(left right s)`
+
+Wrap `s` in strings `left` and `right`.
+
+```cl
+(s-wrap "[" "]" "foobar") ;; => "[foobar]"
+(s-wrap "(" "" "foobar") ;; => "(foobar"
+(s-wrap "" ")" "foobar") ;; => "foobar)"
 ```
 
 
