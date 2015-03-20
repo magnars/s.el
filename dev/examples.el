@@ -252,7 +252,14 @@
     (s-some? '(?a ?b) "beeplebrox") => t
     (s-some? '(?a ?B) "beeplebrox") => t
     (s-some? '(?a ?b) "BEEPLEBROX") => t
-    (s-some? '(?1 ?0) "babar1") => t))
+    (s-some? '(?1 ?0) "babar1") => t)
+
+  (defexamples s-only?
+    (s-only? '(?a ?b) "ab") => t
+    (s-only? '(?a ?b) "abc") => nil
+    (s-only? '(?1 ?2) "12") => t
+    (s-only? '(?a ?B) "aB") => t
+    (s-only? '(?1 ?0) "") => t))
 
 (def-example-group "The misc bucket"
   (defexamples s-replace

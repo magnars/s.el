@@ -608,5 +608,12 @@ The matching is case insensitive."
   (when (string-match-p (regexp-opt-charset chars) s)
     t))
 
+(defun s-only? (chars s)
+  "T if S only contains chars in CHARS.
+
+The matching is case insensitive."
+  (when (string-match-p (concat "^" (regexp-opt-charset chars) "*$") s)
+    t))
+
 (provide 's)
 ;;; s.el ends here
