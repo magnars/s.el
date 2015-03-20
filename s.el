@@ -28,6 +28,7 @@
 ;;; Code:
 
 (require 'ucs-normalize)
+(require 'regexp-opt)
 
 (defun s-trim-left (s)
   "Remove whitespace at the beginning of S."
@@ -599,6 +600,13 @@ Return string S with PREFIX prepended.  If SUFFIX is present, it
 is appended, otherwise PREFIX is used as both prefix and
 suffix."
   (concat prefix s (or suffix prefix)))
+
+(defun s-some? (chars s)
+  "T if S contains one or more chars in CHARS.
+
+The matching is case insensitive."
+  (when (string-match-p (regexp-opt-charset chars) s)
+    t))
 
 (provide 's)
 ;;; s.el ends here

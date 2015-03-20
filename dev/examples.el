@@ -244,7 +244,15 @@
     (s-numeric? "123") => t
     (s-numeric? "onetwothree") => nil
     (s-numeric? "7a") => nil
-    (s-numeric? "a89") => nil))
+    (s-numeric? "a89") => nil)
+
+  (defexamples s-some?
+    (s-some? '(?a ?b) "contains an a") => t
+    (s-some? '(?a ?b) "") => nil
+    (s-some? '(?a ?b) "beeplebrox") => t
+    (s-some? '(?a ?B) "beeplebrox") => t
+    (s-some? '(?a ?b) "BEEPLEBROX") => t
+    (s-some? '(?1 ?0) "babar1") => t))
 
 (def-example-group "The misc bucket"
   (defexamples s-replace
