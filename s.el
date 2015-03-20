@@ -601,19 +601,21 @@ is appended, otherwise PREFIX is used as both prefix and
 suffix."
   (concat prefix s (or suffix prefix)))
 
-(defun s-some? (chars s)
-  "T if S contains one or more chars in CHARS.
+(defun s-some? (char-str s)
+  "T if S contains one or more chars in the CHAR-STR.
 
 The matching is case insensitive."
-  (when (string-match-p (regexp-opt-charset chars) s)
-    t))
+  (let ((chars (mapcar #'string-to-char (split-string char-str ""))))
+    (when (string-match-p (regexp-opt-charset chars) s)
+      t)))
 
-(defun s-only? (chars s)
-  "T if S only contains chars in CHARS.
+(defun s-only? (char-str s)
+  "T if S only contains chars in the CHAR-STR.
 
 The matching is case insensitive."
-  (when (string-match-p (concat "^" (regexp-opt-charset chars) "*$") s)
-    t))
+  (let((chars (mapcar #'string-to-char (split-string char-str ""))))
+    (when (string-match-p (concat "^" (regexp-opt-charset chars) "*$") s)
+      t)))
 
 (provide 's)
 ;;; s.el ends here

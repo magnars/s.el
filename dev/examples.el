@@ -247,19 +247,19 @@
     (s-numeric? "a89") => nil)
 
   (defexamples s-some?
-    (s-some? '(?a ?b) "contains an a") => t
-    (s-some? '(?a ?b) "") => nil
-    (s-some? '(?a ?b) "beeplebrox") => t
-    (s-some? '(?a ?B) "beeplebrox") => t
-    (s-some? '(?a ?b) "BEEPLEBROX") => t
-    (s-some? '(?1 ?0) "babar1") => t)
+    (s-some? "ab" "contains an a") => t
+    (s-some? "ab" "") => nil
+    (s-some? "ab" "beeplebrox") => t
+    (s-some? "aB" "beeplebrox") => t
+    (s-some? "ab" "BEEPLEBROX") => t
+    (s-some? "10" "babar1") => t)
 
   (defexamples s-only?
-    (s-only? '(?a ?b) "ab") => t
-    (s-only? '(?a ?b) "abc") => nil
-    (s-only? '(?1 ?2) "12") => t
-    (s-only? '(?a ?B) "aB") => t
-    (s-only? '(?1 ?0) "") => t))
+    (s-only? "ab" "ab") => t
+    (s-only? "ab" "abc") => nil
+    (s-only? "12" "12") => t
+    (s-only? "aB" "aB") => t
+    (s-only? "10" "") => t))
 
 (def-example-group "The misc bucket"
   (defexamples s-replace
@@ -308,7 +308,7 @@
     (s-presence "foo") => "foo")
 
   (defexamples s-format
-     ;; One with an alist works
+    ;; One with an alist works
     (s-format
      "help ${name}! I'm ${malady}"
      'aget
@@ -357,9 +357,9 @@
     => 's-format-resolve)
 
   (defexamples s-lex-format
-      ;; lexical stuff
-      (let ((x 1))
-        (s-lex-format "x is ${x}"))
+    ;; lexical stuff
+    (let ((x 1))
+      (s-lex-format "x is ${x}"))
     => "x is 1"
 
     (let ((str1 "this")
