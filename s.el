@@ -102,6 +102,10 @@ See also `s-split'."
   "Concatenate S and SUFFIX."
   (concat s suffix))
 
+(defun s-wrap (left right s)
+  "Wrap S in strings LEFT and RIGHT."
+  (concat left s right))
+
 (defun s-repeat (num s)
   "Make a string of S repeated NUM times."
   (let (ss)
