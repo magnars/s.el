@@ -40,6 +40,12 @@ calculate the Levenshtein distance between two strings.
 
 ## Changelist
 
+### From 1.9.0 to 1.10.0
+
+- Add `s-wrap` (Johan Andersson)
+- Add `s-split-up-to` (Matus Goljer)
+- Fix `s-reverse` for Unicode combining characters. (Christopher Wellons)
+
 ### From 1.8.0 to 1.9.0
 
 - Add `s-count-matches` (Lars Andersen)
@@ -131,7 +137,7 @@ Change `readme-template.md` or `examples-to-docs.el` instead.
 
 ## License
 
-Copyright (C) 2012 Magnar Sveen
+Copyright (C) 2012-2015 Magnar Sveen
 
 Authors: Magnar Sveen <magnars@gmail.com>
 Keywords: strings
