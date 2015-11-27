@@ -440,13 +440,14 @@ When START is non-nil the search will start at that index."
 
 (defun s-slice-at (regexp s)
   "Slices S up at every index matching REGEXP."
-  (save-match-data
-    (let (i)
-      (setq i (string-match regexp s 1))
-      (if i
-          (cons (substring s 0 i)
-                (s-slice-at regexp (substring s i)))
-        (list s)))))
+  (unless (string-empty-p s)
+    (save-match-data
+      (let (i)
+        (setq i (string-match regexp s 1))
+        (if i
+            (cons (substring s 0 i)
+                  (s-slice-at regexp (substring s i)))
+          (list s))))))
 
 (defun s-split-words (s)
   "Split S into list of words."
