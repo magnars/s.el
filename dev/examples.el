@@ -142,8 +142,10 @@
   (defexamples s-slice-at
     (s-slice-at "-" "abc") => '("abc")
     (s-slice-at "-" "abc-def") => '("abc" "-def")
+    (s-slice-at "\\<\\|\\>" "abc-def") => '("abc" "-" "def")
     (s-slice-at "[\.#]" "abc.def.ghi#id") => '("abc" ".def" ".ghi" "#id")
-    (s-slice-at "-" "abc-def-") => '("abc" "-def" "-"))
+    (s-slice-at "-" "abc-def-") => '("abc" "-def" "-")
+    (s-slice-at "." "") => nil)
 
   (defexamples s-split
     (s-split "|" "a|bc|12|3") => '("a" "bc" "12" "3")
