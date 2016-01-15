@@ -50,6 +50,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-lines](#s-lines-s) `(s)`
 * [s-match](#s-match-regexp-s-optional-start) `(regexp s &optional start)`
 * [s-match-strings-all](#s-match-strings-all-regex-string) `(regex string)`
+* [s-matched-positions-all](#s-matched-positions-all-regexp-string-optional-subexp-depth) `(regexp string &optional subexp-depth)`
 * [s-slice-at](#s-slice-at-regexp-s) `(regexp s)`
 * [s-split](#s-split-separator-s-optional-omit-nulls) `(separator s &optional omit-nulls)`
 * [s-split-up-to](#s-split-up-to-separator-s-n-optional-omit-nulls) `(separator s n &optional omit-nulls)`
@@ -361,6 +362,17 @@ ignored after the first.
 (s-match-strings-all "{\\([^}]+\\)}" "x is {x} and y is {y}") ;; => '(("{x}" "x") ("{y}" "y"))
 (s-match-strings-all "ab." "abXabY") ;; => '(("abX") ("abY"))
 (s-match-strings-all "\\<" "foo bar baz") ;; => '(("") ("") (""))
+```
+
+### s-matched-positions-all `(regexp string &optional subexp-depth)`
+
+Return a list of matched positions for `regexp` in `string`.
+`subexp-depth` is 0 by default.
+
+```cl
+(s-matched-positions-all "l+" "{{Hello}} World, {{Emacs}}!" 0) ;; => '((4 . 6) (13 . 14))
+(s-matched-positions-all "{{\\(.+?\\)}}" "{{Hello}} World, {{Emacs}}!" 0) ;; => '((0 . 9) (17 . 26))
+(s-matched-positions-all "{{\\(.+?\\)}}" "{{Hello}} World, {{Emacs}}!" 1) ;; => '((2 . 7) (19 . 24))
 ```
 
 ### s-slice-at `(regexp s)`
