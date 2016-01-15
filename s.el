@@ -419,6 +419,19 @@ ignored after the first."
         (push (nreverse strings) all-strings)))
     (nreverse all-strings)))
 
+(defun s-matched-positions-all (regexp string &optional subexp-depth)
+  "Return a list of matched positions for REGEXP in STRING.
+SUBEXP-DEPTH is 0 by default."
+  (if (null subexp-depth)
+      (setq subexp-depth 0))
+  (let ((pos 0) result)
+    (while (and (string-match regexp string pos)
+                (< pos (length string)))
+      (let ((m (match-end subexp-depth)))
+        (push (cons (match-beginning subexp-depth) (match-end subexp-depth)) result)
+        (setq pos m)))
+    (nreverse result)))
+
 (defun s-match (regexp s &optional start)
   "When the given expression matches the string, this function returns a list
 of the whole matching string and a string for each matched subexpressions.

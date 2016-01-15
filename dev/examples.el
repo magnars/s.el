@@ -136,8 +136,15 @@
   (defexamples s-match-strings-all
     (s-match-strings-all
      "{\\([^}]+\\)}" "x is {x} and y is {y}") => '(("{x}" "x") ("{y}" "y"))
-    (s-match-strings-all "ab." "abXabY") => '(("abX") ("abY"))
-    (s-match-strings-all "\\<" "foo bar baz") => '(("") ("") ("")))
+     (s-match-strings-all "ab." "abXabY") => '(("abX") ("abY"))
+     (s-match-strings-all "\\<" "foo bar baz") => '(("") ("") ("")))
+
+  (defexamples s-matched-positions-all
+    (s-matched-positions-all "l+"          "{{Hello}} World, {{Emacs}}!" 0) => '((4 . 6) (13 . 14))
+    (s-matched-positions-all "{{\\(.+?\\)}}" "{{Hello}} World, {{Emacs}}!" 0) => '((0 . 9) (17 . 26))
+    (s-matched-positions-all "{{\\(.+?\\)}}" "{{Hello}} World, {{Emacs}}!" 1) => '((2 . 7) (19 . 24))
+    (s-matched-positions-all "l"           "{{Hello}} World, {{Emacs}}!" 0) => '((4 . 5) (5 . 6) (13 . 14))
+    (s-matched-positions-all "abc"         "{{Hello}} World, {{Emacs}}!") => nil)
 
   (defexamples s-slice-at
     (s-slice-at "-" "abc") => '("abc")
