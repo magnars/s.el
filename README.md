@@ -852,6 +852,10 @@ calculate the Levenshtein distance between two strings.
 
 ## Changelist
 
+### From 1.10.0 to 1.11.0
+
+- Add `s-matched-positions-all` (ono hiroko)
+
 ### From 1.9.0 to 1.10.0
 
 - Add `s-wrap` (Johan Andersson)
@@ -918,6 +922,7 @@ calculate the Levenshtein distance between two strings.
 * [Geoff Gole](https://github.com/gsg) contributed `s-all-match-strings`
 * [Sylvain Rousseau](https://github.com/thisirs) contributed `s-word-initials`
 * [Lars Andersen](https://github.com/expez) contributed `s-count-matches`
+* [ono hiroko](https://github.com/kuanyui) contributed `s-matched-positions-all`
 
 Thanks!
 
