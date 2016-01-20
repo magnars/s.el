@@ -144,7 +144,9 @@
     (s-matched-positions-all "{{\\(.+?\\)}}" "{{Hello}} World, {{Emacs}}!" 0) => '((0 . 9) (17 . 26))
     (s-matched-positions-all "{{\\(.+?\\)}}" "{{Hello}} World, {{Emacs}}!" 1) => '((2 . 7) (19 . 24))
     (s-matched-positions-all "l"           "{{Hello}} World, {{Emacs}}!" 0) => '((4 . 5) (5 . 6) (13 . 14))
-    (s-matched-positions-all "abc"         "{{Hello}} World, {{Emacs}}!") => nil)
+    (s-matched-positions-all "abc"         "{{Hello}} World, {{Emacs}}!") => nil
+    (s-matched-positions-all "=\\(.+?\\)=" "=Hello= World, =Emacs=!" 0) => '((0 . 7) (15 . 22))
+    (s-matched-positions-all "=\\(.+?\\)=" "=Hello= World, =Emacs=!" 1) => '((1 . 6) (16 . 21)))
 
   (defexamples s-slice-at
     (s-slice-at "-" "abc") => '("abc")

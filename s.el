@@ -429,7 +429,7 @@ SUBEXP-DEPTH is 0 by default."
                 (< pos (length string)))
       (let ((m (match-end subexp-depth)))
         (push (cons (match-beginning subexp-depth) (match-end subexp-depth)) result)
-        (setq pos m)))
+        (setq pos (match-end 0))))
     (nreverse result)))
 
 (defun s-match (regexp s &optional start)
