@@ -551,8 +551,8 @@ transformation."
                           (funcall 's--aget extra var))
                          ((eq replacer 'elt)
                           (funcall replacer extra var))
-			 ((eq replacer 'oref)
-			  (funcall replacer extra (intern var)))
+                         ((eq replacer 'oref)
+                          (funcall #'slot-value extra (intern var)))
                          (t
                           (set-match-data saved-match-data)
                           (if extra
