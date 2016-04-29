@@ -309,7 +309,7 @@
     (s-presence "foo") => "foo")
 
   (defexamples s-format
-     ;; One with an alist works
+    ;; One with an alist works
     (s-format
      "help ${name}! I'm ${malady}"
      'aget
@@ -330,6 +330,13 @@
      'gethash
      #s(hash-table test equal data ("name" "nic" "malady" "on fire")))
     => "help nic! I'm on fire"
+
+    ;; Don't have to be string
+    (s-format "I'm ${name}, ${sex}, ${age} years old"
+              'aget
+              '((name . "Nick") (sex . male) (age . 2)))
+    => "I'm Nick, male, 2 years old"
+
 
     ;; Replacing case has no effect on s-format
     (let ((case-replace t))
