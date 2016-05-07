@@ -332,11 +332,24 @@
     => "help nic! I'm on fire"
 
     ;; Don't have to be string
+    (let ((me (make-hash-table :test #'equal)))
+      (puthash "name" "Nick" me)
+      (puthash "sex" 'male me)
+      (puthash "age" 2 me)
+      (s-format "I'm ${name}, ${sex}, ${age} years old"
+                'gethash
+                me))
+    => "I'm Nick, male, 2 years old"
+
     (s-format "I'm ${name}, ${sex}, ${age} years old"
               'aget
               '((name . "Nick") (sex . male) (age . 2)))
     => "I'm Nick, male, 2 years old"
 
+    (s-format "I'm $0, $1, $2 years old"
+              'elt
+              '("Nick" male  2))
+    => "I'm Nick, male, 2 years old"
 
     ;; Replacing case has no effect on s-format
     (let ((case-replace t))
