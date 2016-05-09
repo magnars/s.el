@@ -339,7 +339,7 @@ This is a simple wrapper around the built-in `string-match-p'."
   "REPLACEMENTS is a list of cons-cells. Each `car` is replaced with `cdr` in S."
   (replace-regexp-in-string (regexp-opt (mapcar 'car replacements))
                             (lambda (it) (s--aget replacements it))
-                            s))
+                            s t t))
 
 (defun s-downcase (s)
   "Convert S to lower case.
