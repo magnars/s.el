@@ -109,12 +109,7 @@
     (s-prepend "abc" "def") => "abcdef")
 
   (defexamples s-append
-    (s-append "abc" "def") => "defabc")
-
-  (defexamples s-wrap
-    (s-wrap "[" "]" "foobar") => "[foobar]"
-    (s-wrap "(" "" "foobar") => "(foobar"
-    (s-wrap "" ")" "foobar") => "foobar)"))
+    (s-append "abc" "def") => "defabc"))
 
 (def-example-group "To and from lists"
   (defexamples s-lines
