@@ -3,7 +3,7 @@
 (defun examples-to-should-1 (examples)
   (let ((actual (car examples))
         (expected (cadr (cdr examples))))
-    `(should (equal ,actual ,expected))))
+    `(should (equal-including-properties ,actual ,expected))))
 
 (defun examples-to-should (examples)
   (let (result)
