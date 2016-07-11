@@ -32,7 +32,8 @@
   (defexamples s-word-wrap
     (s-word-wrap 10 "This is too long") => "This is\ntoo long"
     (s-word-wrap 10 "This is way way too long") => "This is\nway way\ntoo long"
-    (s-word-wrap 10 "It-wraps-words-but-does-not-break-them") => "It-wraps-words-but-does-not-break-them")
+    (s-word-wrap 10 "It-wraps-words-but-does-not-break-them") => "It-wraps-words-but-does-not-break-them"
+    (s-word-wrap 100 (propertize "foo bar" 'face 'font-lock-keyword-face)) => (propertize "foo bar" 'face 'font-lock-keyword-face))
 
   (defexamples s-center
     (s-center 5 "a") => "  a  "
@@ -171,7 +172,8 @@
     (s-split-up-to "|" "foo||bar|baz|qux" 10 t) => '("foo" "bar" "baz" "qux")
     (s-split-up-to "|" "foo|bar|baz|" 2) => '("foo" "bar" "baz|")
     (s-split-up-to "|" "foo|bar|baz|" 2 t) => '("foo" "bar" "baz|")
-    (s-split-up-to "|" "foo|bar|baz|qux|" 2) => '("foo" "bar" "baz|qux|"))
+    (s-split-up-to "|" "foo|bar|baz|qux|" 2) => '("foo" "bar" "baz|qux|")
+    (s-split-up-to "|" (propertize "foo" 'face 'font-lock-keyword-face) 1) => (list (propertize "foo" 'face 'font-lock-keyword-face)))
 
   (defexamples s-join
     (s-join "+" '("abc" "def" "ghi")) => "abc+def+ghi"
