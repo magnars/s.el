@@ -456,5 +456,6 @@
     (s-blank-str? "    ") => t
     (s-blank-str? "\t\r") => t
     (s-blank-str? "\t") => t
+    (s-blank-str? "t") => nil
     (s-blank-str? "\s") => t
     (s-blank-str? " ") => t))
