@@ -449,4 +449,13 @@
     (s-word-initials "some words") => "sw"
     (s-word-initials "under_scored_words") => "usw"
     (s-word-initials "camelCasedWords") => "cCW"
-    (s-word-initials "dashed-words") => "dw"))
+    (s-word-initials "dashed-words") => "dw")
+
+  (defexamples s-blank-str?
+    (s-blank-str? "  \t \r\s  ") => t
+    (s-blank-str? "    ") => t
+    (s-blank-str? "\t\r") => t
+    (s-blank-str? "\t") => t
+    (s-blank-str? "t") => nil
+    (s-blank-str? "\s") => t
+    (s-blank-str? " ") => t))
