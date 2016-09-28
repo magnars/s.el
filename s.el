@@ -31,15 +31,17 @@
 
 (defun s-trim-left (s)
   "Remove whitespace at the beginning of S."
-  (if (string-match "\\`[ \t\n\r]+" s)
-      (replace-match "" t t s)
-    s))
+  (save-match-data
+    (if (string-match "\\`[ \t\n\r]+" s)
+        (replace-match "" t t s)
+      s)))
 
 (defun s-trim-right (s)
   "Remove whitespace at the end of S."
-  (if (string-match "[ \t\n\r]+\\'" s)
-      (replace-match "" t t s)
-    s))
+  (save-match-data
+    (if (string-match "[ \t\n\r]+\\'" s)
+        (replace-match "" t t s)
+      s)))
 
 (defun s-trim (s)
   "Remove whitespace at the beginning and end of S."
@@ -54,7 +56,8 @@
 If OMIT-NULLS is non-nil, zero-length substrings are omitted.
 
 This is a simple wrapper around the built-in `split-string'."
-  (split-string s separator omit-nulls))
+  (save-match-data
+    (split-string s separator omit-nulls)))
 
 (defun s-split-up-to (separator s n &optional omit-nulls)
   "Split S up to N times into substrings bounded by matches for regexp SEPARATOR.
@@ -180,11 +183,12 @@ See also `s-split'."
 
 (defun s-word-wrap (len s)
   "If S is longer than LEN, wrap the words with newlines."
-  (with-temp-buffer
-    (insert s)
-    (let ((fill-column len))
-      (fill-region (point-min) (point-max)))
-    (buffer-substring (point-min) (point-max))))
+  (save-match-data
+    (with-temp-buffer
+      (insert s)
+      (let ((fill-column len))
+        (fill-region (point-min) (point-max)))
+      (buffer-substring (point-min) (point-max)))))
 
 (defun s-center (len s)
   "If S is shorter than LEN, pad it with spaces so it is centered."
@@ -409,32 +413,34 @@ attention to case differences."
 Each element itself is a list of matches, as per
 `match-string'. Multiple matches at the same position will be
 ignored after the first."
-  (let ((all-strings ())
-        (i 0))
-    (while (and (< i (length string))
-                (string-match regex string i))
-      (setq i (1+ (match-beginning 0)))
-      (let (strings
-            (num-matches (/ (length (match-data)) 2))
-            (match 0))
-        (while (/= match num-matches)
-          (push (match-string match string) strings)
-          (setq match (1+ match)))
-        (push (nreverse strings) all-strings)))
-    (nreverse all-strings)))
+  (save-match-data
+    (let ((all-strings ())
+          (i 0))
+      (while (and (< i (length string))
+                  (string-match regex string i))
+        (setq i (1+ (match-beginning 0)))
+        (let (strings
+              (num-matches (/ (length (match-data)) 2))
+              (match 0))
+          (while (/= match num-matches)
+            (push (match-string match string) strings)
+            (setq match (1+ match)))
+          (push (nreverse strings) all-strings)))
+      (nreverse all-strings))))
 
 (defun s-matched-positions-all (regexp string &optional subexp-depth)
   "Return a list of matched positions for REGEXP in STRING.
 SUBEXP-DEPTH is 0 by default."
   (if (null subexp-depth)
       (setq subexp-depth 0))
-  (let ((pos 0) result)
-    (while (and (string-match regexp string pos)
-                (< pos (length string)))
-      (let ((m (match-end subexp-depth)))
-        (push (cons (match-beginning subexp-depth) (match-end subexp-depth)) result)
-        (setq pos (match-end 0))))
-    (nreverse result)))
+  (save-match-data
+    (let ((pos 0) result)
+      (while (and (string-match regexp string pos)
+                  (< pos (length string)))
+        (let ((m (match-end subexp-depth)))
+          (push (cons (match-beginning subexp-depth) (match-end subexp-depth)) result)
+          (setq pos (match-end 0))))
+      (nreverse result))))
 
 (defun s-match (regexp s &optional start)
   "When the given expression matches the string, this function returns a list
@@ -607,10 +613,11 @@ interpolated with \"%S\"."
 
 `start', inclusive, and `end', exclusive, delimit the part of `s'
 to match. "
-  (with-temp-buffer
-    (insert s)
-    (goto-char (point-min))
-    (count-matches regexp (or start 1) (or end (point-max)))))
+  (save-match-data
+    (with-temp-buffer
+      (insert s)
+      (goto-char (point-min))
+      (count-matches regexp (or start 1) (or end (point-max))))))
 
 (defun s-wrap (s prefix &optional suffix)
   "Wrap string S with PREFIX and optionally SUFFIX.
