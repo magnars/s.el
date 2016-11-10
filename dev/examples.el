@@ -65,6 +65,14 @@
     (s-right 3 "lib/file.js") => ".js"
     (s-right 3 "li") => "li")
 
+  (defexamples s-chop-left
+    (s-chop-left 3 "lib/file.js") => "/file.js"
+    (s-chop-left 3 "li") => "")
+
+  (defexamples s-chop-right
+    (s-chop-right 3 "lib/file.js") => "lib/file"
+    (s-chop-right 3 "li") => "")
+
   (defexamples s-chop-suffix
     (s-chop-suffix "-test.js" "penguin-test.js") => "penguin"
     (s-chop-suffix "\n" "no newlines\n") => "no newlines"

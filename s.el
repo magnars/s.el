@@ -223,6 +223,20 @@ See also `s-split'."
         (substring s (- l len) l)
       s)))
 
+(defun s-chop-left (len s)
+  "Remove up to the LEN first chars of S."
+  (let ((l (length s)))
+    (if (> l len)
+        (substring s len l)
+      "")))
+
+(defun s-chop-right (len s)
+  "Remove up to the LEN last chars of S."
+  (let ((l (length s)))
+    (if (> l len)
+        (substring s 0 (- l len))
+      "")))
+
 (defun s-ends-with? (suffix s &optional ignore-case)
   "Does S end with SUFFIX?
 
