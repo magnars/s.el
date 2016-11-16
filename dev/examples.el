@@ -110,7 +110,12 @@
     (s-prepend "abc" "def") => "abcdef")
 
   (defexamples s-append
-    (s-append "abc" "def") => "defabc"))
+    (s-append "abc" "def") => "defabc")
+
+  (defexamples s-splice
+    (s-splice "abc" 0 "def") => "abcdef"
+    (s-splice "abc" -1 "def") => "defabc"
+    (s-splice "needle" 2 "A  in a haystack.") => "A needle in a haystack."))
 
 (def-example-group "To and from lists"
   (defexamples s-lines
