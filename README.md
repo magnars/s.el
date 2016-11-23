@@ -223,7 +223,7 @@ Returns up to the `len` last chars of `s`.
 
 ### s-chop-left `(len s)`
 
-Remove up to the `len` first chars of `s`.
+Remove the first `len` chars from `s`.
 
 ```cl
 (s-chop-left 3 "lib/file.js") ;; => "/file.js"
@@ -232,7 +232,7 @@ Remove up to the `len` first chars of `s`.
 
 ### s-chop-right `(len s)`
 
-Remove up to the `len` last chars of `s`.
+Remove the last `len` chars from `s`.
 
 ```cl
 (s-chop-right 3 "lib/file.js") ;; => "lib/file"

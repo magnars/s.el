@@ -224,14 +224,14 @@ See also `s-split'."
       s)))
 
 (defun s-chop-left (len s)
-  "Remove up to the LEN first chars of S."
+  "Remove the first LEN chars from S."
   (let ((l (length s)))
     (if (> l len)
         (substring s len l)
       "")))
 
 (defun s-chop-right (len s)
-  "Remove up to the LEN last chars of S."
+  "Remove the last LEN chars from S."
   (let ((l (length s)))
     (if (> l len)
         (substring s 0 (- l len))
