@@ -259,7 +259,22 @@
     (s-numeric? "123") => t
     (s-numeric? "onetwothree") => nil
     (s-numeric? "7a") => nil
-    (s-numeric? "a89") => nil))
+    (s-numeric? "a89") => nil)
+
+  (defexamples s-some?
+    (s-some? "ab" "contains an a") => t
+    (s-some? "ab" "") => nil
+    (s-some? "ab" "beeplebrox") => t
+    (s-some? "aB" "beeplebrox") => t
+    (s-some? "ab" "BEEPLEBROX") => t
+    (s-some? "10" "babar1") => t)
+
+  (defexamples s-only?
+    (s-only? "ab" "ab") => t
+    (s-only? "ab" "abc") => nil
+    (s-only? "12" "12") => t
+    (s-only? "aB" "aB") => t
+    (s-only? "10" "") => t))
 
 (def-example-group "The misc bucket"
   (defexamples s-replace
@@ -377,9 +392,9 @@
     => 's-format-resolve)
 
   (defexamples s-lex-format
-      ;; lexical stuff
-      (let ((x 1))
-        (s-lex-format "x is ${x}"))
+    ;; lexical stuff
+    (let ((x 1))
+      (s-lex-format "x is ${x}"))
     => "x is 1"
 
     (let ((str1 "this")
