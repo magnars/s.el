@@ -95,6 +95,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-upper-camel-case](#s-upper-camel-case-s) `(s)`
 * [s-snake-case](#s-snake-case-s) `(s)`
 * [s-dashed-words](#s-dashed-words-s) `(s)`
+* [s-underscored-words](#s-underscored-words-s) `(s)`
 * [s-capitalized-words](#s-capitalized-words-s) `(s)`
 * [s-titleized-words](#s-titleized-words-s) `(s)`
 * [s-word-initials](#s-word-initials-s) `(s)`
@@ -781,6 +782,16 @@ Convert `s` to dashed-words.
 (s-dashed-words "some words") ;; => "some-words"
 (s-dashed-words "under_scored_words") ;; => "under-scored-words"
 (s-dashed-words "camelCasedWords") ;; => "camel-cased-words"
+```
+
+### s-underscored-words `(s)`
+
+Convert `s` to underscored_words.
+
+```cl
+(s-underscored-words "some words") ;; => "some_words"
+(s-underscored-words "dashed-words") ;; => "dashed_words"
+(s-underscored-words "camelCasedWords") ;; => "camel_cased_words"
 ```
 
 ### s-capitalized-words `(s)`

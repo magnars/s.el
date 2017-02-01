@@ -435,6 +435,11 @@
     (s-dashed-words "under_scored_words") => "under-scored-words"
     (s-dashed-words "camelCasedWords") => "camel-cased-words")
 
+  (defexamples s-underscored-words
+    (s-underscored-words "some words") => "some_words"
+    (s-underscored-words "dashed-words") => "dashed_words"
+    (s-underscored-words "camelCasedWords") => "camel_cased_words")
+
   (defexamples s-capitalized-words
     (s-capitalized-words "some words") => "Some words"
     (s-capitalized-words "under_scored_words") => "Under scored words"
