@@ -27,6 +27,10 @@
 
 ;;; Code:
 
+;; Silence byte-compiler
+(defvar ucs-normalize-combining-chars)  ; Defined in `ucs-normalize'
+(autoload 'slot-value "eieio")
+
 (defun s-trim-left (s)
   "Remove whitespace at the beginning of S."
   (save-match-data
