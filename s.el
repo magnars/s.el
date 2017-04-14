@@ -271,7 +271,7 @@ attention to case differences."
   "Is S1 equal to S2?
 
 This is a simple wrapper around the built-in `string-equal'."
-  (string-equal s1 s2))
+  (string-equal (ucs-normalize-NFD-string s1) (ucs-normalize-NFD-string s2)))
 
 (defalias 's-equals-p 's-equals?)
 
