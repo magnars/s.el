@@ -27,7 +27,9 @@
 
 ;;; Code:
 
-(require 'ucs-normalize)
+;; Silence byte-compiler
+(defvar ucs-normalize-combining-chars)  ; Defined in `ucs-normalize'
+(autoload 'slot-value "eieio")
 
 (defun s-trim-left (s)
   "Remove whitespace at the beginning of S."
@@ -380,7 +382,8 @@ attention to case differences."
   "Return the reverse of S."
   (if (multibyte-string-p s)
       (let ((input (string-to-list s))
-            (output ()))
+            output)
+        (require 'ucs-normalize)
         (while input
           ;; Handle entire grapheme cluster as a single unit
           (let ((grapheme (list (pop input))))
