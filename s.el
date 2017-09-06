@@ -380,18 +380,19 @@ attention to case differences."
 
 (defun s-reverse (s)
   "Return the reverse of S."
-  (if (multibyte-string-p s)
-      (let ((input (string-to-list s))
-            output)
-        (require 'ucs-normalize)
-        (while input
-          ;; Handle entire grapheme cluster as a single unit
-          (let ((grapheme (list (pop input))))
-            (while (memql (car input) ucs-normalize-combining-chars)
-              (push (pop input) grapheme))
-            (setq output (nconc (nreverse grapheme) output))))
-        (concat output))
-    (concat (nreverse (string-to-list s)))))
+  (save-match-data
+    (if (multibyte-string-p s)
+        (let ((input (string-to-list s))
+              output)
+          (require 'ucs-normalize)
+          (while input
+            ;; Handle entire grapheme cluster as a single unit
+            (let ((grapheme (list (pop input))))
+              (while (memql (car input) ucs-normalize-combining-chars)
+                (push (pop input) grapheme))
+              (setq output (nconc (nreverse grapheme) output))))
+          (concat output))
+      (concat (nreverse (string-to-list s))))))
 
 (defun s-match-strings-all (regex string)
   "Return a list of matches for REGEX in STRING.
