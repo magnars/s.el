@@ -367,6 +367,8 @@ This is a simple wrapper around the built-in `string-match-p'."
   (declare (pure t) (side-effect-free t))
   (replace-regexp-in-string (regexp-quote old) new s t t))
 
+(defalias 's-replace-regexp 'replace-regexp-in-string)
+
 (defun s--aget (alist key)
   (declare (pure t) (side-effect-free t))
   (cdr (assoc-string key alist)))

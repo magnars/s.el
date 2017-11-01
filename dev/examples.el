@@ -458,4 +458,11 @@
     (s-blank-str? "\t") => t
     (s-blank-str? "t") => nil
     (s-blank-str? "\s") => t
-    (s-blank-str? " ") => t))
+    (s-blank-str? " ") => t)
+
+  (defexamples s-replace-regexp
+    (s-replace-regexp "[aeiou]" "!" "foo bar baz") => "f!! b!r b!z"
+    (s-replace-regexp "." "a" "foo bar baz") => "aaaaaaaaaaa"
+    (s-replace-regexp "mixedcase" "mixedcase" "ThIs iS MiXeDCaSE" t) => "ThIs iS mixedcase"
+    (s-replace-regexp "\\(h[ae]\\)" "\\1\\1" "hi he ha") => "hi hehe haha"
+    (s-replace-regexp "\\(h[ae]\\)" "\\1\\1" "hi he ha" nil t) => "hi \\1\\1 \\1\\1"))
