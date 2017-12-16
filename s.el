@@ -486,7 +486,12 @@ SUBEXP-DEPTH is 0 by default."
 (defun s-match (regexp s &optional start)
   "When the given expression matches the string, this function returns a list
 of the whole matching string and a string for each matched subexpressions.
-If it did not match the returned value is an empty list (nil).
+Subexpressions that didn't match are represented by nil elements
+in the list, except that non-matching subexpressions at the end
+of REGEXP might not appear at all in the list.  That is, the
+returned list can be shorter than the number of subexpressions in
+REGEXP plus one.  If REGEXP did not match the returned value is
+an empty list (nil).
 
 When START is non-nil the search will start at that index."
   (declare (side-effect-free t))
