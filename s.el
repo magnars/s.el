@@ -515,16 +515,21 @@ When START is non-nil the search will start at that index."
                   (s-slice-at regexp (substring s i)))
           (list s))))))
 
+(defvar s-syntax-table (make-syntax-table))
+
 (defun s-split-words (s)
   "Split S into list of words."
   (declare (side-effect-free t))
-  (s-split
-   "[^[:word:]0-9]+"
-   (let ((case-fold-search nil))
-     (replace-regexp-in-string
-      "\\([[:lower:]]\\)\\([[:upper:]]\\)" "\\1 \\2"
-      (replace-regexp-in-string "\\([[:upper:]]\\)\\([[:upper:]][0-9[:lower:]]\\)" "\\1 \\2" s)))
-   t))
+  ;; Using a clean syntax table makes the meaning of [[:word:]] and
+  ;; [[:space]] indepedent of the current buffers major mode
+  (with-syntax-table s-syntax-table
+    (s-split
+     "[^[:word:]0-9]+"
+     (let ((case-fold-search nil))
+       (replace-regexp-in-string
+        "\\([[:lower:]]\\)\\([[:upper:]]\\)" "\\1 \\2"
+        (replace-regexp-in-string "\\([[:upper:]]\\)\\([[:upper:]][0-9[:lower:]]\\)" "\\1 \\2" s)))
+     t)))
 
 (defun s--mapcar-head (fn-head fn-rest list)
   "Like MAPCAR, but applies a different function to the first element."
