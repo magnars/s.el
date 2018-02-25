@@ -396,7 +396,21 @@
   (defexamples s-count-matches
     (s-count-matches "a" "aba") => 2
     (s-count-matches "a" "aba" 0 2) => 1
-    (s-count-matches "\\w\\{2\\}[0-9]+" "ab1bab2frobinator") => 2)
+    (s-count-matches "aa" "aaa") => 1
+    (s-count-matches "\\w\\{2\\}[0-9]+" "ab1bab2frobinator") => 2
+    (s-count-matches "a" "aa" 2) => 1
+    (s-count-matches "a" "aaaa" 2 3) => 1)
+
+  (defexamples s-count-matches-all
+    (s-count-matches-all "a" "aba") => 2
+    (s-count-matches-all "a" "aba" 1 3) => 1
+    (s-count-matches-all "aa" "aaa") => 2
+    (s-count-matches-all "\\w\\{2\\}[0-9]+" "ab1bab2frobinator") => 2
+    ;; Make sure we only count matches where the entire match is between start and end.
+    (s-count-matches-all "aaa" "aaaaaaaaa" 1 4) => 1
+
+    ;; s-count-matches-all should be one-indexed.
+    (s-count-matches-all "a" "aa" 2) => 1)
 
   (defexamples s-wrap
     (s-wrap "foo" "\"") => "\"foo\""
