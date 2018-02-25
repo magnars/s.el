@@ -663,8 +663,9 @@ interpolated with \"%S\"."
 (defun s-count-matches (regexp s &optional start end)
   "Count occurrences of `regexp' in `s'.
 
-`start', inclusive, and `end', exclusive, delimit the part of `s'
-to match.
+`start', inclusive, and `end', exclusive, delimit the part of `s' to
+match.  `start' and `end' are both indexed starting at 1; the initial
+character in `s' is index 1.
 
 This function starts looking for the next match from the end of the
 previous match.  Hence, it ignores matches that overlap a previously
@@ -680,8 +681,9 @@ found match.  To count overlapping matches, use
 (defun s-count-matches-all (regexp s &optional start end)
   "Count occurrences of `regexp' in `s'.
 
-`start', inclusive, and `end', exclusive, delimit the part of `s'
-to match.
+`start', inclusive, and `end', exclusive, delimit the part of `s' to
+match.  `start' and `end' are both indexed starting at 1; the initial
+character in `s' is index 1.
 
 This function starts looking for the next match from the second
 character of the previous match.  Hence, it counts matches that
