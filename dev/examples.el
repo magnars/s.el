@@ -387,7 +387,7 @@
       (s-lex-format "${str1} and ${str2}"))
     => "this and that"
 
-    ;; Have a litteral \ in the replacement
+    ;; Have a literal \ in the replacement
     (let ((foo "Hello\\nWorld"))
       (s-lex-format "${foo}"))
     => "Hello\\nWorld"
