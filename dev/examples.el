@@ -55,7 +55,9 @@
   (defexamples s-truncate
     (s-truncate 6 "This is too long") => "Thi..."
     (s-truncate 16 "This is also too long") => "This is also ..."
-    (s-truncate 16 "But this is not!") => "But this is not!")
+    (s-truncate 16 "But this is not!") => "But this is not!"
+    (s-truncate 6 "Lorem ipsum" "…") => "Lorem…"
+    (s-truncate 9000 "Lorem ipsum" "…") => "Lorem ipsum")
 
   (defexamples s-left
     (s-left 3 "lib/file.js") => "lib"
