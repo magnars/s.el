@@ -196,11 +196,18 @@ See also `s-split'."
   (declare (pure t) (side-effect-free t))
   (s-chop-suffixes '("\n" "\r") s))
 
-(defun s-truncate (len s)
-  "If S is longer than LEN, cut it down to LEN - 3 and add ... at the end."
+(defun s-truncate (len s &optional ellipsis)
+  "If S is longer than LEN, cut it down and add ELLIPSIS to the end.
+
+The resulting string, including ellipsis, will be LEN characters
+long.
+
+When not specified, ELLIPSIS defaults to ‘...’."
   (declare (pure t) (side-effect-free t))
+  (unless ellipsis
+    (setq ellipsis "..."))
   (if (> (length s) len)
-      (format "%s..." (substring s 0 (- len 3)))
+      (format "%s%s" (substring s 0 (- len (length ellipsis))) ellipsis)
     s))
 
 (defun s-word-wrap (len s)
