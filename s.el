@@ -363,6 +363,12 @@ This is a simple wrapper around the built-in `string-match-p'."
     (s--truthy?
      (string-match-p "^[[:upper:]][^[:upper:]]*$" s))))
 
+(defun s-titleized? (s)
+  "In S, are all words capitalized?"
+  (declare (side-effect-free t))
+  (equal (s-join " " (mapcar 's-capitalize (split-string s)))
+	 (s-collapse-whitespace s)))
+
 (defun s-numeric? (s)
   "Is S a number?"
   (declare (pure t) (side-effect-free t))
@@ -725,6 +731,7 @@ suffix."
 (defalias 's-blank-p 's-blank?)
 (defalias 's-blank-str-p 's-blank-str?)
 (defalias 's-capitalized-p 's-capitalized?)
+(defalias 's-titleized-p 's-titleized?)
 (defalias 's-contains-p 's-contains?)
 (defalias 's-ends-with-p 's-ends-with?)
 (defalias 's-equals-p 's-equals?)

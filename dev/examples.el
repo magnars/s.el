@@ -257,6 +257,14 @@
     (s-capitalized? "UPPER") => nil
     (s-capitalized? "Привет") => t)
 
+  (defexamples s-titleized?
+    (s-titleized? "The Great Gatsby") => t
+    (s-titleized? "I am capitalized") => nil
+    (s-titleized? "lowercase title") => nil
+    (s-titleized? "MixedCase TiTle") => nil
+    (s-titleized? "UPPERCASE TITLE") => nil
+    (s-titleized? "2001: A Space Odyssey") => t)
+
   (defexamples s-numeric?
     (s-numeric? "123") => t
     (s-numeric? "onetwothree") => nil
