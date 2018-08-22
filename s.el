@@ -513,17 +513,18 @@ When START is non-nil the search will start at that index."
 (defun s-slice-at (regexp s)
   "Slices S up at every index matching REGEXP."
   (declare (side-effect-free t))
-  (let (ss)
-    (while (not (string-empty-p s))
-      (save-match-data
-        (let (i)
-          (setq i (string-match regexp s 1))
-          (if i
-              (setq ss (cons (substring s 0 i) ss)
-                    s (substring s i))
-            (setq ss (cons s ss)
-                  s "")))))
-    (nreverse ss)))
+  (if (s-blank? s)
+      (list s)
+    (let (ss)
+      (while (not (s-blank? s))
+        (save-match-data
+          (let ((i (string-match regexp s 1)))
+            (if i
+                (setq ss (cons (substring s 0 i) ss)
+                      s (substring s i))
+              (setq ss (cons s ss)
+                    s "")))))
+      (nreverse ss))))
 
 (defun s-split-words (s)
   "Split S into list of words."
