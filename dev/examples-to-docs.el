@@ -11,7 +11,10 @@
        "\n" "\\n"
        (replace-regexp-in-string
         "\\\\\\?" "?"
-        (format "%S ;; => %S" actual expected)) t t) t t) t t)))
+        (format "%S ;; => %S" actual expected))
+       t t)
+      t t)
+     t t)))
 
 (defun examples-to-strings (examples)
   (let (result)
