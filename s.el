@@ -164,12 +164,8 @@ See also `s-split'."
 (defun s-shared-start (s1 s2)
   "Returns the longest prefix S1 and S2 have in common."
   (declare (pure t) (side-effect-free t))
-  (let ((search-length (min (length s1) (length s2)))
-        (i 0))
-    (while (and (< i search-length)
-                (= (aref s1 i) (aref s2 i)))
-      (setq i (1+ i)))
-    (substring s1 0 i)))
+  (let ((cmp (compare-strings s1 0 (length s1) s2 0 (length s2))))
+    (if (eq cmp t) s1 (substring s1 0 (1- (abs cmp))))))
 
 (defun s-shared-end (s1 s2)
   "Returns the longest suffix S1 and S2 have in common."
