@@ -41,8 +41,8 @@
 
 (defun s-trim-right (s)
   "Remove whitespace at the end of S."
+  (declare (pure t) (side-effect-free t))
   (save-match-data
-    (declare (pure t) (side-effect-free t))
     (if (string-match "[ \t\n\r]+\\'" s)
         (replace-match "" t t s)
       s)))
