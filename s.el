@@ -424,12 +424,12 @@ This is a simple wrapper around the built-in `upcase'."
   (upcase s))
 
 (defun s-capitalize (s)
-  "Convert the first word's first character to upper case and the rest to lower case in S."
+  "Convert S first word's first character to upper and the rest to lower case."
   (declare (side-effect-free t))
   (concat (upcase (substring s 0 1)) (downcase (substring s 1))))
 
 (defun s-titleize (s)
-  "Convert each word's first character to upper case and the rest to lower case in S.
+  "Convert in S each word's first character to upper and the rest to lower case.
 
 This is a simple wrapper around the built-in `capitalize'."
   (declare (side-effect-free t))
@@ -621,9 +621,9 @@ an extra argument which is the EXTRA value from the call to
 Several standard `s-format' helper functions are recognized and
 adapted for this:
 
-    (s-format \"${name}\" 'gethash hash-table)
-    (s-format \"${name}\" 'aget alist)
-    (s-format \"$0\" 'elt sequence)
+    (s-format \"${name}\" \\='gethash hash-table)
+    (s-format \"${name}\" \\='aget alist)
+    (s-format \"$0\" \\='elt sequence)
 
 The REPLACER function may be used to do any other kind of
 transformation."
