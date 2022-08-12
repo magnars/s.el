@@ -266,6 +266,20 @@ When not specified, ELLIPSIS defaults to ‘...’."
         (substring s (- l len) l)
       s)))
 
+(defun s-chop-left (len s)
+  "Remove the first LEN chars from S."
+  (let ((l (length s)))
+    (if (> l len)
+        (substring s len l)
+      "")))
+
+(defun s-chop-right (len s)
+  "Remove the last LEN chars from S."
+  (let ((l (length s)))
+    (if (> l len)
+        (substring s 0 (- l len))
+      "")))
+
 (defun s-ends-with? (suffix s &optional ignore-case)
   "Does S end with SUFFIX?
 

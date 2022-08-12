@@ -30,6 +30,8 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-truncate](#s-truncate-len-s) `(len s)`
 * [s-left](#s-left-len-s) `(len s)`
 * [s-right](#s-right-len-s) `(len s)`
+* [s-chop-left](#s-chop-left-len-s) `(len s)`
+* [s-chop-right](#s-chop-right-len-s) `(len s)`
 * [s-chop-suffix](#s-chop-suffix-suffix-s) `(suffix s)`
 * [s-chop-suffixes](#s-chop-suffixes-suffixes-s) `(suffixes s)`
 * [s-chop-prefix](#s-chop-prefix-prefix-s) `(prefix s)`
@@ -220,6 +222,24 @@ Returns up to the `len` last chars of `s`.
 (s-right 3 "li") ;; => "li"
 ```
 
+### s-chop-left `(len s)`
+
+Remove the first `len` chars from `s`.
+
+```cl
+(s-chop-left 3 "lib/file.js") ;; => "/file.js"
+(s-chop-left 3 "li") ;; => ""
+```
+
+### s-chop-right `(len s)`
+
+Remove the last `len` chars from `s`.
+
+```cl
+(s-chop-right 3 "lib/file.js") ;; => "lib/file"
+(s-chop-right 3 "li") ;; => ""
+```
+
 ### s-chop-suffix `(suffix s)`
 
 Remove `suffix` if it is at end of `s`.
@@ -322,7 +342,6 @@ Splice `needle` into `s` at position `n`.
 (s-splice "abc" -1 "def") ;; => "defabc"
 (s-splice "needle" 2 "A  in a haystack.") ;; => "A needle in a haystack."
 ```
-
 
 ### s-lines `(s)`
 
