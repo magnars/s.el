@@ -43,6 +43,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-concat](#s-concat-rest-strings) `(&rest strings)`
 * [s-prepend](#s-prepend-prefix-s) `(prefix s)`
 * [s-append](#s-append-suffix-s) `(suffix s)`
+* [s-splice](#s-splice-needle-n-s) `(needle n s)`
 
 ### To and from lists
 
@@ -98,6 +99,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-capitalized-words](#s-capitalized-words-s) `(s)`
 * [s-titleized-words](#s-titleized-words-s) `(s)`
 * [s-word-initials](#s-word-initials-s) `(s)`
+* [s-blank-str?](#s-blank-str-s) `(s)`
 
 ## Documentation and examples
 
@@ -309,6 +311,18 @@ Concatenate `s` and `suffix`.
 ```cl
 (s-append "abc" "def") ;; => "defabc"
 ```
+
+### s-splice `(needle n s)`
+
+Splice `needle` into `s` at position `n`.
+0 is the beginning of the string, -1 is the end.
+
+```cl
+(s-splice "abc" 0 "def") ;; => "abcdef"
+(s-splice "abc" -1 "def") ;; => "defabc"
+(s-splice "needle" 2 "A  in a haystack.") ;; => "A needle in a haystack."
+```
+
 
 ### s-lines `(s)`
 
@@ -811,6 +825,16 @@ Convert `s` to its initials.
 (s-word-initials "some words") ;; => "sw"
 (s-word-initials "under_scored_words") ;; => "usw"
 (s-word-initials "camelCasedWords") ;; => "cCW"
+```
+
+### s-blank-str? `(s)`
+
+Is `s` nil or the empty string or string only contains whitespace?
+
+```cl
+(s-blank-str? "  \t \r   ") ;; => t
+(s-blank-str? "    ") ;; => t
+(s-blank-str? "\t\r") ;; => t
 ```
 
 

@@ -118,6 +118,18 @@ See also `s-split'."
   (declare (pure t) (side-effect-free t))
   (concat s suffix))
 
+(defun s-splice (needle n s)
+  "Splice NEEDLE into S at position N.
+0 is the beginning of the string, -1 is the end."
+  (if (< n 0)
+      (let ((left (substring s 0 (+ 1 n (length s))))
+            (right (s-right (- -1 n) s)))
+        (concat left needle right))
+    (let ((left (s-left n s))
+          (right (substring s n (length s))))
+        (concat left needle right))))
+
+
 (defun s-repeat (num s)
   "Make a string of S repeated NUM times."
   (declare (pure t) (side-effect-free t))
