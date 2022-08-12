@@ -4,7 +4,7 @@ The long lost Emacs string manipulation library.
 
 ## Installation
 
-It's available on [marmalade](http://marmalade-repo.org/) and [Melpa](https://melpa.org/):
+It's available on [Melpa](https://melpa.org/):
 
     M-x package-install s
 
@@ -39,6 +39,12 @@ calculate the Levenshtein distance between two strings.
 * [string-utils](https://github.com/rolandwalker/string-utils) is another general string manipulation library.
 
 ## Changelist
+
+### From 1.11.0 to 1.12.0
+
+- Alias all functions ending in `?` (Tianxiang Xiong)
+- Add `s-blank-str?` (Aborn Jiang)
+- Several bugfixes
 
 ### From 1.10.0 to 1.11.0
 

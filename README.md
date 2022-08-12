@@ -4,7 +4,7 @@ The long lost Emacs string manipulation library.
 
 ## Installation
 
-It's available on [marmalade](http://marmalade-repo.org/) and [Melpa](https://melpa.org/):
+It's available on [Melpa](https://melpa.org/):
 
     M-x package-install s
 
@@ -45,6 +45,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-concat](#s-concat-rest-strings) `(&rest strings)`
 * [s-prepend](#s-prepend-prefix-s) `(prefix s)`
 * [s-append](#s-append-suffix-s) `(suffix s)`
+* [s-splice](#s-splice-needle-n-s) `(needle n s)`
 
 ### To and from lists
 
@@ -331,6 +332,16 @@ Concatenate `s` and `suffix`.
 (s-append "abc" "def") ;; => "defabc"
 ```
 
+### s-splice `(needle n s)`
+
+Splice `needle` into `s` at position `n`.
+0 is the beginning of the string, -1 is the end.
+
+```cl
+(s-splice "abc" 0 "def") ;; => "abcdef"
+(s-splice "abc" -1 "def") ;; => "defabc"
+(s-splice "needle" 2 "A  in a haystack.") ;; => "A needle in a haystack."
+```
 
 ### s-lines `(s)`
 
@@ -867,6 +878,12 @@ calculate the Levenshtein distance between two strings.
 * [string-utils](https://github.com/rolandwalker/string-utils) is another general string manipulation library.
 
 ## Changelist
+
+### From 1.11.0 to 1.12.0
+
+- Alias all functions ending in `?` (Tianxiang Xiong)
+- Add `s-blank-str?` (Aborn Jiang)
+- Several bugfixes
 
 ### From 1.10.0 to 1.11.0
 

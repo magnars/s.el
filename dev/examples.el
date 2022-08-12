@@ -55,7 +55,9 @@
   (defexamples s-truncate
     (s-truncate 6 "This is too long") => "Thi..."
     (s-truncate 16 "This is also too long") => "This is also ..."
-    (s-truncate 16 "But this is not!") => "But this is not!")
+    (s-truncate 16 "But this is not!") => "But this is not!"
+    (s-truncate 6 "Lorem ipsum" "…") => "Lorem…"
+    (s-truncate 9000 "Lorem ipsum" "…") => "Lorem ipsum")
 
   (defexamples s-left
     (s-left 3 "lib/file.js") => "lib"
@@ -118,7 +120,12 @@
     (s-prepend "abc" "def") => "abcdef")
 
   (defexamples s-append
-    (s-append "abc" "def") => "defabc"))
+    (s-append "abc" "def") => "defabc")
+
+  (defexamples s-splice
+    (s-splice "abc" 0 "def") => "abcdef"
+    (s-splice "abc" -1 "def") => "defabc"
+    (s-splice "needle" 2 "A  in a haystack.") => "A needle in a haystack."))
 
 (def-example-group "To and from lists"
   (defexamples s-lines
@@ -395,7 +402,7 @@
       (s-lex-format "${str1} and ${str2}"))
     => "this and that"
 
-    ;; Have a litteral \ in the replacement
+    ;; Have a literal \ in the replacement
     (let ((foo "Hello\\nWorld"))
       (s-lex-format "${foo}"))
     => "Hello\\nWorld"
@@ -403,8 +410,22 @@
 
   (defexamples s-count-matches
     (s-count-matches "a" "aba") => 2
-    (s-count-matches "a" "aba" 0 2) => 1
-    (s-count-matches "\\w\\{2\\}[0-9]+" "ab1bab2frobinator") => 2)
+    (s-count-matches "a" "aba" 1 3) => 1
+    (s-count-matches "aa" "aaa") => 1
+    (s-count-matches "\\w\\{2\\}[0-9]+" "ab1bab2frobinator") => 2
+    (s-count-matches "a" "aa" 2) => 1
+    (s-count-matches "a" "aaaa" 2 3) => 1)
+
+  (defexamples s-count-matches-all
+    (s-count-matches-all "a" "aba") => 2
+    (s-count-matches-all "a" "aba" 1 3) => 1
+    (s-count-matches-all "aa" "aaa") => 2
+    (s-count-matches-all "\\w\\{2\\}[0-9]+" "ab1bab2frobinator") => 2
+    ;; Make sure we only count matches where the entire match is between start and end.
+    (s-count-matches-all "aaa" "aaaaaaaaa" 1 4) => 1
+
+    ;; s-count-matches-all should be one-indexed.
+    (s-count-matches-all "a" "aa" 2) => 1)
 
   (defexamples s-wrap
     (s-wrap "foo" "\"") => "\"foo\""
@@ -466,4 +487,11 @@
     (s-blank-str? "\t") => t
     (s-blank-str? "t") => nil
     (s-blank-str? "\s") => t
-    (s-blank-str? " ") => t))
+    (s-blank-str? " ") => t)
+
+  (defexamples s-replace-regexp
+    (s-replace-regexp "[aeiou]" "!" "foo bar baz") => "f!! b!r b!z"
+    (s-replace-regexp "." "a" "foo bar baz") => "aaaaaaaaaaa"
+    (s-replace-regexp "mixedcase" "mixedcase" "ThIs iS MiXeDCaSE" t) => "ThIs iS mixedcase"
+    (s-replace-regexp "\\(h[ae]\\)" "\\1\\1" "hi he ha") => "hi hehe haha"
+    (s-replace-regexp "\\(h[ae]\\)" "\\1\\1" "hi he ha" nil t) => "hi \\1\\1 \\1\\1"))
