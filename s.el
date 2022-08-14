@@ -233,9 +233,9 @@ When not specified, ELLIPSIS defaults to ‘...’."
   (declare (pure t) (side-effect-free t))
   (let ((extra (max 0 (- len (length s)))))
     (concat
-     (make-string (ceiling extra 2) ? )
+     (make-string (ceiling extra 2) ?)
      s
-     (make-string (floor extra 2) ? ))))
+     (make-string (floor extra 2) ?))))
 
 (defun s-pad-left (len padding s)
   "If S is shorter than LEN, pad it with PADDING on the left."
@@ -584,6 +584,11 @@ When START is non-nil the search will start at that index."
   "Convert S to dashed-words."
   (declare (side-effect-free t))
   (s-join "-" (mapcar 'downcase (s-split-words s))))
+
+(defun s-spaced-words (s)
+  "Convert S to spaced words."
+  (declare (side-effect-free t))
+  (s-join "-" (s-split-words s)))
 
 (defun s-capitalized-words (s)
   "Convert S to Capitalized words."
