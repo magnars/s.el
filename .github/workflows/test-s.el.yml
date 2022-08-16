@@ -1,0 +1,38 @@
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        emacs_version:
+          - 24.1
+          - 24.2
+          - 24.3
+          - 24.4
+          - 24.5
+          - 25.1
+          - 25.2
+          - 25.3
+          - 26.1
+          - 26.2
+          - 26.3
+          - 27.1
+          - 27.2
+          - 28.1
+          - snapshot
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Emacs
+      uses: purcell/setup-emacs@v3.0
+      with:
+        version: ${{ matrix.emacs_version }}
+
+    - name: examples
+      run: ./run-tests.sh

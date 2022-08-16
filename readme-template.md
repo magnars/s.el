@@ -1,4 +1,4 @@
-# s.el [![Build Status](https://secure.travis-ci.org/magnars/s.el.png)](http://travis-ci.org/magnars/s.el) [![Coverage Status](https://coveralls.io/repos/magnars/s.el/badge.svg?branch=master)](https://coveralls.io/r/magnars/s.el?branch=master)
+# s.el [![Test status](https://github.com/emacsfodder/s.el/actions/workflows/test-s.el.yml/badge.svg)](https://github.com/emacsfodder/s.el/actions/workflows/test-s.el.yml) [![Coverage Status](https://coveralls.io/repos/magnars/s.el/badge.svg?branch=master)](https://coveralls.io/r/magnars/s.el?branch=master)
 
 The long lost Emacs string manipulation library.
 

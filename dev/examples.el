@@ -4,7 +4,7 @@
 ;; so make those good.
 
 (require 's)
-(require 'assoc)
+;; (require 'assoc)
 
 (def-example-group "Tweak whitespace"
   (defexamples s-trim
