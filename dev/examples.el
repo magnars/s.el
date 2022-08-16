@@ -387,7 +387,7 @@
         (s-format
          "help ${name}! I'm ${malady}"
          'gethash
-         #s(hash-table test equal data ("name" "nic" )))
+         #s(hash-table test equal data ("name" "nic")))
       (s-format-resolve (car err)))
     => 's-format-resolve)
 
@@ -405,8 +405,8 @@
     ;; Have a literal \ in the replacement
     (let ((foo "Hello\\nWorld"))
       (s-lex-format "${foo}"))
-    => "Hello\\nWorld"
-    )
+    => "Hello\\nWorld")
+    
 
   (defexamples s-count-matches
     (s-count-matches "a" "aba") => 2
@@ -463,6 +463,11 @@
     (s-dashed-words "some words") => "some-words"
     (s-dashed-words "under_scored_words") => "under-scored-words"
     (s-dashed-words "camelCasedWords") => "camel-cased-words")
+
+  (defexamples s-spaced-words
+    (s-spaced-words "some_words") => "some words"
+    (s-spaced-words "dashed-words") => "dashed words"
+    (s-spaced-words "camelCasedWords") => "camel Cased Words")
 
   (defexamples s-capitalized-words
     (s-capitalized-words "some words") => "Some words"
