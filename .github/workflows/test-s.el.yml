@@ -35,4 +35,4 @@ jobs:
         version: ${{ matrix.emacs_version }}
 
     - name: examples
-      run: ./run-tests.sh
+      run: ./run-ci.sh
