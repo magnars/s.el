@@ -38,4 +38,4 @@ jobs:
 
     - name: examples
       run: |
-        ./run-ci.sh
+        xvfb-run -a ./run-ci.sh
