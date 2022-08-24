@@ -2,9 +2,13 @@
 
 ;; Only the first three examples per function are shown in the docs,
 ;; so make those good.
+;;; Code:
 
 (require 's)
-(require 'assoc)
+;; Above emacs 24.1 assoc is core C.
+(when (or (and (= emacs-major-version 24) (<= emacs-minor-version 2))
+          (< emacs-major-version 24))
+  (require 'assoc))
 
 (def-example-group "Tweak whitespace"
   (defexamples s-trim
