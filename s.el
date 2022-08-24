@@ -405,9 +405,14 @@ This is a simple wrapper around the built-in `string-match-p'."
 (defun s-replace-all (replacements s)
   "REPLACEMENTS is a list of cons-cells. Each `car` is replaced with `cdr` in S."
   (declare (pure t) (side-effect-free t))
-  (replace-regexp-in-string (regexp-opt (mapcar 'car replacements))
-                            (lambda (it) (s--aget replacements it))
-                            s t t))
+  (replace-regexp-in-string
+   (regexp-opt (mapcar 'car replacements))
+   (lambda (it)
+     (let ((replacement (s--aget replacements it)))
+       (if (null replacement)
+           it
+         replacement)))
+   s t t))
 
 (defun s-downcase (s)
   "Convert S to lower case.

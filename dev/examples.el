@@ -283,7 +283,8 @@
 
   (defexamples s-replace-all
     (s-replace-all '(("lib" . "test") ("file" . "file_test")) "lib/file.js") => "test/file_test.js"
-    (s-replace-all '(("lib" . "test") ("test" . "lib")) "lib/test.js") => "test/lib.js")
+    (s-replace-all '(("lib" . "test") ("test" . "lib")) "lib/test.js") => "test/lib.js"
+    (s-replace-all '(("FOO" . "bar") ("FLOO" . "bah")) "FOO BLOO foo") => "bar BLOO foo")
 
   (defexamples s-downcase
     (s-downcase "ABC") => "abc")
