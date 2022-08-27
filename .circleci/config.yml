@@ -1,19 +1,15 @@
 version: 2.1
 
 steps: &steps
-    working_directory: /kubel
+    working_directory: /s.el
     steps:
       - run: apt update && apt install -y git ssh make
       - checkout
-      - run:
-          name: Tests
-          command: |
-            ./run-ci.sh
 
       - run:
-          name: Is this thing on
+          name: Hello
           command: |
-            ls .
+            echo "Hello, world"
 
 jobs:
     emacs-27:
@@ -28,11 +24,16 @@ jobs:
       docker:
         - image: silex/emacs:25.3
       <<: *steps
+    emacs-24:
+      docker:
+        - image: silex/emacs:24.2
+      <<: *steps
 
 workflows:
-    version: 2
+    version: 2.1
     build:
       jobs:
+        - emacs-24
         - emacs-25
         - emacs-26
         - emacs-27
