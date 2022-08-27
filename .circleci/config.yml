@@ -1,39 +1,18 @@
-version: 2.1
-
-steps: &steps
-    working_directory: /s.el
-    steps:
-      - run: apt update && apt install -y git ssh make
-      - checkout
-
-      - run:
-          name: Hello
-          command: |
-            echo "Hello, world"
-
+version: 2
 jobs:
-    emacs-27:
-      docker:
-        - image: silex/emacs:27.1
-      <<: *steps
-    emacs-26:
-      docker:
-        - image: silex/emacs:26.3
-      <<: *steps
-    emacs-25:
-      docker:
-        - image: silex/emacs:25.3
-      <<: *steps
-    emacs-24:
-      docker:
-        - image: silex/emacs:24.2
-      <<: *steps
+build:
+  working_directory: /tmp
+  steps:
+    - run:
+        name: Creating Dummy Artifacts
+        command: |
+          echo "my artifact file" > /tmp/art-1;
+          mkdir /tmp/artifacts;
+          echo "my artifact files in a dir" > /tmp/artifacts/art-2;
 
-workflows:
-    version: 2.1
-    build:
-      jobs:
-        - emacs-24
-        - emacs-25
-        - emacs-26
-        - emacs-27
+    - store_artifacts:
+        path: /tmp/art-1
+        destination: artifact-file
+
+    - store_artifacts:
+        path: /tmp/artifacts
