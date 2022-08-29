@@ -1,4 +1,4 @@
-;;; s.el --- The long lost Emacs string manipulation library.
+;;; s.el --- The long lost Emacs string manipulation library. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2012-2022 Magnar Sveen
 
@@ -510,9 +510,8 @@ SUBEXP-DEPTH is 0 by default."
     (let ((pos 0) result)
       (while (and (string-match regexp string pos)
                   (< pos (length string)))
-        (let ((m (match-end subexp-depth)))
-          (push (cons (match-beginning subexp-depth) (match-end subexp-depth)) result)
-          (setq pos (match-end 0))))
+        (push (cons (match-beginning subexp-depth) (match-end subexp-depth)) result)
+        (setq pos (match-end 0)))
       (nreverse result))))
 
 (defun s-match (regexp s &optional start)
