@@ -33,6 +33,38 @@
     (s-collapse-whitespace "only   one space   please") => "only one space please"
     (s-collapse-whitespace "collapse \n all \t sorts of \r whitespace") => "collapse all sorts of whitespace")
 
+  (defexamples s-unindent
+    (s-unindent "- indented
+                |  - multiline
+                |  - strings
+                |  - can be
+                |    - more pleasant
+                |    - to work with
+                |") => "- indented
+  - multiline
+  - strings
+  - can be
+    - more pleasant
+    - to work with
+"
+    (s-unindent "#!/bin/sh
+                !# pipes are not always usable
+                !
+                !# so we can use any other string.
+                !# pipe freely
+                !cat file \\
+                ! | grep \"thing\" \\
+                ! | wc -l
+                !" "!") => "#!/bin/sh
+# pipes are not always usable
+
+# so we can use any other string.
+# pipe freely
+cat file \\
+ | grep \"thing\" \\
+ | wc -l
+")
+
   (defexamples s-word-wrap
     (s-word-wrap 10 "This is too long") => "This is\ntoo long"
     (s-word-wrap 10 "This is way way too long") => "This is\nway way\ntoo long"
