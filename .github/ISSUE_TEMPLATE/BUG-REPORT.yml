@@ -1,0 +1,91 @@
+name: "🪲 Bug Report"
+description: Create a new issue for a bug.
+title: "🪲 [BUG] - <title>"
+labels: [
+  "bug"
+]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: Please enter a short/clear description of your issue
+      placeholder: Enter a short/clear description of your issue.
+    validations:
+      required: true
+  - type: textarea
+    id: reprod
+    attributes:
+      label: "Steps to Reproduce the issue. (Issues that cannot be reproduced will be closed.)"
+      description: Please enter accurate steps to reproduce the issue.
+      value: |
+        1. Open foobar.rs '...'
+        2. M-x doctor'....'
+        3. Doctor says: What seems to be the problem? '....'
+        4. Debugger opens with error 'void function foo-bae'
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: "Screenshots"
+      description: If applicable, add screenshots to help explain your problem. (link to an image.)
+      value: |
+        ![DESCRIPTION](LINK.png)
+      render: bash
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Logs"
+      description: Please copy and paste any relevant log or debug output. This will be automatically formatted into code, so no need for backticks.
+      render: bash
+    validations:
+      required: false
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: "Emacs version"
+      description: What Emacs version are you seeing the problem on ?
+      multiple: true
+      options:
+        - 26.1
+        - 26.2
+        - 26.3
+        - 27.1
+        - 27.2
+        - 28.1
+        - snapshot
+    validations:
+      required: false
+  - type: dropdown
+    id: display
+    attributes:
+      label: "Emacs running on GUI, Terminal or Daemon?"
+      description: How was Emacs being run? GUI, Terminal or Daemon?
+      multiple: true
+      options:
+        - "GUI"
+        - "Terminal COLORTERM=truecolor"
+        - "Terminal TERM=xterm256colors"
+        - "Terminal other (tell us about it in the description.)"
+        - "Daemon"
+    validations:
+      required: false  
+  - type: dropdown
+    id: os
+    attributes:
+      label: "OS"
+      description: What is the impacted environment ?
+      multiple: true
+      options:
+        - Windows
+        - Linux
+        - Mac
+        - Solaris
+        - AiX
+        - HP/UX
+    validations:
+      required: false
