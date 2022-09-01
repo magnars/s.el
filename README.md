@@ -987,9 +987,10 @@ Change `readme-template.md` or `examples-to-docs.el` instead.
 
 ## License
 
-Copyright (C) 2012-2015 Magnar Sveen
+Copyright (C) 2012-2022 Magnar Sveen
 
 Authors: Magnar Sveen <magnars@gmail.com>
+Maintainer: Jason Milkins <jasonm23@gmail.com>
 Keywords: strings
 
 This program is free software; you can redistribute it and/or modify
