@@ -16,8 +16,8 @@ body:
   - type: textarea
     id: reprod
     attributes:
-      label: "Steps to Reproduce the issue. (Issues that cannot be reproduced will be closed.)"
-      description: Please enter accurate steps to reproduce the issue.
+      label: "Steps to Reproduce the issue."
+      description: Please enter accurate steps to reproduce the issue. (Note: Issues that cannot be reproduced will be closed.)
       value: |
         1. Open foobar.rs '...'
         2. M-x doctor'....'
