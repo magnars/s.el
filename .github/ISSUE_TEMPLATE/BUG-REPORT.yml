@@ -7,7 +7,7 @@ labels: [
 body:
   - type: markdown
     attributes:
-      values: "## Welcome"
+      value: "## Welcome"
   - type: textarea
     id: description
     attributes:
