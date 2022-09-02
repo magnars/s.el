@@ -4,7 +4,7 @@
 
 ;; Author: Magnar Sveen <magnars@gmail.com>
 ;; Maintainer: Jason Milkins <jasonm23@gmail.com>
-;; Version: 1.13.0
+;; Version: 1.13.1
 ;; Keywords: strings
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -57,6 +57,14 @@
   "Convert all adjacent whitespace characters to a single space."
   (declare (pure t) (side-effect-free t))
   (replace-regexp-in-string "[ \t\n\r]+" " " s))
+
+(defun s-unindent (s &optional bol)
+  "Unindent S which has BOL (beginning of line) indicators.
+BOL will default to pipe. You can optionally supply your own."
+  (declare (pure t) (side-effect-free t))
+  (let ((case-fold-search nil)
+        (bol (or bol "|")))
+   (s-replace-regexp (concat "^[[:space:]]*" (regexp-quote bol)) "" s)))
 
 (defun s-split (separator s &optional omit-nulls)
   "Split S into substrings bounded by matches for regexp SEPARATOR.
