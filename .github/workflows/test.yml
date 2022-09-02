@@ -1,4 +1,4 @@
-name: s.el testing
+name: CI
 
 on:
   push:
