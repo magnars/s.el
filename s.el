@@ -739,9 +739,8 @@ previously found match, use `s-count-matches'."
   (let* ((anchored-regexp (format "^%s" regexp))
          (match-count 0)
          (i 0)
-         (narrowed-s (substring s
-                                (when start (1- start))
-                                (when end (1- end)))))
+         (narrowed-s (substring s (if start (1- start) 0)
+                                  (when end (1- end)))))
     (save-match-data
       (while (< i (length narrowed-s))
         (when (s-matches? anchored-regexp (substring narrowed-s i))
