@@ -5,34 +5,34 @@ labels: [
   "bug"
 ]
 body:
-  - type: textarea
+  - type: markdown
     id: description
     attributes:
       label: "Description"
-      description: Please enter a short/clear description of your issue
-      placeholder: Enter a short/clear description of your issue.
+      description: "Please enter a short/clear description of your issue"
+      placeholder: "Enter a short/clear description of your issue."
     validations:
       required: true
-  - type: textarea
+  - type: markdown
     id: reprod
     attributes:
       label: "Steps to Reproduce the issue."
-      description: "Please enter accurate steps to reproduce the issue. (Note: Issues that cannot be reproduced will be closed.)"
+      description: "Please enter accurate steps to reproduce the issue."
+      placeholder: "Note: Issues that cannot be reproduced will be closed.)"
       value: |
         1. Open foobar.rs '...'
         2. M-x doctor'....'
         3. Doctor says: What seems to be the problem? '....'
         4. Debugger opens with error 'void function foo-bae'
-      render: bash
     validations:
       required: true
-  - type: textarea
+  - type: markdown
     id: screenshot
     attributes:
       label: "Screenshots"
       description: If applicable, add screenshots to help explain your problem. (link to an image.)
       value: |
-        ![DESCRIPTION](LINK.png)
+        For example ![DESCRIPTION](LINK.png)
       render: bash
     validations:
       required: false
@@ -48,9 +48,15 @@ body:
     id: browsers
     attributes:
       label: "Emacs version"
-      description: What Emacs version are you seeing the problem on ?
+      description: What version of Emacs are you seeing the problem on?
       multiple: true
       options:
+        - 24.1
+        - 24.2
+        - 24.3
+        - 25.1
+        - 25.2
+        - 25.3
         - 26.1
         - 26.2
         - 26.3
@@ -70,22 +76,32 @@ body:
         - "GUI"
         - "Terminal COLORTERM=truecolor"
         - "Terminal TERM=xterm256colors"
-        - "Terminal other (tell us about it in the description.)"
+        - "Terminal other (tell us about it in the description.)"        
         - "Daemon"
+        - "Github Workflow"
     validations:
       required: false  
   - type: dropdown
     id: os
     attributes:
       label: "OS"
-      description: What is the impacted environment ?
+      description: "What is the environment?"
       multiple: true
       options:
         - Windows
         - Linux
-        - Mac
+        - Macos
         - Solaris
         - AiX
         - HP/UX
+        - Other
+    validations:
+      required: false
+  - type: input
+    id: os-version
+    attributes:
+      label: "OS Version"
+      description: "Which version?"
+      placeholder: "Enter the OS version"
     validations:
       required: false
