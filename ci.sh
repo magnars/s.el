@@ -2,10 +2,10 @@
 
 cd "$(dirname "$0")"
 
-EMACS="$(which emacs)"
+EMACS="${EMACS:-$(which emacs)}"
 
 echo "*** Emacs version ***"
-echo "EMACS =" $(which $EMACS)
+echo "EMACS = ${EMACS}"
 $EMACS --version
 echo
 
