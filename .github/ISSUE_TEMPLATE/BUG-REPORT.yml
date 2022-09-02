@@ -6,6 +6,9 @@ labels: [
 ]
 body:
   - type: markdown
+    attributes:
+      values: "## Welcome"
+  - type: textarea
     id: description
     attributes:
       label: "Description"
@@ -13,7 +16,7 @@ body:
       placeholder: "Enter a short/clear description of your issue."
     validations:
       required: true
-  - type: markdown
+  - type: textarea
     id: reprod
     attributes:
       label: "Steps to Reproduce the issue."
@@ -26,7 +29,7 @@ body:
         4. Debugger opens with error 'void function foo-bae'
     validations:
       required: true
-  - type: markdown
+  - type: textarea
     id: screenshot
     attributes:
       label: "Screenshots"
