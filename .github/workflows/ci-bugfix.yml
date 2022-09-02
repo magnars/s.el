@@ -1,0 +1,30 @@
+name: CI Bug Fix
+
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        emacs_version:
+          - 24.4 # integerp error
+          - 24.5 # ... Issue #159
+          - 26.1 # <no marker in buffer errors...>
+          - 26.2 # ...
+          - 26.3 # ... (only errors on CI.) Issue #157
+      fail-fast: false
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Emacs
+      uses: purcell/setup-emacs@v3.0
+      with:
+        version: ${{ matrix.emacs_version }}
+
+    - name: Test
+      run: |
+        ./ci.sh
