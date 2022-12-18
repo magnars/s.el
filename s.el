@@ -604,6 +604,30 @@ When START is non-nil the search will start at that index."
   (declare (side-effect-free t))
   (s-join " " (s-split-words s)))
 
+(defun s-get-style-case (s)
+  "Returns the style case of S, or nil if S contains no alphabet.
+
+The value can be one of 's-spaced-words-p, 's-snake-case-p, 's-dashed-words-p,
+'s-upper-camel-case-p or 's-lower-camel-case-p (in the order of precedence).
+
+So if S looks like a snake (have at least one letter and a '-'), 's-snake-case-p
+shall be return regardless of whether it has a hump or not.
+
+There is no one size fit solution to interpret style.  Read the source to get
+heuristics used to interpret the style."
+  (declare (side-effect-free t))
+  (let ((case-fold-search nil))
+    (pcase s
+      ((rx (seq bol (one-or-more (not alpha)) eol)) nil)
+      ((rx (any "\t\n\r ")) 's-spaced-words-p)
+      ((rx (or (group alpha "_")
+               (group bol (not (any "_")) (zero-or-more nonl) "_" alpha)
+               (group bol (zero-or-more (any "_" upper)) eol)
+               (group bol (zero-or-more (any "_" lower)) eol))) 's-snake-case-p)
+      ((rx "-") 's-dashed-words-p)
+      ((rx (seq bol (opt "_") upper)) 's-upper-camel-case-p)
+      ((rx upper) 's-lower-camel-case-p))))
+
 (defun s-capitalized-words (s)
   "Convert S to Capitalized words."
   (declare (side-effect-free t))

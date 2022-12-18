@@ -506,6 +506,14 @@ cat file \\
     (s-spaced-words "dashed-words") => "dashed words"
     (s-spaced-words "camelCasedWords") => "camel Cased Words")
 
+  (defexamples s-get-style-case
+     (s-get-style-case "!@#$% ^&*") => nil
+     (s-get-style-case "abc") => 's-snake-case-p
+     (s-get-style-case "CAMELCASE") => 's-snake-case-p
+     (s-get-style-case "snake_case") => 's-snake-case-p
+     (s-get-style-case "UpCamelCase") => 's-upper-camel-case-p
+     (s-get-style-case "list-case") => 's-dashed-words-p)
+
   (defexamples s-capitalized-words
     (s-capitalized-words "some words") => "Some words"
     (s-capitalized-words "under_scored_words") => "Under scored words"
