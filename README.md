@@ -98,6 +98,7 @@ Or you can just dump `s.el` in your load path somewhere.
 * [s-upper-camel-case](#s-upper-camel-case-s) `(s)`
 * [s-snake-case](#s-snake-case-s) `(s)`
 * [s-dashed-words](#s-dashed-words-s) `(s)`
+* [s-get-style-case](#s-get-style-case) `(s)`
 * [s-capitalized-words](#s-capitalized-words-s) `(s)`
 * [s-titleized-words](#s-titleized-words-s) `(s)`
 * [s-word-initials](#s-word-initials-s) `(s)`
@@ -814,6 +815,19 @@ Convert `s` to dashed-words.
 (s-dashed-words "some words") ;; => "some-words"
 (s-dashed-words "under_scored_words") ;; => "under-scored-words"
 (s-dashed-words "camelCasedWords") ;; => "camel-cased-words"
+```
+
+### s-get-style-case `(s)`
+
+Returns the style case of `s`.
+
+```cl
+(s-get-style-case "!@#$% ^&*") ;; => nil
+(s-get-style-case "abc") ;; => 's-snake-case-p
+(s-get-style-case "CAMELCASE") ;; => 's-snake-case-p
+(s-get-style-case "snake_case") ;; => 's-snake-case-p
+(s-get-style-case "UpCamelCase") ;; => 's-upper-camel-case-p
+(s-get-style-case "list-case") ;; => 's-dashed-words-p
 ```
 
 ### s-capitalized-words `(s)`
