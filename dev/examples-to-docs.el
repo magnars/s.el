@@ -20,22 +20,36 @@
       (setq examples (cddr (cdr examples))))
     (nreverse result)))
 
+;;(defun docs--signature (cmd)
+;;  (if (eq 'macro (car cmd))
+;;      (car (cddr cmd))
+;;    (cadr cmd)))
 (defun docs--signature (cmd)
-  (if (eq 'macro (car cmd))
-      (car (cddr cmd))
-    (cadr cmd)))
+  (concat "("
+          (mapconcat (lambda (x) (symbol-name x))
+                     (help-function-arglist cmd t) " ")
+          ")"))
 
+;;(defun docs--docstring (cmd)
+;;  (if (eq 'macro (car cmd))
+;;      (cadr (cddr cmd))
+;;    (car (cddr cmd))))
 (defun docs--docstring (cmd)
-  (if (eq 'macro (car cmd))
-      (cadr (cddr cmd))
-    (car (cddr cmd))))
+  (documentation cmd))
 
+;;(defmacro defexamples (cmd &rest examples)
+;;  (declare (indent 1))
+;;  `(add-to-list 'functions (list
+;;                            ',cmd
+;;                            (docs--signature (symbol-function ',cmd))
+;;                            (docs--docstring (symbol-function ',cmd))
+;;                            (examples-to-strings ',examples))))
 (defmacro defexamples (cmd &rest examples)
   (declare (indent 1))
   `(add-to-list 'functions (list
                             ',cmd
-                            (docs--signature (symbol-function ',cmd))
-                            (docs--docstring (symbol-function ',cmd))
+                            (docs--signature ',cmd)
+                            (docs--docstring ',cmd)
                             (examples-to-strings ',examples))))
 
 (defmacro def-example-group (group &rest examples)
